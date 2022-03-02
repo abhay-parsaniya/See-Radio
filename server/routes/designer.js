@@ -4,15 +4,27 @@ const db = require("../database");
 const { route } = require("./auth");
 // const adminLoginRequire = require("../middleware/adminLoginRequire");
 
-// router.get("/deletedesigner/:id", (req, res) => {
-//   var id = req.params.id;
+router.get("/designerdetail/:id", (req, res) => {
+  let id = req.params.id;
 
-//   const sqls = "DELETE FROM designer WHERE id= ?;";
-//   db.query(sqls, [id], (req, res) => {
-//     if (err) console.log(err);
-//     else res.send(res);
-//   });
-// });
+  const sqls = "SELECT * FROM designer WHERE id = ?;";
+  db.query(sqls, id, (err, result) => {
+    if (err) console.log(err);
+    else res.send(result);
+  });
+});
+
+router.get("/deletedesigner/:id", (req, res) => {
+  let id = req.params.id;
+
+  const sqls = "DELETE FROM designer WHERE id = ?;";
+  db.query(sqls, id, (err, result) => {
+    if (err) console.log(err);
+    else {
+      if (result.length > 0) res.send(result);
+    }
+  });
+});
 
 router.get("/designers", (req, res) => {
   const sqls =

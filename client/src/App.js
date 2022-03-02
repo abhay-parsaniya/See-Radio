@@ -20,6 +20,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import "./App.css";
 import Designer from "./components/designer/Designer";
+import DesignerDetails from "./components/designer/DesignerDetails";
 
 const UserContext = createContext();
 
@@ -47,6 +48,7 @@ const Routing = () => {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/designer" element={<Designer />} />
+        <Route path="/designerdetails/:id" element={<DesignerDetails />} />
         <Route path="/signinadmin" element={<SignInAdmin />} />
         <Route path="/admin" element={<Admin />} />
         <Route
