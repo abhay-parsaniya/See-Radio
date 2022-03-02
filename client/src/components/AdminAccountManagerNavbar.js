@@ -40,9 +40,16 @@ const AdminAccountManagerNavbar = (props) => {
                     >
                       Home
                     </NavLink>
-                    <NavLink className="nav-link" to="/pendingrequests">
-                      Pending Requests
-                    </NavLink>
+                    <li className="nav-item dropdown">
+                      <NavLink className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Requests
+                      </NavLink>
+                      <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><NavLink className="dropdown-item" to="/pendingrequests">Pending</NavLink></li>
+                        <li><NavLink className="dropdown-item" to="/approvedrequests">Approved</NavLink></li>
+                        <li><NavLink className="dropdown-item" to="/rejectedrequests">Rejected</NavLink></li>
+                      </ul>
+                    </li>
                     <NavLink className="nav-link" to="/aboutus">
                       Graphic Designer
                     </NavLink>

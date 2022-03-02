@@ -11,8 +11,10 @@ import AccountManager from './components/account manager/AccountManager';
 import SignInClient from './components/client/SignInClient';
 import Client from "./components/client/Client";
 import SignUpClient from "./components/client/SignUpClient";
-import NewRequest from './components/client/NewRequest';
-import PendingRequests from "./components/PendingRequests";
+import NewRequest from './components/Requests/NewRequest';
+import PendingRequests from "./components/Requests/PendingRequests";
+import ApprovedRequests from "./components/Requests/ApprovedRequests";
+import RejectedRequests from "./components/Requests/RejectedRequests";
 import {initialState, Reducer} from "./reducer/Reducer";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
@@ -53,6 +55,8 @@ const Routing = () => {
         <Route path = "/signupclient" element = { <SignUpClient /> } />
         <Route path = "/newrequest" element = { <NewRequest /> } />
         <Route path = "/pendingrequests" element = { <PendingRequests /> } />
+        <Route path = "/approvedrequests" element = { <ApprovedRequests /> } />
+        <Route path = "/rejectedrequests" element = { <RejectedRequests /> } />
       </Routes>
     </>
   );
