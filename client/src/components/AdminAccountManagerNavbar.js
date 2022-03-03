@@ -14,8 +14,11 @@ const AdminAccountManagerNavbar = (props) => {
           <div className="col-11">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
               <div className="container-fluid">
-                <NavLink className="navbar-brand" to={state ? "/" : `/${props.go}`}>
-                {props.title}
+                <NavLink
+                  className="navbar-brand"
+                  to={state ? "/" : `/${props.go}`}
+                >
+                  {props.title}
                 </NavLink>
                 <button
                   className="navbar-toggler"
@@ -41,17 +44,48 @@ const AdminAccountManagerNavbar = (props) => {
                       Home
                     </NavLink>
                     <li className="nav-item dropdown">
-                      <NavLink className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <NavLink
+                        className="nav-link dropdown-toggle"
+                        to="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
                         Requests
                       </NavLink>
-                      <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><NavLink className="dropdown-item" to="/pendingrequests">Pending</NavLink></li>
-                        <li><NavLink className="dropdown-item" to="/approvedrequests">Approved</NavLink></li>
-                        <li><NavLink className="dropdown-item" to="/rejectedrequests">Rejected</NavLink></li>
+                      <ul
+                        className="dropdown-menu"
+                        aria-labelledby="navbarDropdown"
+                      >
+                        <li>
+                          <NavLink
+                            className="dropdown-item"
+                            to="/pendingrequests"
+                          >
+                            Pending
+                          </NavLink>
+                        </li>
+                        <li>
+                          <NavLink
+                            className="dropdown-item"
+                            to="/approvedrequests"
+                          >
+                            Approved
+                          </NavLink>
+                        </li>
+                        <li>
+                          <NavLink
+                            className="dropdown-item"
+                            to="/rejectedrequests"
+                          >
+                            Rejected
+                          </NavLink>
+                        </li>
                       </ul>
                     </li>
-                    <NavLink className="nav-link" to="/aboutus">
-                      Graphic Designer
+                    <NavLink className="nav-link" to="/designer">
+                      Designer
                     </NavLink>
                     <NavLink className="nav-link" to="/contactus">
                       Distribution Partner
