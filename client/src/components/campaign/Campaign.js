@@ -52,9 +52,26 @@ function Campaign() {
 
   const createCampaignForm = (e) => {
     e.preventDefault();
-    console.log(newCampaigndesigner);
-    console.log(newCampaignreq);
-    console.log(newCampaigntitle);
+    const campaignData = {
+      designer: newCampaigndesigner,
+      request: newCampaignreq,
+      title: newCampaigntitle,
+    };
+    // console.log(campaignData);
+
+    fetch("/addcampaign", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(campaignData),
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+
+    // console.log(newCampaigndesigner);
+    // console.log(newCampaignreq);
+    // console.log(newCampaigntitle);
   };
 
   const handleChange = (event) => {

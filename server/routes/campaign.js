@@ -6,7 +6,7 @@ const { route } = require("./auth");
 router.get("/campaigns", (req, res) => {
   //   const sqls = "SELECT idcampaign, designer, request FROM campaign;";
 
-  const sqls = `SELECT u.campaigntitle, u.idcampaign, s.firstname, s.lastname, p.firstName, p.LastName, p.companyName, p.productName FROM campaign u 
+  const sqls = `SELECT u.campaigntitle, u.idcampaign, s.firstname, s.lastname, s.designeremail, s.experience, s.designercity, p.firstName, p.LastName, p.companyName, p.productName, p.budget FROM campaign u 
                     INNER JOIN designer s ON u.designer = s.id
                     INNER JOIN newrequest p ON u.request = p.idnewrequest`;
 
@@ -30,17 +30,28 @@ router.get("/campaigns/:id", (req, res) => {
   });
 });
 
+router.post("/addcampaign", (req, res) => {
+  const formData = req.body;
+  console.log(formData);
+
+  for (let key in formData) {
+    if (formData[key] === "") {
+      // console.log(key);
+      return res.status(422).json({ error: "Please fill all the fields !!" });
+    }
+  }
+
+  db.query(
+    "INSERT INTO campaign (designer, request, campaigntitle) values (?, ?, ?)",
+    [formData.designer, formData.request, formData.title],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        return res.status(200).json({ msg: "Request Sent Successfully !!" });
+      }
+    }
+  );
+});
 module.exports = router;
-
-// SELECT u.*, s.*
-// FROM campaign u
-//     inner join designer s on u.designer = s.id
-// WHERE u.status_id = 1
-
-// connection.query("SELECT ?; SELECT ?", [1, 2], function (err, results) {
-//   if (err) throw err;
-
-//   // `results` is an array with one element for every statement in the query:
-//   console.log(results[0]); // [{1: 1}]
-//   console.log(results[1]); // [{2: 2}]
-// });

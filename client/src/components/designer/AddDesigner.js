@@ -66,8 +66,8 @@ function AddDesigner({ formData, submitform, handleChange }) {
                         type="email"
                         className="form-control"
                         id="inputEmail"
-                        name="email"
-                        value={formData.email}
+                        name="designeremail"
+                        value={formData.designeremail}
                         onChange={handleChange}
                       />
                     </div>
@@ -77,8 +77,8 @@ function AddDesigner({ formData, submitform, handleChange }) {
                         type="text"
                         className="form-control"
                         id="inputContactNo"
-                        name="contactno"
-                        value={formData.contactno}
+                        name="designercontactno"
+                        value={formData.designercontactno}
                         onChange={handleChange}
                       />
                     </div>
@@ -88,8 +88,8 @@ function AddDesigner({ formData, submitform, handleChange }) {
                         type="text"
                         className="form-control"
                         id="inputCity"
-                        name="city"
-                        value={formData.city}
+                        name="designercity"
+                        value={formData.designercity}
                         onChange={handleChange}
                       />
                     </div>

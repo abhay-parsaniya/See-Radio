@@ -36,15 +36,15 @@ function DesignerDetails() {
           </tr>
           <tr>
             <td>Email</td>
-            <td>{designerdetail.email}</td>
+            <td>{designerdetail.designeremail}</td>
           </tr>
           <tr>
             <td>Contact no</td>
-            <td>{designerdetail.contactno}</td>
+            <td>{designerdetail.designercontactno}</td>
           </tr>
           <tr>
             <td>City</td>
-            <td>{designerdetail.city}</td>
+            <td>{designerdetail.designercity}</td>
           </tr>
           <tr>
             <td>Experience</td>

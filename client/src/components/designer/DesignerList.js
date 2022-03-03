@@ -15,8 +15,8 @@ function DesignerList({ designers, deletedesigner }) {
           {designers.firstname} {designers.lastname}
         </p>
       </div>
-      <div className="col-3">{designers.contactno}</div>
-      <div className="col-4">{designers.email}</div>
+      <div className="col-3">{designers.designercontactno}</div>
+      <div className="col-4">{designers.designeremail}</div>
       <div className="col-2">
         <button
           className="btn btn-danger"

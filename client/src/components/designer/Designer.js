@@ -9,9 +9,9 @@ function Designer() {
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
-    email: "",
-    contactno: "",
-    city: "",
+    designeremail: "",
+    designercontactno: "",
+    designercity: "",
     qualification: "",
     experience: "",
   });
@@ -29,7 +29,6 @@ function Designer() {
       .then((res) => setDesigners([...res]))
       .catch((err) => console.log(err));
   };
-
   //   get all designer list
   useEffect(() => {
     fetch("/designers", {
@@ -63,9 +62,9 @@ function Designer() {
           setFormData({
             firstname: "",
             lastname: "",
-            email: "",
-            contactno: "",
-            city: "",
+            designeremail: "",
+            designercontactno: "",
+            designercity: "",
             qualification: "",
             experience: "",
           });

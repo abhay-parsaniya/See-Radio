@@ -57,7 +57,7 @@ function AddNewCampaign({
                         {designers.map((designer) => {
                           return (
                             <option value={designer.id} key={designer.id}>
-                              {designer.firstname}
+                              {designer.firstname} {designer.lastname}
                             </option>
                           );
                         })}
@@ -77,7 +77,7 @@ function AddNewCampaign({
                               value={req.idnewrequest}
                               key={req.idnewrequest}
                             >
-                              {req.firstName}
+                              {req.firstName} {req.lastName} ({req.productName})
                             </option>
                           );
                         })}
@@ -92,6 +92,7 @@ function AddNewCampaign({
                         name="campaigntitlename"
                         value={newCampaigntitle}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                     <hr></hr>

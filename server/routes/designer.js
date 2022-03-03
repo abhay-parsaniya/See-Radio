@@ -28,7 +28,7 @@ router.get("/deletedesigner/:id", (req, res) => {
 
 router.get("/designers", (req, res) => {
   const sqls =
-    "SELECT id, firstname, lastname, email, contactno, city, qualification, experience FROM designer;";
+    "SELECT id, firstname, lastname, designeremail, designercontactno, designercity, qualification, experience FROM designer;";
   db.query(sqls, (err, result) => {
     if (err) console.log(err);
     else res.send(result);
@@ -47,13 +47,13 @@ router.post("/adddesigner", (req, res) => {
   }
 
   db.query(
-    "INSERT INTO designer (firstname, lastname, email, contactno, city, qualification, experience) values (?, ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO designer (firstname, lastname, designeremail, designercontactno, designercity, qualification, experience) values (?, ?, ?, ?, ?, ?, ?)",
     [
       formData.firstname,
       formData.lastname,
-      formData.email,
-      formData.contactno,
-      formData.city,
+      formData.designeremail,
+      formData.designercontactno,
+      formData.designercity,
       formData.qualification,
       formData.experience,
     ],

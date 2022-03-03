@@ -13,7 +13,7 @@ function CampaignList(campaign) {
               view details
             </Link>
           </div>
-          <div className="col-6">
+          <div className="col-5">
             <table className="table">
               <tbody>
                 <tr>
@@ -30,13 +30,36 @@ function CampaignList(campaign) {
                   <td>Product name:</td>
                   <td>{campaign.campaign.productName}</td>
                 </tr>
+                <tr>
+                  <td>Budget:</td>
+                  <td>{campaign.campaign.budget}</td>
+                </tr>
               </tbody>
             </table>
           </div>
-          <div className="col-3">
-            <p>
-              {campaign.campaign.firstname} {campaign.campaign.lastname}
-            </p>
+          <div className="col-4">
+            <table className="table">
+              <tbody>
+                <tr>
+                  <td>Name: </td>
+                  <td>
+                    {campaign.campaign.firstname} {campaign.campaign.lastname}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Email:</td>
+                  <td>{campaign.campaign.designeremail}</td>
+                </tr>
+                <tr>
+                  <td>Experience:</td>
+                  <td>{campaign.campaign.experience}</td>
+                </tr>
+                <tr>
+                  <td>City:</td>
+                  <td>{campaign.campaign.designercity}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

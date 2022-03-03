@@ -36,7 +36,7 @@ function CampaignDetails() {
               </td>
             </tr>
             <tr>
-              <td>email</td>
+              <td>Email</td>
               <td>{campaignDetail.email}</td>
             </tr>
             <tr>
@@ -44,44 +44,80 @@ function CampaignDetails() {
               <td>{campaignDetail.contactno}</td>
             </tr>
             <tr>
-              <td>address</td>
+              <td>Address</td>
               <td>{campaignDetail.address}</td>
             </tr>
             <tr>
-              <td>city</td>
+              <td>City</td>
               <td>{campaignDetail.city}</td>
             </tr>
             <tr>
-              <td>state</td>
+              <td>State</td>
               <td>{campaignDetail.state}</td>
             </tr>
             <tr>
-              <td>country</td>
+              <td>Country</td>
               <td>{campaignDetail.country}</td>
             </tr>
             <tr>
-              <td>companyContactno</td>
+              <td>Zip</td>
+              <td>{campaignDetail.zip}</td>
+            </tr>
+            <tr>
+              <td>Company Name</td>
+              <td>{campaignDetail.companyName}</td>
+            </tr>
+            <tr>
+              <td>Company Email</td>
+              <td>{campaignDetail.companyEmail}</td>
+            </tr>
+            <tr>
+              <td>Company Contact no.</td>
               <td>{campaignDetail.companyContactno}</td>
             </tr>
             <tr>
-              <td>companyScope</td>
+              <td>Company Scope</td>
               <td>{campaignDetail.companyScope}</td>
             </tr>
             <tr>
-              <td>companyAddress</td>
+              <td>Company Address</td>
               <td>{campaignDetail.companyAddress}</td>
             </tr>
             <tr>
-              <td>productName</td>
+              <td>Company City</td>
+              <td>{campaignDetail.companyCity}</td>
+            </tr>
+            <tr>
+              <td>Company State</td>
+              <td>{campaignDetail.companyState}</td>
+            </tr>
+            <tr>
+              <td>Company Country</td>
+              <td>{campaignDetail.companyCountry}</td>
+            </tr>
+            <tr>
+              <td>Company Zip</td>
+              <td>{campaignDetail.companyZip}</td>
+            </tr>
+            <tr>
+              <td>Product Name</td>
               <td>{campaignDetail.productName}</td>
             </tr>
             <tr>
-              <td>productScope</td>
+              <td>Product Scope</td>
               <td>{campaignDetail.productScope}</td>
             </tr>
             <tr>
-              <td>budget</td>
+              <td>Budget</td>
               <td>{campaignDetail.budget}</td>
+            </tr>
+            <tr>
+              <td>Advertisement Scope</td>
+              <td>{campaignDetail.advertisementScope}</td>
+            </tr>
+            <tr>
+              <td>Target Views</td>
+              <td>{campaignDetail.targetViews}</td>
             </tr>
             <tr>
               <td>file_url</td>
@@ -99,16 +135,24 @@ function CampaignDetails() {
               </td>
             </tr>
             <tr>
-              <td>email</td>
-              <td> {campaignDetail.email} </td>
+              <td>Email</td>
+              <td>{campaignDetail.designeremail} </td>
+            </tr>
+            <tr>
+              <td>Contact no</td>
+              <td>{campaignDetail.designercontactno} </td>
+            </tr>
+            <tr>
+              <td>City</td>
+              <td>{campaignDetail.designercity} </td>
             </tr>
             <tr>
               <td>experience</td>
-              <td> {campaignDetail.experience} </td>
+              <td>{campaignDetail.experience} </td>
             </tr>
             <tr>
               <td>qualification</td>
-              <td> {campaignDetail.qualification} </td>
+              <td>{campaignDetail.qualification} </td>
             </tr>
           </tbody>
         </table>
