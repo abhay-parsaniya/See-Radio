@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+const { user, password } = require("./keys");
 
 const db = mysql.createConnection({
   host: "localhost",

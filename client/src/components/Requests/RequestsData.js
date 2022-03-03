@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react';
 
 const RequestsData = (props) => {
+
+    // console.log(props.color);
 
     let status = "Pending";
 
     const Approved = (ApprovedId) => {
 
-        // console.log(approved);
         status = "Approved";
-        // console.log(approved);
 
         fetch("/approvedrequest",{
             method: "POST",
@@ -38,9 +38,7 @@ const RequestsData = (props) => {
 
     const Rejected = (RejectedId) => {
 
-        // console.log(approved);
         status = "Rejected";
-        // console.log(approved);
 
         fetch("/rejectedrequest",{
             method: "POST",
@@ -68,6 +66,21 @@ const RequestsData = (props) => {
           });
     };
 
+    const ButtonRendering = (idnewrequest, btnStatus) => {
+        if(btnStatus === "Pending")
+        {
+            return (
+                <>
+                    <button type="button" className="btn btn-danger my-2" onClick={ () => {Rejected(idnewrequest)} } >Reject</button>
+                    <button type="button" className="btn btn-success my-2" onClick={ () => {Approved(idnewrequest)} } >Approve</button>
+                </>
+            );
+        }
+        else{
+            return <button type="button" className="btn btn-danger my-2">Assign Designer</button>
+        }
+    };
+
   return (
     <>
     <div className="container-fluid col-10">
@@ -77,7 +90,7 @@ const RequestsData = (props) => {
                 props.data.map(item => {
                     {/* console.log(item); */}
                     return (
-                        <div className="card col-md-5 col-sm-12 border-warning bg-warning mb-3" key={item.idnewrequest}>
+                        <div className={`card col-md-5 col-sm-12 border-${props.color} bg-${props.color} mb-3`} key={item.idnewrequest}>
                             <div className="card-header d-flex flex-wrap bg-transparent">
                                 <span className="px-1"><p className="h3"> {item.firstName} </p></span>
                                 <span className="px-1"><p className="h3"> {item.lastName} </p></span>
@@ -176,8 +189,7 @@ const RequestsData = (props) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" className="btn btn-danger my-2" onClick={ () => {Rejected(item.idnewrequest)} } >Reject</button>
-                                    <button type="button" className="btn btn-success my-2" onClick={ () => {Approved(item.idnewrequest)} } >Approve</button>
+                                    {ButtonRendering(item.idnewrequest, item.Status)}
                                 </div>
                             </div>
                         </div>
