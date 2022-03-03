@@ -87,6 +87,9 @@ const AdminAccountManagerNavbar = (props) => {
                     <NavLink className="nav-link" to="/designer">
                       Designer
                     </NavLink>
+                    <NavLink className="nav-link" to="/Campaign">
+                      Campaign
+                    </NavLink>
                     <NavLink className="nav-link" to="/contactus">
                       Distribution Partner
                     </NavLink>

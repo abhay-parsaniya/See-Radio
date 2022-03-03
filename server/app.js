@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(require("./routes/auth"));
 app.use(require("./routes/request"));
 app.use(require("./routes/designer"));
+app.use(require("./routes/campaign"));
 
 app.get("/", (req, res) => {
   console.log("home");

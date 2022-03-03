@@ -21,6 +21,8 @@ import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import "./App.css";
 import Designer from "./components/designer/Designer";
 import DesignerDetails from "./components/designer/DesignerDetails";
+import Campaign from "./components/campaign/Campaign";
+import CampaignDetails from "./components/campaign/CampaignDetails";
 
 const UserContext = createContext();
 
@@ -63,6 +65,8 @@ const Routing = () => {
         <Route path="/pendingrequests" element={<PendingRequests />} />
         <Route path="/approvedrequests" element={<ApprovedRequests />} />
         <Route path="/rejectedrequests" element={<RejectedRequests />} />
+        <Route path="/Campaign" element={<Campaign />} />
+        <Route path="/CampaignDetails/:id" element={<CampaignDetails />} />
       </Routes>
     </>
   );
