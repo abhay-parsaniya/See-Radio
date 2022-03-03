@@ -1,15 +1,71 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const RequestsData = (props) => {
 
-    console.log(props);
+    let status = "Pending";
+
     const Approved = (ApprovedId) => {
-        console.log(ApprovedId);
+
+        // console.log(approved);
+        status = "Approved";
+        // console.log(approved);
+
+        fetch("/approvedrequest",{
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer "+localStorage.getItem("jwt")
+            },
+            body: JSON.stringify({
+              status: status,
+              approvedid: ApprovedId
+            })
+          })
+          .then(res => res.json())
+          .then(data => {
+            // console.log(data);
+            if(data.error)
+            {
+              alert(data.error);
+            }
+            else{
+              alert(data.msg);
+            }
+          }).catch((err) => {
+            console.log(err);
+          });
     };
 
     const Rejected = (RejectedId) => {
-        console.log("Rejected");
-        console.log(RejectedId);
+
+        // console.log(approved);
+        status = "Rejected";
+        // console.log(approved);
+
+        fetch("/rejectedrequest",{
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer "+localStorage.getItem("jwt")
+            },
+            body: JSON.stringify({
+              status: status,
+              rejectedid: RejectedId
+            })
+          })
+          .then(res => res.json())
+          .then(data => {
+            // console.log(data);
+            if(data.error)
+            {
+              alert(data.error);
+            }
+            else{
+              alert(data.msg);
+            }
+          }).catch((err) => {
+            console.log(err);
+          });
     };
 
   return (
