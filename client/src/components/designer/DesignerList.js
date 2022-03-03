@@ -53,13 +53,21 @@ function DesignerList({ designers, deletedesigner }) {
         </div>
       </div>
 
-      <div className="col-3" onClick={redirectToDesigner}>
+      <div className="col-3">
         <p>
           {designers.firstname} {designers.lastname}
         </p>
       </div>
-      <div className="col-3">{designers.designercontactno}</div>
-      <div className="col-4">{designers.designeremail}</div>
+      <div className="col-2">{designers.designercontactno}</div>
+      <div className="col-3">{designers.designeremail}</div>
+      <div className="col-2">
+        <span
+          onClick={redirectToDesigner}
+          style={{ color: "blue", cursor: "pointer" }}
+        >
+          View Details
+        </span>
+      </div>
       <div className="col-2">
         <button
           type="button"

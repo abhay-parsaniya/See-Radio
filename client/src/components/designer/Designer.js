@@ -98,8 +98,9 @@ function Designer() {
       <div className="container my-4">
         <div className="row text-center">
           <div className="col-3 my-3 text-uppercase">Name</div>
-          <div className="col-3 my-3 text-uppercase">Contact No</div>
-          <div className="col-4 my-3 text-uppercase">Email</div>
+          <div className="col-2 my-3 text-uppercase">Contact No</div>
+          <div className="col-3 my-3 text-uppercase">Email</div>
+          <div className="col-2 my-3 text-uppercase">Details</div>
           <div className="col-2 my-3 text-uppercase">Delete Designer</div>
           <hr></hr>
           {designers.map((designer) => (
