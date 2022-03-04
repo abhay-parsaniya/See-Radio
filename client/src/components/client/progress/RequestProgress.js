@@ -51,23 +51,35 @@ function RequestProgress() {
           <Tab eventKey="InProgressRequest" title="In Progress Request">
             <h4 className="pt-4">Approved Requests</h4>
             <hr></hr>
-            {approved.map((item, index) => (
-              <InProgressRequest reqdata={item} key={index} />
-            ))}
+            {approved.length > 0 ? (
+              approved.map((item, index) => (
+                <InProgressRequest reqdata={item} key={index} />
+              ))
+            ) : (
+              <h6>No approved request available</h6>
+            )}
           </Tab>
           <Tab eventKey="PendingRequest" title="Pending Request">
             <h4 className="pt-4">Pending Requests</h4>
             <hr></hr>
-            {pending.map((item, index) => (
-              <PendingRequest reqdata={item} key={index} />
-            ))}
+            {pending.length > 0 ? (
+              pending.map((item, index) => (
+                <PendingRequest reqdata={item} key={index} />
+              ))
+            ) : (
+              <h6>No pending request available</h6>
+            )}
           </Tab>
           <Tab eventKey="RejectedRequest" title="Rejected Request">
             <h4 className="pt-4">Rejected Requests</h4>
             <hr></hr>
-            {rejected.map((item, index) => (
-              <RejectedRequest reqdata={item} key={index} />
-            ))}
+            {rejected.length > 0 ? (
+              rejected.map((item, index) => (
+                <RejectedRequest reqdata={item} key={index} />
+              ))
+            ) : (
+              <h6>No rejected request available</h6>
+            )}
           </Tab>
         </Tabs>
       </div>
