@@ -14,7 +14,10 @@ const ClientNavbar = () => {
           <div className="col-11">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
               <div className="container-fluid">
-                <NavLink className="navbar-brand" to={state ? "/" : "/signinclient"}>
+                <NavLink
+                  className="navbar-brand"
+                  to={state ? "/" : "/signinclient"}
+                >
                   Client
                 </NavLink>
                 <button
@@ -43,7 +46,7 @@ const ClientNavbar = () => {
                     <NavLink className="nav-link" to="/newrequest">
                       New Request
                     </NavLink>
-                    <NavLink className="nav-link" to="/contactus">
+                    <NavLink className="nav-link" to="/requestprogress">
                       Progress
                     </NavLink>
                     <NavLink className="nav-link" to="/signup">

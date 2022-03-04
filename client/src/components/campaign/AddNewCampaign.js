@@ -48,40 +48,69 @@ function AddNewCampaign({
                   >
                     <div>
                       <label className="form-label">Designer: </label>
-                      <select
-                        name="designer"
-                        value={newCampaigndesigner}
-                        onChange={handleChange}
-                        className="btn btn-light border border-primary my-2 mx-2"
-                      >
-                        {designers.map((designer) => {
-                          return (
-                            <option value={designer.id} key={designer.id}>
-                              {designer.firstname} {designer.lastname}
-                            </option>
-                          );
-                        })}
-                      </select>
+                      {designers.length > 0 ? (
+                        <select
+                          name="designer"
+                          value={newCampaigndesigner}
+                          onChange={handleChange}
+                          className="btn btn-light border border-primary my-2 mx-2"
+                        >
+                          <option value={0} key={0} disabled>
+                            Select Designer
+                          </option>
+                          {designers.map((designer) => {
+                            return (
+                              <option value={designer.id} key={designer.id}>
+                                {designer.firstname} {designer.lastname}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      ) : (
+                        <select
+                          name="designer"
+                          value="No designer available"
+                          onChange={handleChange}
+                          className="btn btn-light border border-primary my-2 mx-2"
+                          disabled
+                        >
+                          <option disabled>No designer available</option>
+                        </select>
+                      )}
                     </div>
                     <div>
                       <label className="form-label">Approved Request: </label>
-                      <select
-                        name="approvedrequest"
-                        value={newCampaignreq}
-                        onChange={handleChange}
-                        className="btn btn-light border border-primary my-2 mx-2"
-                      >
-                        {approvedReq.map((req) => {
-                          return (
-                            <option
-                              value={req.idnewrequest}
-                              key={req.idnewrequest}
-                            >
-                              {req.firstName} {req.lastName} ({req.productName})
-                            </option>
-                          );
-                        })}
-                      </select>
+                      {approvedReq.length > 0 ? (
+                        <select
+                          name="approvedrequest"
+                          value={newCampaignreq}
+                          onChange={handleChange}
+                          className="btn btn-light border border-primary my-2 mx-2"
+                        >
+                          <option value={0} key={0} disabled>
+                            Select Request
+                          </option>
+                          {approvedReq.map((req) => {
+                            return (
+                              <option
+                                value={req.idnewrequest}
+                                key={req.idnewrequest}
+                              >
+                                {req.firstName} {req.lastName} (
+                                {req.productName})
+                              </option>
+                            );
+                          })}
+                        </select>
+                      ) : (
+                        <select
+                          name="approvedrequest"
+                          value="No Approved Request available"
+                          onChange={handleChange}
+                          className="btn btn-light border border-primary my-2 mx-2"
+                          disabled
+                        ></select>
+                      )}
                     </div>
                     <div>
                       <label className="form-label">Campaign Title</label>
@@ -92,6 +121,7 @@ function AddNewCampaign({
                         name="campaigntitlename"
                         value={newCampaigntitle}
                         onChange={handleChange}
+                        placeholder="Campaign Title"
                         required
                       />
                     </div>
