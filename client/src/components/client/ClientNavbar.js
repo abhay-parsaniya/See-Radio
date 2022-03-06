@@ -49,7 +49,7 @@ const ClientNavbar = () => {
                     <NavLink className="nav-link" to="/requestprogress">
                       Progress
                     </NavLink>
-                    <NavLink className="nav-link" to="/signup">
+                    <NavLink className="nav-link" to="/history">
                       History
                     </NavLink>
                     <button

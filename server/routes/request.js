@@ -68,7 +68,7 @@ router.post("/newrequest", clientLoginRequire, (req, res) => {
           } else {
             console.log(result);
             const mailOptions = {
-              from: auth.user,
+              from: transporter.options.auth.user,
               to: formData.email,
               subject: "Request Sent Successfully !!",
               text: "Your Request is Successfully Submitted to the System. Your Request Status is Pending. Kindly Sync With us and Wait for Response.",
@@ -80,11 +80,14 @@ router.post("/newrequest", clientLoginRequire, (req, res) => {
                 console.log("here is the res: ", res);
               }
             });
-            return res.status(200).json({ msg: "Request Sent Successfully !!" });
+            return res
+              .status(200)
+              .json({ msg: "Request Sent Successfully !!" });
           }
-        })
-      }
-  })
+        }
+      );
+    }
+  });
 });
 
 router.get("/pendingrequest", adminLoginRequire, (req, res) => {
@@ -106,34 +109,42 @@ router.get("/pendingrequest", adminLoginRequire, (req, res) => {
 router.post("/approvedrequest", adminLoginRequire, (req, res) => {
   const { status, approvedid } = req.body;
 
-  db.query("UPDATE newrequest SET Status = ? WHERE idnewrequest = ?", [status, approvedid], (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      // console.log(result);
-      db.query("SELECT email FROM newrequest WHERE idnewrequest = ?", [approvedid], (err, result) => {
-        if (err) {
-          console.log(err);
-        } else {
-          // console.log(result[0].email);
-          const mailOptions = {
-            from: transporter.options.auth.user,
-            to: result[0].email,
-            subject: "Request Approved",
-            text: "Congratulations, Your Request is Approved !!",
-          };
-          transporter.sendMail(mailOptions, function (err, res) {
+  db.query(
+    "UPDATE newrequest SET Status = ? WHERE idnewrequest = ?",
+    [status, approvedid],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(result);
+        db.query(
+          "SELECT email FROM newrequest WHERE idnewrequest = ?",
+          [approvedid],
+          (err, result) => {
             if (err) {
-              console.error("there was an error: ", err);
+              console.log(err);
             } else {
-              console.log("here is the res: ", res);
+              // console.log(result[0].email);
+              const mailOptions = {
+                from: transporter.options.auth.user,
+                to: result[0].email,
+                subject: "Request Approved",
+                text: "Congratulations, Your Request is Approved !!",
+              };
+              transporter.sendMail(mailOptions, function (err, res) {
+                if (err) {
+                  console.error("there was an error: ", err);
+                } else {
+                  console.log("here is the res: ", res);
+                }
+              });
+              return res.status(200).json({ msg: "Request Approved !!" });
             }
-          });
-          return res.status(200).json({ msg: "Request Approved !!" });
-        }
-      });
+          }
+        );
+      }
     }
-  });
+  );
 });
 
 router.get("/approvedrequest", adminLoginRequire, (req, res) => {
@@ -155,34 +166,42 @@ router.get("/approvedrequest", adminLoginRequire, (req, res) => {
 router.post("/rejectedrequest", adminLoginRequire, (req, res) => {
   const { status, rejectedid } = req.body;
 
-  db.query("UPDATE newrequest SET Status = ? WHERE idnewrequest = ?", [status, rejectedid], (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      // console.log(result);
-      db.query("SELECT email FROM newrequest WHERE idnewrequest = ?", [rejectedid], (err, result) => {
-        if (err) {
-          console.log(err);
-        } else {
-          // console.log(result[0].email);
-          const mailOptions = {
-            from: transporter.options.auth.user,
-            to: result[0].email,
-            subject: "Request Rejected",
-            text: "Sorry, Your Request is Rejected.",
-          };
-          transporter.sendMail(mailOptions, function (err, res) {
+  db.query(
+    "UPDATE newrequest SET Status = ? WHERE idnewrequest = ?",
+    [status, rejectedid],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(result);
+        db.query(
+          "SELECT email FROM newrequest WHERE idnewrequest = ?",
+          [rejectedid],
+          (err, result) => {
             if (err) {
-              console.error("there was an error: ", err);
+              console.log(err);
             } else {
-              console.log("here is the res: ", res);
+              // console.log(result[0].email);
+              const mailOptions = {
+                from: transporter.options.auth.user,
+                to: result[0].email,
+                subject: "Request Rejected",
+                text: "Sorry, Your Request is Rejected.",
+              };
+              transporter.sendMail(mailOptions, function (err, res) {
+                if (err) {
+                  console.error("there was an error: ", err);
+                } else {
+                  console.log("here is the res: ", res);
+                }
+              });
+              return res.status(200).json({ msg: "Request Rejected" });
             }
-          });
-          return res.status(200).json({ msg: "Request Rejected" });
-        }
-      });
+          }
+        );
+      }
     }
-  });
+  );
 });
 
 router.get("/rejectedrequest", adminLoginRequire, (req, res) => {

@@ -13,7 +13,7 @@ router.post("/clientrequestprogress", clientLoginRequire, (req, res) => {
     else {
       const id = payload.idclient;
       db.query(
-        "SELECT * FROM newrequest WHERE user_client_id = ?",
+        "SELECT * FROM newrequest WHERE user_client_id = ? ORDER BY request_date_time DESC",
         id,
         (err, result) => {
           if (err) {
