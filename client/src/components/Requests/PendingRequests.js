@@ -25,7 +25,7 @@ const PendingRequests = () => {
     return(
         <>
             <AdminAccountManagerNavbar />
-            <RequestsData data={data} color={"warning"}/>
+            <RequestsData data={data} bgcolor={"warning"} title={"Pending"} />
         </>
     );
 };

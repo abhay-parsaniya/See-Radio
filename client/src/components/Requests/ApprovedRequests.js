@@ -22,10 +22,12 @@ const ApprovedRequests = () => {
         });
     }, []);
 
+    // console.log(data);
+
     return(
         <>
             <AdminAccountManagerNavbar />
-            <RequestsData data={data} color={"success"} />
+            <RequestsData data={data} bgcolor={"success"} title={"Approved"} txtcolor={"white"} />
         </>
     );
 };

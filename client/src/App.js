@@ -27,6 +27,7 @@ import CampaignDetails from "./components/campaign/CampaignDetails";
 const UserContext = createContext();
 
 const Routing = () => {
+  
   // const navigate = useNavigate();
   // const {state, dispatch} = useContext(UserContext);
 
@@ -53,10 +54,7 @@ const Routing = () => {
         <Route path="/designerdetails/:id" element={<DesignerDetails />} />
         <Route path="/signinadmin" element={<SignInAdmin />} />
         <Route path="/admin" element={<Admin />} />
-        <Route
-          path="/signinaccountmanager"
-          element={<SignInAccountManager />}
-        />
+        <Route path="/signinaccountmanager" element={<SignInAccountManager />} />
         <Route path="/accountmanager" element={<AccountManager />} />
         <Route path="/signinclient" element={<SignInClient />} />
         <Route path="/client" element={<Client />} />

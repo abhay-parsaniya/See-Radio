@@ -25,7 +25,7 @@ const RejectedRequests = () => {
     return(
         <>
             <AdminAccountManagerNavbar />
-            <RequestsData data={data} color={"danger"} />
+            <RequestsData data={data} bgcolor={"danger"} title={"Rejected"} txtcolor={"white"} />
         </>
     );
 };

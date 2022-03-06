@@ -4,9 +4,7 @@ const bcrypt = require("bcrypt");
 const db = require("../database");
 const jwt = require("jsonwebtoken");
 const { JWT_SECREAT_KEY } = require("../keys");
-// const adminLoginRequire = require("../middleware/adminLoginRequire");
-// const accountManagerLoginRequire = require("../middleware/accountManagerLoginRequire");
-// const clientLoginRequire = require("../middleware/clientLoginRequire");
+const transporter = require("../SendEmail");
 
 router.post("/signupclient", (req, res) => {
   const { name, email, password } = req.body;
@@ -36,6 +34,20 @@ router.post("/signupclient", (req, res) => {
                 console.log(err);
               } else {
                 // console.log(result);
+                const mailOptions = {
+                  from: transporter.options.auth.user,
+                  to: email,
+                  subject: "SignUp Success",
+                  text: "Welcome to the See Radio Portal !!",
+                };
+                transporter.sendMail(mailOptions, function (err, res) {
+                  if (err) {
+                    console.error("there was an error: ", err);
+                  } else {
+                    console.log("here is the res: ", res);
+                  }
+                });
+                
                 return res.status(200).json({ msg: "Signup Successfull !!" });
               }
             }

@@ -1,8 +1,9 @@
 import React from 'react';
+import RequestCard from './RequestCard';
 
 const RequestsData = (props) => {
 
-    // console.log(props.color);
+    // console.log(props.data);
 
     let status = "Pending";
 
@@ -66,31 +67,17 @@ const RequestsData = (props) => {
           });
     };
 
-    const ButtonRendering = (idnewrequest, btnStatus) => {
-        if(btnStatus === "Pending")
-        {
-            return (
-                <>
-                    <button type="button" className="btn btn-danger my-2" onClick={ () => {Rejected(idnewrequest)} } >Reject</button>
-                    <button type="button" className="btn btn-success my-2" onClick={ () => {Approved(idnewrequest)} } >Approve</button>
-                </>
-            );
-        }
-        else{
-            return <button type="button" className="btn btn-danger my-2">Assign Designer</button>
-        }
-    };
-
   return (
     <>
-    <div className="container-fluid col-10">
-        <h1 className="text-center my-3">Pending Requests</h1>
-            <div className="col-12 my-5 d-flex flex-wrap">
-            {
+        <RequestCard data={props.data} onApproved={Approved} onRejected={Rejected} bgcolor={props.bgcolor} title={props.title} txtcolor={props.txtcolor} />
+    {/* <div className="container-fluid col-10">
+        <h1 className="text-center my-3">{props.title} Requests</h1>
+            <div className="col-12 my-5 d-flex flex-wrap"> */}
+            {/* {
                 props.data.map(item => {
-                    {/* console.log(item); */}
+                    console.log(item);
                     return (
-                        <div className={`card col-md-5 col-sm-12 border-${props.color} bg-${props.color} mb-3`} key={item.idnewrequest}>
+                        <div className={`card col-md-5 col-sm-12 border-${props.bgcolor} bg-${props.bgcolor} mb-3 text-${props.txtcolor}`} key={item.idnewrequest}>
                             <div className="card-header d-flex flex-wrap bg-transparent">
                                 <span className="px-1"><p className="h3"> {item.firstName} </p></span>
                                 <span className="px-1"><p className="h3"> {item.lastName} </p></span>
@@ -195,9 +182,9 @@ const RequestsData = (props) => {
                         </div>
                     )
                 })
-            }
-            </div>
-        </div>
+            } */}
+            {/* </div>
+        </div> */}
     </>
   )
 };
