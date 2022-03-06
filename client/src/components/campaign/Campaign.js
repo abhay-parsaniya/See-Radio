@@ -7,8 +7,8 @@ function Campaign() {
   const [approvedReq, setApprovedReq] = useState([]);
   const [designers, setDesigners] = useState([]);
   const [campaigns, setCampaigns] = useState([]);
-  const [newCampaigndesigner, setNewCampaigndesigner] = useState();
-  const [newCampaignreq, setNewCampaignreq] = useState();
+  const [newCampaigndesigner, setNewCampaigndesigner] = useState(0);
+  const [newCampaignreq, setNewCampaignreq] = useState(0);
   const [newCampaigntitle, setNewCampaigntitle] = useState("");
 
   const approvedRequest = () => {
@@ -30,7 +30,7 @@ function Campaign() {
     })
       .then((res) => res.json())
       .then((res) => setDesigners([...res]))
-      //   .then((res) => console.log(res))
+      // .then((res) => console.log("designer:", res))
       .catch((err) => console.log(err));
   };
 
@@ -59,15 +59,19 @@ function Campaign() {
     };
     // console.log(campaignData);
 
-    fetch("/addcampaign", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(campaignData),
-    })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    if (newCampaigndesigner !== 0 && newCampaignreq !== 0) {
+      fetch("/addcampaign", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(campaignData),
+      })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    } else {
+      console.log("Select designer and request...");
+    }
 
     // console.log(newCampaigndesigner);
     // console.log(newCampaignreq);

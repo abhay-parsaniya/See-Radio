@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import PersonalInfo from "../client/forms/PersonalInfo";
 import CompanyInfo from "../client/forms/CompanyInfo";
 import ProductInfo from "../client/forms/ProductInfo";
-import ClientNavbar from '../client/ClientNavbar';
+import ClientNavbar from "../client/ClientNavbar";
 import "./NewRequest.css";
 
 const NewRequest = () => {
-
   const [page, setPage] = useState(0);
   const [secure_url, setSecure_url] = useState("");
 
@@ -34,77 +33,83 @@ const NewRequest = () => {
     productScope: "",
     advertisementScope: "",
     targetViews: "",
-    infofile: ""
+    infofile: "",
   });
 
   const FormTitles = ["Personal", "Company", "Product"];
 
   useEffect(() => {
-    if(secure_url)
-    {
-      fetch("/newrequest",{
+    if (secure_url) {
+      fetch("/newrequest", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer "+localStorage.getItem("jwt")
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
         body: JSON.stringify({
           formData: formData,
-          secure_url: secure_url
-        })
+          secure_url: secure_url,
+        }),
       })
-      .then(res => res.json())
-      .then(data => {
-        // console.log(data);
-        if(data.error)
-        {
-          alert(data.error);
-        }
-        else{
-          alert(data.msg);
-        //   navigate("/signinclient");
-        }
-      }).catch((err) => {
-        console.log(err);
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          if (data.error) {
+            alert(data.error);
+          } else {
+            alert(data.msg);
+            //   navigate("/signinclient");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [secure_url]);
 
-  function IncrementPage(){
-      return setPage(page + 1);
+  function IncrementPage() {
+    return setPage(page + 1);
   }
 
-  function DecrementPage(){
-      return setPage(page - 1);
+  function DecrementPage() {
+    return setPage(page - 1);
   }
 
-  function PageDisplay(){
-      if(page === 0)
-      {
-          return <PersonalInfo formData = {formData} setFormData = {setFormData} />
-      }
-      else if(page === 1)
-      {
-          return <CompanyInfo formData = {formData} setFormData = {setFormData} />
-      }
-      else if(page === 2)
-      {
-          return <ProductInfo formData = {formData} setFormData = {setFormData} />
-      }
-  }
-
-  function ButtonRendering(){
-    if(page === 2)
-    {
-        return <button type="submit" className="btn btn-primary px-5 my-2" onClick={submitData}>Submit</button>
-    }
-    else{
-        return <button type="submit" className="btn btn-primary px-5 my-2" onClick={IncrementPage}>Next</button>
+  function PageDisplay() {
+    if (page === 0) {
+      return <PersonalInfo formData={formData} setFormData={setFormData} />;
+    } else if (page === 1) {
+      return <CompanyInfo formData={formData} setFormData={setFormData} />;
+    } else if (page === 2) {
+      return <ProductInfo formData={formData} setFormData={setFormData} />;
     }
   }
 
-  function submitData(event){
+  function ButtonRendering() {
+    if (page === 2) {
+      return (
+        <button
+          type="submit"
+          className="btn btn-primary px-5 my-2"
+          onClick={submitData}
+        >
+          Submit
+        </button>
+      );
+    } else {
+      return (
+        <button
+          type="submit"
+          className="btn btn-primary px-5 my-2"
+          onClick={IncrementPage}
+        >
+          Next
+        </button>
+      );
+    }
+  }
 
+  function submitData(event) {
     event.preventDefault();
 
     const uploadfile = new FormData();
@@ -113,49 +118,68 @@ const NewRequest = () => {
     uploadfile.append("cloud_name", "abhay-parsaniya");
 
     fetch("https://api.cloudinary.com/v1_1/abhay-parsaniya/auto/upload", {
-        method: "POST",
-        body: uploadfile
+      method: "POST",
+      body: uploadfile,
     })
-    .then(res => res.json())
-    .then(result => {
+      .then((res) => res.json())
+      .then((result) => {
         // console.log(result);
         setSecure_url(result.secure_url);
-    })
-    .catch(err => {
+      })
+      .catch((err) => {
         console.log(err);
-    });
-      // console.log(formData);
-      // console.log(secure_url);
+      });
+    // console.log(formData);
+    // console.log(secure_url);
   }
 
   return (
-      <>
-        <ClientNavbar />
-        <div className="container-fluid col-10">
-            <div className="row my-3">
-                <div className="form">
-                    <h1 className="text-center py-5">New Request Form !!</h1>
-                    <div className="progress col-8 mx-auto my-3">
-                        <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" style={page === 0 ? {width: "33.3%"} : page === 1 ? {width: "66.6%"} : {width: "100%"}}>
-                            {page === 0 ? "33.3%" : page === 1 ? "66.6%" : "100%"}
-                        </div>
-                    </div>
-                    <div className="form-container">
-                        <div className="header text-center py-3">
-                            <h1>{FormTitles[page]} Information</h1>
-                        </div>
-                        <div className="body d-flex justify-content-center py-3">
-                            {PageDisplay()}
-                        </div>
-                        <div className="footer d-flex flex-wrap justify-content-evenly py-3">
-                            <button type="submit" className="btn btn-primary px-5 my-2" onClick={DecrementPage} disabled = {page === 0}>Prev</button> 
-                            {ButtonRendering()}
-                        </div>
-                    </div>
-                </div>
+    <>
+      <ClientNavbar />
+      <div className="container-fluid col-10">
+        <div className="row my-3">
+          <div className="form">
+            <h1 className="text-center py-5">New Request Form !!</h1>
+            <div className="progress col-8 mx-auto my-3">
+              <div
+                className="progress-bar progress-bar-striped progress-bar-animated"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style={
+                  page === 0
+                    ? { width: "33.3%" }
+                    : page === 1
+                    ? { width: "66.6%" }
+                    : { width: "100%" }
+                }
+              >
+                {page === 0 ? "33.3%" : page === 1 ? "66.6%" : "100%"}
+              </div>
             </div>
+            <div className="form-container">
+              <div className="header text-center py-3">
+                <h1>{FormTitles[page]} Information</h1>
+              </div>
+              <div className="body d-flex justify-content-center py-3">
+                {PageDisplay()}
+              </div>
+              <div className="footer d-flex flex-wrap justify-content-evenly py-3">
+                <button
+                  type="submit"
+                  className="btn btn-primary px-5 my-2"
+                  onClick={DecrementPage}
+                  disabled={page === 0}
+                >
+                  Prev
+                </button>
+                {ButtonRendering()}
+              </div>
+            </div>
+          </div>
         </div>
-      </>
+      </div>
+    </>
   );
 };
 
