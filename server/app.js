@@ -19,6 +19,7 @@ app.use(require("./routes/request"));
 app.use(require("./routes/designer"));
 app.use(require("./routes/campaign"));
 app.use(require("./routes/progress"));
+app.use(require("./routes/manager"));
 
 app.get("/", (req, res) => {
   console.log("home");

@@ -9,7 +9,9 @@ function Campaign() {
   const [campaigns, setCampaigns] = useState([]);
   const [newCampaigndesigner, setNewCampaigndesigner] = useState(0);
   const [newCampaignreq, setNewCampaignreq] = useState(0);
+  const [newManager, setNewManager] = useState(0);
   const [newCampaigntitle, setNewCampaigntitle] = useState("");
+  const [managers, setManagers] = useState([]);
 
   const approvedRequest = () => {
     fetch("/approvedrequest", {
@@ -21,6 +23,16 @@ function Campaign() {
       .then((res) => res.json())
       .then((res) => setApprovedReq([...res.result]))
       //   .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  const allManager = () => {
+    fetch("/managers", {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((res) => setManagers([...res]))
+      // .then((res) => console.log("designer:", res))
       .catch((err) => console.log(err));
   };
 
@@ -48,6 +60,7 @@ function Campaign() {
     approvedRequest();
     allDesigners();
     allCampaigns();
+    allManager();
   }, []);
 
   const createCampaignForm = (e) => {
@@ -55,6 +68,7 @@ function Campaign() {
     const campaignData = {
       designer: newCampaigndesigner,
       request: newCampaignreq,
+      manager: newManager,
       title: newCampaigntitle,
     };
     // console.log(campaignData);
@@ -83,6 +97,8 @@ function Campaign() {
       setNewCampaigndesigner(event.target.value);
     } else if (event.target.name === "approvedrequest") {
       setNewCampaignreq(event.target.value);
+    } else if (event.target.name === "manager") {
+      setNewManager(event.target.value);
     } else if (event.target.name === "campaigntitlename") {
       setNewCampaigntitle(event.target.value);
     }
@@ -96,8 +112,10 @@ function Campaign() {
         <AddNewCampaign
           approvedReq={approvedReq}
           designers={designers}
+          managers={managers}
           newCampaigndesigner={newCampaigndesigner}
           newCampaignreq={newCampaignreq}
+          newManager={newManager}
           newCampaigntitle={newCampaigntitle}
           handleChange={handleChange}
           submitForm={createCampaignForm}
@@ -108,14 +126,17 @@ function Campaign() {
         <h4 className="text-center">Campaign List</h4>
         <div className="border border-info p-3 my-2">
           <div className="row">
-            <div className="col-3">
+            <div className="col-2">
               <p style={{ fontWeight: "bold" }}>Campaign Title</p>
             </div>
-            <div className="col-6">
+            <div className="col-4">
               <p style={{ fontWeight: "bold" }}>Request Details</p>
             </div>
             <div className="col-3">
-              <p style={{ fontWeight: "bold" }}>Designer Name</p>
+              <p style={{ fontWeight: "bold" }}>Designer Details</p>
+            </div>
+            <div className="col-3">
+              <p style={{ fontWeight: "bold" }}>Manager Details</p>
             </div>
           </div>
         </div>

@@ -25,6 +25,7 @@ import Campaign from "./components/campaign/Campaign";
 import CampaignDetails from "./components/campaign/CampaignDetails";
 import RequestProgress from "./components/client/progress/RequestProgress";
 import History from "./components/client/history/History";
+import DistributionPartner from "./components/distributionpartner/DistributionPartner";
 
 const UserContext = createContext();
 
@@ -71,6 +72,7 @@ const Routing = () => {
         <Route path="/CampaignDetails/:id" element={<CampaignDetails />} />
         <Route path="/requestprogress" element={<RequestProgress />} />
         <Route path="/history" element={<History />} />
+        <Route path="/distribution" element={<DistributionPartner />} />
       </Routes>
     </>
   );

@@ -3,8 +3,10 @@ import React from "react";
 function AddNewCampaign({
   approvedReq,
   designers,
+  managers,
   newCampaigndesigner,
   newCampaignreq,
+  newManager,
   newCampaigntitle,
   handleChange,
   submitForm,
@@ -17,7 +19,7 @@ function AddNewCampaign({
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
-        + Assign approved request to designer
+        + Create Campaign
       </button>
       <div
         className="modal fade"
@@ -30,7 +32,7 @@ function AddNewCampaign({
           <div className="modal-content">
             <div className="modal-header">
               <h2 className="modal-title px-1" id="exampleModalLabel">
-                Assign approved request to designer
+                Create Campaign
               </h2>
               <button
                 type="button"
@@ -112,6 +114,41 @@ function AddNewCampaign({
                         ></select>
                       )}
                     </div>
+
+                    <div>
+                      <label className="form-label">Manager: </label>
+                      {managers.length > 0 ? (
+                        <select
+                          name="manager"
+                          value={newManager}
+                          onChange={handleChange}
+                          className="btn btn-light border border-primary my-2 mx-2"
+                        >
+                          <option value={0} key={0} disabled>
+                            Select Request
+                          </option>
+                          {managers.map((manager) => {
+                            return (
+                              <option
+                                value={manager.idaccountmanager}
+                                key={manager.idaccountmanager}
+                              >
+                                {manager.manager_name}({manager.manager_email})
+                              </option>
+                            );
+                          })}
+                        </select>
+                      ) : (
+                        <select
+                          name="manager"
+                          value="No manager available"
+                          onChange={handleChange}
+                          className="btn btn-light border border-primary my-2 mx-2"
+                          disabled
+                        ></select>
+                      )}
+                    </div>
+
                     <div>
                       <label className="form-label">Campaign Title</label>
                       <input
