@@ -156,6 +156,19 @@ function CampaignDetails() {
             </tr>
           </tbody>
         </table>
+        <h4>Manager details</h4>
+        <table className="table table-striped">
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td>{campaignDetail.manager_name}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>{campaignDetail.manager_email} </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </>
   );

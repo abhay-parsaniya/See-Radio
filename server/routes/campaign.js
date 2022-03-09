@@ -6,9 +6,10 @@ const { route } = require("./auth");
 router.get("/campaigns", (req, res) => {
   //   const sqls = "SELECT idcampaign, designer, request FROM campaign;";
 
-  const sqls = `SELECT u.campaigntitle, u.idcampaign, s.firstname, s.lastname, s.designeremail, s.experience, s.designercity, p.firstName, p.LastName, p.companyName, p.productName, p.budget FROM campaign u 
+  const sqls = `SELECT u.campaigntitle, u.idcampaign, s.firstname, s.lastname, s.designeremail, s.experience, s.designercity, p.firstName, p.LastName, p.companyName, p.productName, p.budget, t.manager_name, t.manager_email FROM campaign u 
                     INNER JOIN designer s ON u.designer = s.id
-                    INNER JOIN newrequest p ON u.request = p.idnewrequest`;
+                    INNER JOIN newrequest p ON u.request = p.idnewrequest
+                    INNER JOIN accountmanager t ON u.manager = t.idaccountmanager`;
 
   db.query(sqls, (err, result) => {
     if (err) console.log(err);
@@ -19,9 +20,10 @@ router.get("/campaigns", (req, res) => {
 router.get("/campaigns/:id", (req, res) => {
   let id = req.params.id;
 
-  const sqls = `SELECT u.*, s.*, p.* FROM campaign u 
+  const sqls = `SELECT u.*, s.*, p.*, t.manager_name, t.manager_email FROM campaign u 
                     INNER JOIN designer s ON u.designer = s.id
                     INNER JOIN newrequest p ON u.request = p.idnewrequest 
+                    INNER JOIN accountmanager t ON u.manager = t.idaccountmanager 
                     WHERE u.idcampaign = ?`;
 
   db.query(sqls, id, (err, result) => {
@@ -42,8 +44,8 @@ router.post("/addcampaign", (req, res) => {
   }
 
   db.query(
-    "INSERT INTO campaign (designer, request, campaigntitle) values (?, ?, ?)",
-    [formData.designer, formData.request, formData.title],
+    "INSERT INTO campaign (designer, request, manager, campaigntitle) values (?, ?, ?, ?)",
+    [formData.designer, formData.request, formData.manager, formData.title],
     (err, result) => {
       if (err) {
         console.log(err);
