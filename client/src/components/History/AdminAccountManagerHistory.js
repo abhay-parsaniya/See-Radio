@@ -1,6 +1,6 @@
 import React from 'react';
 import AdminAccountManagerNavbar from '../AdminAccountManagerNavbar';
-import HistoryTable from './HistoryTable';
+import HistoryTable from './AdminAccountManagerHistoryTable';
 
 const AdminAccountManagerHistory = () => {
   return (

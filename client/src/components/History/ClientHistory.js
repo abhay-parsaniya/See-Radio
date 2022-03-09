@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ClientNavbar from "../ClientNavbar";
-import HistoryList from "./HistoryList";
+import ClientNavbar from "../client/ClientNavbar";
+import HistoryList from "./ClientHistoryList";
 
 function History() {
   const [history, setHistory] = useState([]);

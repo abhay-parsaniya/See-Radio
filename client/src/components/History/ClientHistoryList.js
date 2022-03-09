@@ -13,11 +13,11 @@ function HistoryList({ request }) {
         <td>{request.budget}</td>
         <td>
           {request.Status === "Approved" ? (
-            <span style={{ color: "green" }}>Approved</span>
+            <span className="btn btn-success">Approved</span>
           ) : request.Status === "Pending" ? (
-            <span style={{ color: "blue" }}>Pending</span>
+            <span className="btn btn-warning">Pending</span>
           ) : (
-            <span style={{ color: "red" }}>Rejected</span>
+            <span className="btn btn-danger">Rejected</span>
           )}
         </td>
         {/* <td>{request.request_date_time.toLocaleString()}</td> */}

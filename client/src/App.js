@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import AboutUs from "./components/AboutUs";
 import ContactUs from "./ContactUs";
-import AdminAccountManagerHistory from "./components/History/AdminAccountManagerHistory";
+import AdminAccountManagerHistory from "./components/history/AdminAccountManagerHistory";
 import SignInAdmin from "./components/admin/SignInAdmin";
 import Admin from "./components/admin/Admin";
 import SignInAccountManager from "./components/account manager/SignInAccountManager";
@@ -25,7 +25,7 @@ import DesignerDetails from "./components/designer/DesignerDetails";
 import Campaign from "./components/campaign/Campaign";
 import CampaignDetails from "./components/campaign/CampaignDetails";
 import RequestProgress from "./components/client/progress/RequestProgress";
-import History from "./components/client/history/History";
+import History from "./components/history/ClientHistory";
 import DistributionPartner from "./components/distributionpartner/DistributionPartner";
 
 const UserContext = createContext();
