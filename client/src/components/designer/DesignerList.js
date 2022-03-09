@@ -10,6 +10,7 @@ function DesignerList({ designers, deletedesigner }) {
 
   return (
     <>
+      {/* Delete Model */}
       <div
         className="modal"
         id={`deleteModal${designers.id}`}

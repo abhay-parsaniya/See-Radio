@@ -1,8 +1,6 @@
 const express = require("express");
 const app = express();
 const db = require("./database");
-// require("./models/accountmanager");
-// require("./models/client");
 const PORT = 5000;
 
 db.connect((err) => {
@@ -19,6 +17,7 @@ app.use(require("./routes/request"));
 app.use(require("./routes/designer"));
 app.use(require("./routes/campaign"));
 app.use(require("./routes/progress"));
+app.use(require("./routes/history"));
 
 app.get("/", (req, res) => {
   console.log("home");

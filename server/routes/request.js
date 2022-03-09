@@ -33,7 +33,7 @@ router.post("/newrequest", clientLoginRequire, (req, res) => {
     else {
       const id = payload.idclient;
       db.query(
-        "INSERT INTO newrequest (firstName, lastName, email, contactno, address, city, state, country, zip, companyName, companyEmail, companyContactno, companyScope, companyAddress, companyCity, companyState, companyCountry, companyZip, productName, budget, productScope, advertisementScope, targetViews, file_url, Status, user_client_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO newrequest (firstName, lastName, email, contactno, address, city, state, country, zip, companyName, companyEmail, companyContactno, companyScope, companyAddress, companyCity, companyState, companyCountry, companyZip, productName, budget, productScope, advertisementScope, targetViews, file_url, user_client_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [
           formData.firstName,
           formData.lastName,
@@ -59,7 +59,6 @@ router.post("/newrequest", clientLoginRequire, (req, res) => {
           formData.advertisementScope,
           formData.targetViews,
           secure_url,
-          "Pending",
           id,
         ],
         (err, result) => {
@@ -68,7 +67,7 @@ router.post("/newrequest", clientLoginRequire, (req, res) => {
           } else {
             console.log(result);
             const mailOptions = {
-              from: auth.user,
+              from: transporter.options.auth.user,
               to: formData.email,
               subject: "Request Sent Successfully !!",
               text: "Your Request is Successfully Submitted to the System. Your Request Status is Pending. Kindly Sync With us and Wait for Response.",

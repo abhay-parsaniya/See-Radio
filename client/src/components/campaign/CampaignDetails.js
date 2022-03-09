@@ -32,7 +32,7 @@ function CampaignDetails() {
             <tr>
               <td>Name</td>
               <td>
-                {campaignDetail.firstName} {campaignDetail.firstName}
+                {campaignDetail.firstName} {campaignDetail.lastName}
               </td>
             </tr>
             <tr>

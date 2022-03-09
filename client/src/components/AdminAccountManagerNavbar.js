@@ -93,7 +93,7 @@ const AdminAccountManagerNavbar = (props) => {
                     <NavLink className="nav-link" to="/contactus">
                       Distribution Partner
                     </NavLink>
-                    <NavLink className="nav-link" to="/signup">
+                    <NavLink className="nav-link" to="/adminaccountmanagerhistory">
                       History
                     </NavLink>
                     <button

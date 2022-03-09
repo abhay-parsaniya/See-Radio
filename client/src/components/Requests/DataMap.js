@@ -18,7 +18,26 @@ const DataMap = (props) => {
             return (
                 <>
                     <button type="button" className="btn btn-danger my-2" onClick={ () => {Rejected(idnewrequest)} } >Reject</button>
-                    <button type="button" className="btn btn-success my-2" onClick={ () => {Approved(idnewrequest)} } >Approve</button>
+                    
+                    <button type="button" class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target={`#exampleModal${idnewrequest}`}>Approve</button>
+
+                    <div class="modal fade" id={`exampleModal${idnewrequest}`} tabindex="-1" aria-labelledby={`exampleModalLabel${idnewrequest}`} aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id={`exampleModalLabel${idnewrequest}`}>Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h3>Are You Sure To Approve Request ?</h3>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={ () => {Approved(idnewrequest)} }>Confirm</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
                 </>
             );
         }

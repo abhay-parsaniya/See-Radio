@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import AboutUs from "./components/AboutUs";
 import ContactUs from "./ContactUs";
+import AdminAccountManagerHistory from "./components/History/AdminAccountManagerHistory";
 import SignInAdmin from "./components/admin/SignInAdmin";
 import Admin from "./components/admin/Admin";
 import SignInAccountManager from "./components/account manager/SignInAccountManager";
@@ -51,6 +52,7 @@ const Routing = () => {
         <Route path="/" element={<Home />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/adminaccountmanagerhistory" element={<AdminAccountManagerHistory />} />
         <Route path="/designer" element={<Designer />} />
         <Route path="/designerdetails/:id" element={<DesignerDetails />} />
         <Route path="/signinadmin" element={<SignInAdmin />} />
