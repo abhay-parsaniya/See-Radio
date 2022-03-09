@@ -45,14 +45,22 @@ const HistoryTable = () => {
                                 historyData.map((historyItem, index) => {
                                     return(
                                         <tr>
-                                            <th scope="row">{index}</th>
+                                            <th scope="row">{index + 1}</th>
                                             <td>{historyItem.firstName} {historyItem.lastName}</td>
                                             <td>{historyItem.companyName}</td>
                                             <td>{historyItem.productName}</td>
                                             <td>{historyItem.budget}</td>
                                             <td>{historyItem.targetViews}</td>
                                             <td>@mdo</td>
-                                            <td>{historyItem.Status}</td>
+                                            <td>
+                                                {historyItem.Status === "Approved" ? (
+                                                    <span className="badge rounded-pill bg-success">Approved</span>
+                                                ) : historyItem.Status === "Pending" ? (
+                                                    <span className="badge rounded-pill bg-warning">Pending</span>
+                                                ) : (
+                                                    <span className="badge rounded-pill bg-danger">Rejected</span>
+                                                )}
+                                            </td>
                                         </tr>
                                     )
                                 })

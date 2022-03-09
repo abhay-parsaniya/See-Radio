@@ -5,7 +5,7 @@ const adminLoginRequire = require("../middleware/adminLoginRequire");
 
 router.get("/adminaccountmanagerhistorydata", adminLoginRequire, (req, res) => {
     db.query(
-        "SELECT firstName, lastname, companyName, productName, budget, targetViews, Status FROM newrequest",
+        "SELECT firstName, lastName, companyName, productName, budget, targetViews, Status FROM newrequest",
         (err, resultHistoryData) => {
           if (err) {
             console.log(err);

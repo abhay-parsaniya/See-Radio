@@ -165,7 +165,7 @@ router.post("/signinaccountmanager", (req, res) => {
     return res.status(422).json({ error: "please fill all fields" });
   } else {
     db.query(
-      "SELECT email FROM accountmanager WHERE email = ?",
+      "SELECT manager_email FROM accountmanager WHERE manager_email = ?",
       [email],
       (err, result) => {
         if (err) {
@@ -177,7 +177,7 @@ router.post("/signinaccountmanager", (req, res) => {
               .json({ error: "Invalid username or password" });
           } else {
             db.query(
-              "SELECT * FROM accountmanager WHERE email = ?",
+              "SELECT * FROM accountmanager WHERE manager_email = ?",
               [email],
               (err, result) => {
                 if (err) {
