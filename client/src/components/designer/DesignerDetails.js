@@ -16,6 +16,9 @@ function DesignerDetails() {
   useEffect(() => {
     fetch(`/designerdetail/${id}`, {
       method: "GET",
+      headers: {
+        "Authorization": "Bearer "+localStorage.getItem("jwt")
+      }
     })
       .then((res) => res.json())
       .then((res) => setDesignerdeatil(res[0]))

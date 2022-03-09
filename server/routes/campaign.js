@@ -2,12 +2,13 @@ const express = require("express");
 const router = express.Router();
 const db = require("../database");
 const { route } = require("./auth");
+const adminLoginRequire = require("../middleware/adminLoginRequire");
 
-router.get("/campaigns", (req, res) => {
+router.get("/campaigns", adminLoginRequire, (req, res) => {
   //   const sqls = "SELECT idcampaign, designer, request FROM campaign;";
 
   const sqls = `SELECT u.campaigntitle, u.idcampaign, s.firstname, s.lastname, s.designeremail, s.experience, s.designercity, p.firstName, p.LastName, p.companyName, p.productName, p.budget, t.manager_name, t.manager_email FROM campaign u 
-                    INNER JOIN designer s ON u.designer = s.id
+                    INNER JOIN designer s ON u.designer = s.iddesigner
                     INNER JOIN newrequest p ON u.request = p.idnewrequest
                     INNER JOIN accountmanager t ON u.manager = t.idaccountmanager`;
 
@@ -21,7 +22,7 @@ router.get("/campaigns/:id", (req, res) => {
   let id = req.params.id;
 
   const sqls = `SELECT u.*, s.*, p.*, t.manager_name, t.manager_email FROM campaign u 
-                    INNER JOIN designer s ON u.designer = s.id
+                    INNER JOIN designer s ON u.designer = s.iddesigner
                     INNER JOIN newrequest p ON u.request = p.idnewrequest 
                     INNER JOIN accountmanager t ON u.manager = t.idaccountmanager 
                     WHERE u.idcampaign = ?`;
@@ -32,7 +33,7 @@ router.get("/campaigns/:id", (req, res) => {
   });
 });
 
-router.post("/addcampaign", (req, res) => {
+router.post("/addcampaign", adminLoginRequire, (req, res) => {
   const formData = req.body;
   console.log(formData);
 

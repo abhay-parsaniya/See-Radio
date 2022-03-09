@@ -5,7 +5,7 @@ function DesignerList({ designers, deletedesigner }) {
   const Navigate = useNavigate();
 
   function redirectToDesigner() {
-    return Navigate(`/designerdetails/${designers.id}`);
+    return Navigate(`/designerdetails/${designers.iddesigner}`);
   }
 
   return (
@@ -13,9 +13,9 @@ function DesignerList({ designers, deletedesigner }) {
       {/* Delete Model */}
       <div
         className="modal"
-        id={`deleteModal${designers.id}`}
+        id={`deleteModal${designers.iddesigner}`}
         tabIndex="-1"
-        aria-labelledby={`deleteModalLabel${designers.id}`} //"deleteModalLabel"
+        aria-labelledby={`deleteModalLabel${designers.iddesigner}`} //"deleteModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered">
@@ -23,7 +23,7 @@ function DesignerList({ designers, deletedesigner }) {
             <div className="modal-header">
               <h4
                 className="modal-title px-1"
-                id={`deleteModalLabel${designers.id}`}
+                id={`deleteModalLabel${designers.iddesigner}`}
               >
                 Delete Designer?
               </h4>
@@ -44,7 +44,7 @@ function DesignerList({ designers, deletedesigner }) {
                 <button
                   className="btn btn-danger mx-3"
                   data-bs-dismiss="modal"
-                  onClick={() => deletedesigner(designers.id)}
+                  onClick={() => deletedesigner(designers.iddesigner)}
                 >
                   Delete
                 </button>
@@ -74,7 +74,7 @@ function DesignerList({ designers, deletedesigner }) {
           type="button"
           className="btn btn-danger"
           data-bs-toggle="modal"
-          data-bs-target={`#deleteModal${designers.id}`}
+          data-bs-target={`#deleteModal${designers.iddesigner}`}
         >
           Delete
         </button>

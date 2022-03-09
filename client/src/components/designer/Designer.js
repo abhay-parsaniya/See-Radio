@@ -14,6 +14,7 @@ function Designer() {
     designercity: "",
     qualification: "",
     experience: "",
+    designerpassword: "",
   });
 
   const [designers, setDesigners] = useState([]);
@@ -24,6 +25,9 @@ function Designer() {
     setFormData((values) => ({ ...values, [name]: value }));
     fetch("/designers", {
       method: "GET",
+      headers: {
+        "Authorization": "Bearer "+localStorage.getItem("jwt")
+      }
     })
       .then((res) => res.json())
       .then((res) => setDesigners([...res]))
@@ -33,9 +37,12 @@ function Designer() {
   useEffect(() => {
     fetch("/designers", {
       method: "GET",
+      headers: {
+        "Authorization": "Bearer "+localStorage.getItem("jwt")
+      }
     })
       .then((res) => res.json())
-      //   .then((res) => console.log(res))
+        // .then((res) => console.log(res))
       .then((res) => setDesigners([...res]))
       .catch((err) => console.log(err));
   }, [designers]);
@@ -49,6 +56,7 @@ function Designer() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer "+localStorage.getItem("jwt")
       },
       body: JSON.stringify({ ...formData }),
     })
@@ -67,6 +75,7 @@ function Designer() {
             designercity: "",
             qualification: "",
             experience: "",
+            designerpassword: "",
           });
         }
       })
@@ -80,6 +89,9 @@ function Designer() {
     // console.log(`/deletedesigner/${designer_id}`);
     fetch(`/deletedesigner/${designer_id}`, {
       method: "GET",
+      headers: {
+        "Authorization": "Bearer "+localStorage.getItem("jwt")
+      }
     }).catch((err) => console.log(err));
   };
 

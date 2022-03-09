@@ -72,6 +72,17 @@ function AddDesigner({ formData, submitform, handleChange }) {
                       />
                     </div>
                     <div>
+                      <label className="form-label">Set Password</label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        id="inputPassword"
+                        name="designerpassword"
+                        value={formData.designerpassword}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div>
                       <label className="form-label">Contact No.</label>
                       <input
                         type="text"

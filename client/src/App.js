@@ -20,7 +20,9 @@ import { initialState, Reducer } from "./reducer/Reducer";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import "./App.css";
+import SignInDesigner from "./components/designer/SignInDesigner";
 import Designer from "./components/designer/Designer";
+import DesignerCampain from "./components/designer/DesignerCampain";
 import DesignerDetails from "./components/designer/DesignerDetails";
 import Campaign from "./components/campaign/Campaign";
 import CampaignDetails from "./components/campaign/CampaignDetails";
@@ -54,7 +56,9 @@ const Routing = () => {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/adminaccountmanagerhistory" element={<AdminAccountManagerHistory />} />
+        <Route path="/signindesigner" element={<SignInDesigner />} />
         <Route path="/designer" element={<Designer />} />
+        <Route path="/designercampain" element={<DesignerCampain />} />
         <Route path="/designerdetails/:id" element={<DesignerDetails />} />
         <Route path="/signinadmin" element={<SignInAdmin />} />
         <Route path="/admin" element={<Admin />} />

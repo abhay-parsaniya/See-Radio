@@ -39,6 +39,9 @@ function Campaign() {
   const allDesigners = () => {
     fetch("/designers", {
       method: "GET",
+      headers: {
+        "Authorization": "Bearer "+localStorage.getItem("jwt")
+      }
     })
       .then((res) => res.json())
       .then((res) => setDesigners([...res]))
@@ -49,6 +52,9 @@ function Campaign() {
   const allCampaigns = () => {
     fetch("/campaigns", {
       method: "GET",
+      headers: {
+        "Authorization": "Bearer "+localStorage.getItem("jwt")
+      }
     })
       .then((res) => res.json())
       .then((res) => setCampaigns([...res]))
@@ -78,6 +84,7 @@ function Campaign() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": "Bearer "+localStorage.getItem("jwt")
         },
         body: JSON.stringify(campaignData),
       })

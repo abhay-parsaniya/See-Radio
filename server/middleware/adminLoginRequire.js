@@ -22,7 +22,7 @@ const adminLoginRequire = (req, res, next) => {
                 return res.status(401).json({ error: "You must be logged in" })
             }
             else{
-                console.log(payload);
+                // console.log(payload);
                 const { idadmin, iat } = payload;
                 db.query("SELECT * FROM admin WHERE idadmin = ?", [idadmin], (err, userdata) => {
                     if(err)

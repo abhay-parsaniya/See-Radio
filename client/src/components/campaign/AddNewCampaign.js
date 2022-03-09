@@ -62,7 +62,7 @@ function AddNewCampaign({
                           </option>
                           {designers.map((designer) => {
                             return (
-                              <option value={designer.id} key={designer.id}>
+                              <option value={designer.iddesigner} key={designer.iddesigner}>
                                 {designer.firstname} {designer.lastname}
                               </option>
                             );

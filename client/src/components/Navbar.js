@@ -55,6 +55,7 @@ const Navbar = () => {
                         <li><NavLink className="dropdown-item" to="/signinadmin">Admin</NavLink></li>
                         <li><NavLink className="dropdown-item" to="/signinaccountmanager">Account Manager</NavLink></li>
                         <li><NavLink className="dropdown-item" to="/signinclient">Client</NavLink></li>
+                        <li><NavLink className="dropdown-item" to="/signindesigner">Designer</NavLink></li>
                       </ul>
                     </li>
                     <NavLink className="nav-link" to="/signupclient">

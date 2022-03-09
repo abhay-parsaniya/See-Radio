@@ -278,7 +278,7 @@ router.post("/signinclient", (req, res) => {
               }
             );
           }
-          module.exports = router;
+          // module.exports = router;
         }
       }
     );
