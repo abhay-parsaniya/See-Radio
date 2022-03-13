@@ -7,6 +7,7 @@ const { JWT_SECREAT_KEY } = require("../keys");
 const { route } = require("./auth");
 const transporter = require("../SendEmail");
 const adminLoginRequire = require("../middleware/adminLoginRequire");
+const designerLoginRequire = require("../middleware/designerLoginRequire");
 
 router.get("/designerdetail/:id", adminLoginRequire, (req, res) => {
   let id = req.params.id;
@@ -159,6 +160,42 @@ router.post("/signindesigner", (req, res) => {
       }
     );
   }
+});
+
+router.get("/designerallcampaigns", designerLoginRequire, (req, res) => {
+  //   const sqls = "SELECT idcampaign, designer, request FROM campaign;";
+
+  const sqls = `SELECT u.*, s.*, p.*, t.manager_name, t.manager_email FROM campaign u 
+                    INNER JOIN designer s ON u.designer = s.iddesigner
+                    INNER JOIN newrequest p ON u.request = p.idnewrequest 
+                    INNER JOIN accountmanager t ON u.manager = t.idaccountmanager 
+                    WHERE u.designer = 13`;
+
+  db.query(sqls, (err, result) => {
+    if (err) console.log(err);
+    else res.send(result);
+  });
+});
+
+router.post("/sendemailtomanager", designerLoginRequire, (req, res) => {
+  // console.log(req.body);
+  const { manager_email, idcampaign, campaigntitle } = req.body;
+
+  const mailOptions = {
+    from: transporter.options.auth.user,
+    to: manager_email,
+    subject: "Designer Raise Issue",
+    text: `Respected Manager, Please Provide me More Information About ${campaigntitle} Campaign with Campaign Id No. ${idcampaign}`,
+  };
+  transporter.sendMail(mailOptions, function (err, res) {
+    if (err) {
+      console.error("there was an error: ", err);
+      // return res.status(422).json({error: "Mail Not Sent"});
+    } else {
+      console.log("here is the res: ", res);
+      // return res.status(200).json({msg: "Mail Sent Successfully !!"});
+    }
+  });
 });
 
 module.exports = router;
