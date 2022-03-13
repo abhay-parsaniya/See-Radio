@@ -102,15 +102,15 @@ const DesignerAssignedCampaignList = () => {
                           Document
                         </a>
                           
-                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={`#UploadVideo${item.idcampaign}`} >
                           Upload Video
                         </button>
 
-                        <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal fade" id={`UploadVideo${item.idcampaign}`} tabIndex="-1" aria-labelledby={`UploadVideoLabel${item.idcampaign}`} aria-hidden="true">
                           <div className="modal-dialog">
                             <div className="modal-content">
                               <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Upload Video</h5>
+                                <h5 className="modal-title" id={item.idcampaign} >Upload Video</h5>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div className="modal-body">
@@ -118,14 +118,33 @@ const DesignerAssignedCampaignList = () => {
                               </div>
                               <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-primary" onClick={UploadVideo}>Confirm</button>
+                                <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={UploadVideo}>Confirm</button>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <button type="button" className="btn btn-primary" onClick={() => {SendEmail(item.manager_email, item.idcampaign, item.campaigntitle)}} >
+                        
+                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={`#SendEmailModel${item.manager}`} >
                           Need More Info
                         </button>
+
+                        <div className="modal fade" id={`SendEmailModel${item.manager}`} tabIndex="-1" aria-labelledby={`SendEmailModelLabel${item.manager}`} aria-hidden="true">
+                          <div className="modal-dialog">
+                            <div className="modal-content">
+                              <div className="modal-header">
+                                <h5 className="modal-title" id={`SendEmailModel${item.manager}`} >Write Issue</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div className="modal-body">
+                                <input className="form-control" type="file" id="formFile" />
+                              </div>
+                              <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => {SendEmail(item.manager_email, item.idcampaign, item.campaigntitle)}}>Send Email</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
