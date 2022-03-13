@@ -1,6 +1,6 @@
 database.js
 keys.js
-
+./server/routes/keys
 # Logs
 logs
 *.log

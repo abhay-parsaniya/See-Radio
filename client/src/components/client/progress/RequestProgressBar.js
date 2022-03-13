@@ -23,6 +23,28 @@ function RequestProgressBar({ progress }) {
                 color: "green",
               }}
             >
+              Pending
+            </div>
+          </>
+        )}
+      </Step>
+      <Step>
+        {({ accomplished, index }) => (
+          <>
+            <div
+              className={`indexedStep ${accomplished ? "accomplished" : null}`}
+              style={{ position: "absolute" }}
+            >
+              {index + 1}
+            </div>
+            <div
+              style={{
+                position: "relative",
+                top: "40px",
+                left: "0px",
+                color: "green",
+              }}
+            >
               Approved
             </div>
           </>
@@ -45,7 +67,73 @@ function RequestProgressBar({ progress }) {
                 color: "green",
               }}
             >
-              In Progress
+              Graphic designer assigned
+            </div>
+          </>
+        )}
+      </Step>
+      <Step>
+        {({ accomplished, index }) => (
+          <>
+            <div
+              className={`indexedStep ${accomplished ? "accomplished" : null}`}
+              style={{ position: "absolute" }}
+            >
+              {index + 1}
+            </div>
+            <div
+              style={{
+                position: "relative",
+                top: "40px",
+                left: "0px",
+                color: "green",
+              }}
+            >
+              Video verified by you
+            </div>
+          </>
+        )}
+      </Step>
+      <Step>
+        {({ accomplished, index }) => (
+          <>
+            <div
+              className={`indexedStep ${accomplished ? "accomplished" : null}`}
+              style={{ position: "absolute" }}
+            >
+              {index + 1}
+            </div>
+            <div
+              style={{
+                position: "relative",
+                top: "40px",
+                left: "0px",
+                color: "green",
+              }}
+            >
+              Distribution partner assigned
+            </div>
+          </>
+        )}
+      </Step>
+      <Step>
+        {({ accomplished, index }) => (
+          <>
+            <div
+              className={`indexedStep ${accomplished ? "accomplished" : null}`}
+              style={{ position: "absolute" }}
+            >
+              {index + 1}
+            </div>
+            <div
+              style={{
+                position: "relative",
+                top: "40px",
+                left: "0px",
+                color: "green",
+              }}
+            >
+              View target achived
             </div>
           </>
         )}
