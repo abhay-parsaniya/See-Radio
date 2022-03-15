@@ -3,6 +3,11 @@ import "./DesignerAssignedCampaignList.css";
 
 const DesignerAssignedCampaignList = () => {
   const [designerallcampaigns, setDesignerAllCampaigns] = useState([]);
+  const [designerVideoFile, setDesignerVideoFile] = useState("");
+  const [designer_secure_url, setDesigner_Secure_url] = useState("");
+  const [campaignid, setCampaignid] = useState(0);
+  const [emailText, setEmailText] = useState("");
+  const [emailtomanager, setEmailToManager] = useState("");
 
   const DesignerAllCampaigns = () => {
     fetch("/designerallcampaigns", {
@@ -21,6 +26,40 @@ const DesignerAssignedCampaignList = () => {
     DesignerAllCampaigns();
   }, []);
 
+  // console.log(campaignid);
+
+  useEffect(() => {
+
+    if(designer_secure_url)
+    {
+      fetch("/uploaddesignervideo",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer "+localStorage.getItem("jwt")
+        },
+        body: JSON.stringify({
+          designer_secure_url: designer_secure_url,
+          idcampaign: campaignid,
+          manager_email: emailtomanager
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        // console.log(data);
+        if(data.error)
+        {
+          alert(data.error);
+        }
+        else{
+          alert(data.msg);
+        }
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
+  }, [designer_secure_url, campaignid, emailtomanager]);
+
   const SendEmail = (manager_email, idcampaign, campaigntitle) => {
 
     fetch("/sendemailtomanager", {
@@ -32,7 +71,8 @@ const DesignerAssignedCampaignList = () => {
       body: JSON.stringify({
         manager_email: manager_email,
         idcampaign: idcampaign,
-        campaigntitle: campaigntitle
+        campaigntitle: campaigntitle,
+        emailText: emailText
       })
     })
     .then(res => res.json())
@@ -50,8 +90,32 @@ const DesignerAssignedCampaignList = () => {
     });
   };
 
-  const UploadVideo = () => {
+  const UploadVideo = async (idcampaign, manageremail) => {
+    console.log(idcampaign);
+    // event.preventDefault();
 
+    setCampaignid(() => idcampaign);
+    setEmailToManager(() => manageremail);
+
+    const uploadfile = new FormData();
+    uploadfile.append("file", designerVideoFile);
+    uploadfile.append("upload_preset", "see-radio");
+    uploadfile.append("cloud_name", "abhay-parsaniya");
+
+    fetch("https://api.cloudinary.com/v1_1/abhay-parsaniya/auto/upload", {
+        method: "POST",
+        body: uploadfile
+    })
+    .then(res => res.json())
+    .then(result => {
+        // console.log(result);
+        setDesigner_Secure_url(result.secure_url);
+    })
+    .catch(err => {
+        console.log(err);
+    });
+      // console.log(formData);
+      // console.log(secure_url);
   };
 
   return (
@@ -114,11 +178,11 @@ const DesignerAssignedCampaignList = () => {
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div className="modal-body">
-                                <input className="form-control" type="file" id="formFile" />
+                                <input className="form-control" type="file" id="formFile" onChange={(object) => setDesignerVideoFile(object.target.files[0])}/>
                               </div>
                               <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={UploadVideo}>Confirm</button>
+                                <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => UploadVideo(item.idcampaign, item.manager_email)}>Confirm</button>
                               </div>
                             </div>
                           </div>
@@ -136,7 +200,7 @@ const DesignerAssignedCampaignList = () => {
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div className="modal-body">
-                                <input className="form-control" type="file" id="formFile" />
+                                <input className="form-control" type="text" id="emailText" onChange={(event) => {setEmailText(event.target.value)}} />
                               </div>
                               <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
