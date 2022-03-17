@@ -12,6 +12,27 @@ function CampaignList(campaign) {
             <Link to={`/CampaignDetails/${campaign.campaign.idcampaign}`}>
               view details
             </Link>
+
+            {/* dropdown for progress */}
+
+            <form>
+              <label className="form-label">Select Progress: </label>
+              <select
+                name="selectprogress"
+                value=""
+                onChange=""
+                className="btn btn-light border border-primary my-2 mx-2"
+              >
+                <option value={0} key={0} disabled>
+                  Approved
+                </option>
+                <option>Designer Assigned</option>
+                <option>Video Completed</option>
+              </select>
+              <button>change</button>
+            </form>
+
+            {/* dropdown for progress */}
           </div>
           <div className="col-4">
             <table className="table">

@@ -13,6 +13,8 @@ function Campaign() {
   const [newCampaigntitle, setNewCampaigntitle] = useState("");
   const [managers, setManagers] = useState([]);
 
+  const [progressStatus, setProgressStatus] = useState([]);
+
   const approvedRequest = () => {
     fetch("/approvedrequest", {
       method: "GET",
@@ -40,8 +42,8 @@ function Campaign() {
     fetch("/designers", {
       method: "GET",
       headers: {
-        "Authorization": "Bearer "+localStorage.getItem("jwt")
-      }
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
     })
       .then((res) => res.json())
       .then((res) => setDesigners([...res]))
@@ -53,8 +55,8 @@ function Campaign() {
     fetch("/campaigns", {
       method: "GET",
       headers: {
-        "Authorization": "Bearer "+localStorage.getItem("jwt")
-      }
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
     })
       .then((res) => res.json())
       .then((res) => setCampaigns([...res]))
@@ -84,7 +86,7 @@ function Campaign() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer "+localStorage.getItem("jwt")
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
         body: JSON.stringify(campaignData),
       })
@@ -109,6 +111,24 @@ function Campaign() {
     } else if (event.target.name === "campaigntitlename") {
       setNewCampaigntitle(event.target.value);
     }
+  };
+
+  // submit campaign id and progres status
+
+  const progressStatusChange = (event) => {
+    setProgressStatus(event.target.value);
+  };
+
+  const submitProgressStatus = (e) => {
+    e.preventDefault();
+    fetch("/changeprogressstatus", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+      body: JSON.stringify(progressStatus),
+    });
   };
 
   return (

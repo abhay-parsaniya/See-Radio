@@ -23,28 +23,6 @@ function RequestProgressBar({ progress }) {
                 color: "green",
               }}
             >
-              Pending
-            </div>
-          </>
-        )}
-      </Step>
-      <Step>
-        {({ accomplished, index }) => (
-          <>
-            <div
-              className={`indexedStep ${accomplished ? "accomplished" : null}`}
-              style={{ position: "absolute" }}
-            >
-              {index + 1}
-            </div>
-            <div
-              style={{
-                position: "relative",
-                top: "40px",
-                left: "0px",
-                color: "green",
-              }}
-            >
               Approved
             </div>
           </>
