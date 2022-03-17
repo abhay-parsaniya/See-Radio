@@ -148,22 +148,6 @@ const DesignerAssignedCampaignList = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="card-footer d-flex flex-wrap justify-content-around">
-                        <a href={item.file_url} target={"_blank"}>
-                          Document
-                        </a>
-                        
-                        {designer_secure_url ?
-                          <a href={designer_secure_url} target={"_blank"}>
-                            Your Video
-                          </a>
-                        : <a href="Nothing" target={"_blank"}>
-                            No Video Uploaded
-                          </a>}
-                          
-                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={`#UploadVideo${item.idcampaign}`} >
-                          Upload Video
-                        </button>
                       <div className="manager-details col-md-3 col-sm-12 my-2 mx-1">
                         <div className="card-header col-12 text-center">
                           Manager Details
@@ -178,6 +162,16 @@ const DesignerAssignedCampaignList = () => {
                       <a href={item.file_url} target={"_blank"}>
                         Document
                       </a>
+
+                      {designer_secure_url ? (
+                        <a href={designer_secure_url} target={"_blank"}>
+                          Your Video
+                        </a>
+                      ) : (
+                        <a href="No Video Available" target={"_blank"}>
+                          No Video Uploaded
+                        </a>
+                      )}
 
                       <button
                         type="button"
@@ -315,12 +309,11 @@ const DesignerAssignedCampaignList = () => {
                     </div>
                   </div>
                 </div>
-              </div>
               );
             })}
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 };
