@@ -165,6 +165,14 @@ const DesignerAssignedCampaignList = () => {
                         <a href={item.file_url} target={"_blank"}>
                           Document
                         </a>
+                        
+                        {designer_secure_url ?
+                          <a href={designer_secure_url} target={"_blank"}>
+                            Your Video
+                          </a>
+                        : <a href="Nothing" target={"_blank"}>
+                            No Video Uploaded
+                          </a>}
                           
                         <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={`#UploadVideo${item.idcampaign}`} >
                           Upload Video

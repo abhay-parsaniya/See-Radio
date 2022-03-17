@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
 import "../SignIn.css";
+// import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 const SignInAdmin = () => {
 
@@ -31,12 +33,14 @@ const SignInAdmin = () => {
       if(data.error)
       {
         alert(data.error);
+        // toast(data.error);
       }
       else{
         localStorage.setItem("jwt", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
         dispatch({type: "USER", payload: data.user})
         alert("signed in success !!");
+        // toast.error("Wow so easy!");
         navigate("/admin");
       }
     }).catch((err) => {

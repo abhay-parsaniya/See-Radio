@@ -231,7 +231,7 @@ router.post("/uploaddesignervideo", designerLoginRequire, (req, res) => {
               from: transporter.options.auth.user,
               to: manager_email,
               subject: "Video Uploaded !!",
-              text: "Designer Uploaded Video Successfully to the System.",
+              text: `Designer Uploaded Video Successfully to CampaignId ${idcampaign}. Link is Here ${designer_secure_url}`,
             };
             transporter.sendMail(mailOptions, function (err, res) {
               if (err) {
