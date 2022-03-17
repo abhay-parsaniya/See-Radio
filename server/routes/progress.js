@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const db = require("../database");
 const clientLoginRequire = require("../middleware/clientLoginRequire");
+const adminLoginRequire = require("../middleware/adminLoginRequire");
+
 const jwt = require("jsonwebtoken");
 const { JWT_SECREAT_KEY } = require("../keys");
 

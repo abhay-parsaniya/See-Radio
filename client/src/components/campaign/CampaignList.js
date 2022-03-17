@@ -4,97 +4,59 @@ import { Link } from "react-router-dom";
 function CampaignList(campaign) {
   return (
     <>
-      {/* <p>{console.log(campaign.campaign.campaigntitle)}</p> */}
-      <div className="border border-info p-3">
-        <div className="row">
-          <div className="col-2">
-            <p>{campaign.campaign.campaigntitle}</p>
+      <div className="card-body">
+        <div className="card-component">
+          <div className="card-header text-center">
+            <h3>{campaign.campaign.campaigntitle}</h3>
+          </div>
+
+          <div className="d-flex flex-wrap row justify-content-center">
+            <div className="request-details col-md-4 col-sm-12 my-2 mx-1">
+              <div className="card-header col-12 text-center">
+                Request Details
+              </div>
+              <div className="d-flex flex-wrap my-3">
+                <div className="col-md-6 col-sm-12">
+                  <p>
+                    {campaign.campaign.firstName} {campaign.campaign.LastName}
+                  </p>
+                  <p>Company Name : {campaign.campaign.companyName}</p>
+                  <p>Product Name : {campaign.campaign.productName}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="request-details col-md-4 col-sm-12 my-2 mx-1">
+              <div className="card-header col-12 text-center">
+                Designer Details
+              </div>
+              <div className="d-flex flex-wrap my-3">
+                <div className="col-md-6 col-sm-12">
+                  <p>
+                    Designer name : {campaign.campaign.firstname}{" "}
+                    {campaign.campaign.lastname}
+                  </p>
+                  <p>designer email : {campaign.campaign.designeremail}</p>
+                  <p>designer experience : {campaign.campaign.experience}</p>
+                  <p>designer city : {campaign.campaign.designercity}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="manager-details col-md-3 col-sm-12 my-2 mx-1">
+              <div className="card-header col-12 text-center">
+                Manager Details
+              </div>
+              <div className="my-3">
+                <p>Name : {campaign.campaign.manager_name}</p>
+                <p>Email : {campaign.campaign.manager_email}</p>
+              </div>
+            </div>
+          </div>
+          <div className="card-footer d-flex flex-wrap justify-content-around">
             <Link to={`/CampaignDetails/${campaign.campaign.idcampaign}`}>
               view details
             </Link>
-
-            {/* dropdown for progress */}
-
-            <form>
-              <label className="form-label">Select Progress: </label>
-              <select
-                name="selectprogress"
-                value=""
-                onChange=""
-                className="btn btn-light border border-primary my-2 mx-2"
-              >
-                <option value={0} key={0} disabled>
-                  Approved
-                </option>
-                <option>Designer Assigned</option>
-                <option>Video Completed</option>
-              </select>
-              <button>change</button>
-            </form>
-
-            {/* dropdown for progress */}
-          </div>
-          <div className="col-4">
-            <table className="table">
-              <tbody>
-                <tr>
-                  <td>Name: </td>
-                  <td>
-                    {campaign.campaign.firstName} {campaign.campaign.LastName}
-                  </td>
-                </tr>
-                <tr>
-                  <td>Company name:</td>
-                  <td>{campaign.campaign.companyName}</td>
-                </tr>
-                <tr>
-                  <td>Product name:</td>
-                  <td>{campaign.campaign.productName}</td>
-                </tr>
-                <tr>
-                  <td>Budget:</td>
-                  <td>{campaign.campaign.budget}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div className="col-3">
-            <table className="table">
-              <tbody>
-                <tr>
-                  <td>Name: </td>
-                  <td>
-                    {campaign.campaign.firstname} {campaign.campaign.lastname}
-                  </td>
-                </tr>
-                <tr>
-                  <td>Email:</td>
-                  <td>{campaign.campaign.designeremail}</td>
-                </tr>
-                <tr>
-                  <td>Experience:</td>
-                  <td>{campaign.campaign.experience}</td>
-                </tr>
-                <tr>
-                  <td>City:</td>
-                  <td>{campaign.campaign.designercity}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div className="col-3">
-            <table className="table">
-              <tbody>
-                <tr>
-                  <td>Name: </td>
-                  <td>{campaign.campaign.manager_name}</td>
-                </tr>
-                <tr>
-                  <td>Email:</td>
-                  <td>{campaign.campaign.manager_email}</td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </div>
@@ -103,15 +65,3 @@ function CampaignList(campaign) {
 }
 
 export default CampaignList;
-
-//campaign
-// idcampaign: 1;
-// campaigntitle: "democampaign";
-//request
-// firstName: "mit";
-// LastName: "patel";
-// companyName: "sdfhskj";
-// productName: "sdfsdf";
-//designer
-// firstname: "mitanshu";
-// lastname: "mil";

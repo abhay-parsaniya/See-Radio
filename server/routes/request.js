@@ -109,7 +109,7 @@ router.post("/approvedrequest", adminLoginRequire, (req, res) => {
   const { status, approvedid } = req.body;
 
   db.query(
-    "UPDATE newrequest SET Status = ? WHERE idnewrequest = ?",
+    "UPDATE newrequest SET Status = ?, progress = 0 WHERE idnewrequest = ?",
     [status, approvedid],
     (err, result) => {
       if (err) {

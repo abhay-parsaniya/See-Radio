@@ -13,8 +13,6 @@ function Campaign() {
   const [newCampaigntitle, setNewCampaigntitle] = useState("");
   const [managers, setManagers] = useState([]);
 
-  const [progressStatus, setProgressStatus] = useState([]);
-
   const approvedRequest = () => {
     fetch("/approvedrequest", {
       method: "GET",
@@ -113,24 +111,6 @@ function Campaign() {
     }
   };
 
-  // submit campaign id and progres status
-
-  const progressStatusChange = (event) => {
-    setProgressStatus(event.target.value);
-  };
-
-  const submitProgressStatus = (e) => {
-    e.preventDefault();
-    fetch("/changeprogressstatus", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("jwt"),
-      },
-      body: JSON.stringify(progressStatus),
-    });
-  };
-
   return (
     <>
       <AdminAccountManagerNavbar />
@@ -149,7 +129,7 @@ function Campaign() {
         />
       </div>
 
-      <div className="container">
+      {/* <div className="container">
         <h4 className="text-center">Campaign List</h4>
         <div className="border border-info p-3 my-2">
           <div className="row">
@@ -166,16 +146,28 @@ function Campaign() {
               <p style={{ fontWeight: "bold" }}>Manager Details</p>
             </div>
           </div>
+        </div> */}
+      {/* {console.log(campaigns)} */}
+
+      <div className="container-fluid my-5">
+        <div className="row justify-content-center">
+          <div className="card col-11">
+            <div className="card-header d-flex justify-content-center">
+              <h1>Campaign List</h1>
+            </div>
+
+            {campaigns.map((Campaign) => (
+              <CampaignList
+                campaign={Campaign}
+                key={Campaign.idcampaign}
+                newCampaign
+              />
+            ))}
+          </div>
         </div>
-        {/* {console.log(campaigns)} */}
-        {campaigns.map((Campaign) => (
-          <CampaignList
-            campaign={Campaign}
-            key={Campaign.idcampaign}
-            newCampaign
-          />
-        ))}
       </div>
+
+      {/* </div> */}
     </>
   );
 }
