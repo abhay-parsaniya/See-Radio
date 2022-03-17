@@ -60,9 +60,11 @@ router.post("/adddesigner", adminLoginRequire, (req, res) => {
       }
       if (result.length > 0) {
         return res.status(422).json({ error: "Email id already exist" });
-      }
-      else{
-        let designerhashedpassword = await bcrypt.hash(formData.designerpassword, 11);
+      } else {
+        let designerhashedpassword = await bcrypt.hash(
+          formData.designerpassword,
+          11
+        );
 
         db.query(
           "INSERT INTO designer (firstname, lastname, designeremail, designercontactno, experience, qualification, designercity, designerpassword) values (?, ?, ?, ?, ?, ?, ?, ?)",
@@ -74,7 +76,7 @@ router.post("/adddesigner", adminLoginRequire, (req, res) => {
             formData.experience,
             formData.qualification,
             formData.designercity,
-            designerhashedpassword
+            designerhashedpassword,
           ],
           (err, result) => {
             if (err) {
@@ -85,7 +87,7 @@ router.post("/adddesigner", adminLoginRequire, (req, res) => {
                 from: transporter.options.auth.user,
                 to: formData.designeremail,
                 subject: "See Radio Designer",
-                html: `<p>Congratulations, You Selected as Graphics Designer at See Radio. Welcome to the See Radio !!</p> <br> <h3>Your Credentials are Mentioned Below.<h3> <br> <h4>Username: ${formData.designeremail}</h4> <br> <h4>Password: ${formData.designerpassword}</h4>`
+                html: `<p>Congratulations, You Selected as Graphics Designer at See Radio. Welcome to the See Radio !!</p> <br> <h3>Your Credentials are Mentioned Below.<h3> <br> <h4>Username: ${formData.designeremail}</h4> <br> <h4>Password: ${formData.designerpassword}</h4>`,
               };
               transporter.sendMail(mailOptions, function (err, res) {
                 if (err) {
@@ -94,12 +96,15 @@ router.post("/adddesigner", adminLoginRequire, (req, res) => {
                   console.log("here is the res: ", res);
                 }
               });
-              return res.status(200).json({ msg: "Designer Added Successfully !!" });
+              return res
+                .status(200)
+                .json({ msg: "Designer Added Successfully !!" });
             }
           }
         );
       }
-  });
+    }
+  );
 });
 
 router.post("/signindesigner", (req, res) => {
@@ -137,10 +142,21 @@ router.post("/signindesigner", (req, res) => {
                           { iddesigner: result[0].iddesigner },
                           JWT_SECREAT_KEY
                         );
-                        const { iddesigner, firstname, lastname, designeremail } = result[0];
-                        res
-                          .status(200)
-                          .json({ token, user: { iddesigner, firstname, lastname, designeremail } });
+                        const {
+                          iddesigner,
+                          firstname,
+                          lastname,
+                          designeremail,
+                        } = result[0];
+                        res.status(200).json({
+                          token,
+                          user: {
+                            iddesigner,
+                            firstname,
+                            lastname,
+                            designeremail,
+                          },
+                        });
                         // return res.status(200).json({ msg: "Login Successful !!" });
                       } else {
                         return res
@@ -164,16 +180,25 @@ router.post("/signindesigner", (req, res) => {
 
 router.get("/designerallcampaigns", designerLoginRequire, (req, res) => {
   //   const sqls = "SELECT idcampaign, designer, request FROM campaign;";
+  const { authorization } = req.headers;
+  const token = authorization.replace("Bearer ", "");
 
-  const sqls = `SELECT u.*, s.*, p.*, t.manager_name, t.manager_email FROM campaign u 
-                    INNER JOIN designer s ON u.designer = s.iddesigner
-                    INNER JOIN newrequest p ON u.request = p.idnewrequest 
-                    INNER JOIN accountmanager t ON u.manager = t.idaccountmanager 
-                    WHERE u.designer = 13`;
-
-  db.query(sqls, (err, result) => {
+  jwt.verify(token, JWT_SECREAT_KEY, (err, payload) => {
     if (err) console.log(err);
-    else res.send(result);
+    else {
+      let iddesigner = payload.iddesigner;
+
+      const sqls = `SELECT u.*, s.*, p.*, t.manager_name, t.manager_email FROM campaign u 
+                        INNER JOIN designer s ON u.designer = s.iddesigner
+                        INNER JOIN newrequest p ON u.request = p.idnewrequest 
+                        INNER JOIN accountmanager t ON u.manager = t.idaccountmanager 
+                        WHERE u.designer = ?`;
+
+      db.query(sqls, [iddesigner], (err, result) => {
+        if (err) console.log(err);
+        else res.send(result);
+      });
+    }
   });
 });
 
@@ -181,11 +206,9 @@ router.post("/sendemailtomanager", designerLoginRequire, (req, res) => {
   // console.log(req.body);
   const { manager_email, idcampaign, campaigntitle, emailText } = req.body;
 
-  if(!emailText)
-  {
-    return res.status(422).json({ error: "Please Fill Issue Details" })
-  }
-  else{
+  if (!emailText) {
+    return res.status(422).json({ error: "Please Fill Issue Details" });
+  } else {
     const mailOptions = {
       from: transporter.options.auth.user,
       to: manager_email,
@@ -196,10 +219,10 @@ router.post("/sendemailtomanager", designerLoginRequire, (req, res) => {
       if (err) {
         console.error("there was an error: ", err);
       } else {
-        console.log("here is the res: ", res);       
+        console.log("here is the res: ", res);
       }
     });
-    return res.status(200).json({msg: "Mail Sent Successfully !!"});
+    return res.status(200).json({ msg: "Mail Sent Successfully !!" });
   }
 });
 
@@ -221,7 +244,8 @@ router.post("/uploaddesignervideo", designerLoginRequire, (req, res) => {
       // const id = payload.iddesigner;
       // console.log(idcampaign, designer_secure_url);
       db.query(
-        "UPDATE campaign SET campaign_video_url = ? WHERE idcampaign = ?", [designer_secure_url, idcampaign], 
+        "UPDATE campaign SET campaign_video_url = ? WHERE idcampaign = ?",
+        [designer_secure_url, idcampaign],
         (err, result) => {
           if (err) {
             console.log(err);
