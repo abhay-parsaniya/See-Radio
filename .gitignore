@@ -1,7 +1,8 @@
 database.js
 keys.js
-./server/routes/keys
+./server/routes/keys.js
 # Logs
+
 logs
 *.log
 npm-debug.log*

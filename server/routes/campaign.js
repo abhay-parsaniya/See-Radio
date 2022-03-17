@@ -51,6 +51,17 @@ router.post("/addcampaign", adminLoginRequire, (req, res) => {
       if (err) {
         console.log(err);
       } else {
+        db.query(
+          "UPDATE newrequest SET progress = 20 WHERE idnewrequest = ?",
+          [formData.request],
+          (err, result) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log(result);
+            }
+          }
+        );
         console.log(result);
         return res.status(200).json({ msg: "Request Sent Successfully !!" });
       }

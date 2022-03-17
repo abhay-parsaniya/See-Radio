@@ -40,8 +40,8 @@ function Campaign() {
     fetch("/designers", {
       method: "GET",
       headers: {
-        "Authorization": "Bearer "+localStorage.getItem("jwt")
-      }
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
     })
       .then((res) => res.json())
       .then((res) => setDesigners([...res]))
@@ -53,8 +53,8 @@ function Campaign() {
     fetch("/campaigns", {
       method: "GET",
       headers: {
-        "Authorization": "Bearer "+localStorage.getItem("jwt")
-      }
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
     })
       .then((res) => res.json())
       .then((res) => setCampaigns([...res]))
@@ -84,7 +84,7 @@ function Campaign() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer "+localStorage.getItem("jwt")
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
         body: JSON.stringify(campaignData),
       })
@@ -129,7 +129,7 @@ function Campaign() {
         />
       </div>
 
-      <div className="container">
+      {/* <div className="container">
         <h4 className="text-center">Campaign List</h4>
         <div className="border border-info p-3 my-2">
           <div className="row">
@@ -146,16 +146,28 @@ function Campaign() {
               <p style={{ fontWeight: "bold" }}>Manager Details</p>
             </div>
           </div>
+        </div> */}
+      {/* {console.log(campaigns)} */}
+
+      <div className="container-fluid my-5">
+        <div className="row justify-content-center">
+          <div className="card col-11">
+            <div className="card-header d-flex justify-content-center">
+              <h1>Campaign List</h1>
+            </div>
+
+            {campaigns.map((Campaign) => (
+              <CampaignList
+                campaign={Campaign}
+                key={Campaign.idcampaign}
+                newCampaign
+              />
+            ))}
+          </div>
         </div>
-        {/* {console.log(campaigns)} */}
-        {campaigns.map((Campaign) => (
-          <CampaignList
-            campaign={Campaign}
-            key={Campaign.idcampaign}
-            newCampaign
-          />
-        ))}
       </div>
+
+      {/* </div> */}
     </>
   );
 }

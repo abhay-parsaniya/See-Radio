@@ -18,12 +18,20 @@ function RequestProgressBar({ progress }) {
             <div
               style={{
                 position: "relative",
-                top: "40px",
+                top: "50px",
                 left: "0px",
                 color: "green",
               }}
             >
-              Pending
+              {progress >= 0 ? (
+                <span className="badge rounded-pill bg-success p-2">
+                  Approved
+                </span>
+              ) : (
+                <span className="badge rounded-pill bg-secondary p-2">
+                  Approved
+                </span>
+              )}
             </div>
           </>
         )}
@@ -40,12 +48,20 @@ function RequestProgressBar({ progress }) {
             <div
               style={{
                 position: "relative",
-                top: "40px",
+                top: "50px",
                 left: "0px",
                 color: "green",
               }}
             >
-              Approved
+              {progress >= 20 ? (
+                <span className="badge rounded-pill bg-success p-2">
+                  Graphic designer assigned
+                </span>
+              ) : (
+                <span className="badge rounded-pill bg-secondary p-2">
+                  Graphic designer assigned
+                </span>
+              )}
             </div>
           </>
         )}
@@ -62,12 +78,20 @@ function RequestProgressBar({ progress }) {
             <div
               style={{
                 position: "relative",
-                top: "40px",
+                top: "50px",
                 left: "0px",
                 color: "green",
               }}
             >
-              Graphic designer assigned
+              {progress >= 40 ? (
+                <span className="badge rounded-pill bg-success p-2">
+                  Video verified by you
+                </span>
+              ) : (
+                <span className="badge rounded-pill bg-secondary p-2">
+                  Video verified by you
+                </span>
+              )}
             </div>
           </>
         )}
@@ -84,12 +108,20 @@ function RequestProgressBar({ progress }) {
             <div
               style={{
                 position: "relative",
-                top: "40px",
+                top: "50px",
                 left: "0px",
                 color: "green",
               }}
             >
-              Video verified by you
+              {progress >= 60 ? (
+                <span className="badge rounded-pill bg-success p-2">
+                  Distribution partner assigned
+                </span>
+              ) : (
+                <span className="badge rounded-pill bg-secondary p-2">
+                  Distribution partner assigned
+                </span>
+              )}
             </div>
           </>
         )}
@@ -106,12 +138,20 @@ function RequestProgressBar({ progress }) {
             <div
               style={{
                 position: "relative",
-                top: "40px",
+                top: "50px",
                 left: "0px",
                 color: "green",
               }}
             >
-              Distribution partner assigned
+              {progress >= 80 ? (
+                <span className="badge rounded-pill bg-success p-2">
+                  View target achived
+                </span>
+              ) : (
+                <span className="badge rounded-pill bg-secondary p-2">
+                  View target achived
+                </span>
+              )}
             </div>
           </>
         )}
@@ -128,34 +168,20 @@ function RequestProgressBar({ progress }) {
             <div
               style={{
                 position: "relative",
-                top: "40px",
+                top: "50px",
                 left: "0px",
                 color: "green",
               }}
             >
-              View target achived
-            </div>
-          </>
-        )}
-      </Step>
-      <Step>
-        {({ accomplished, index }) => (
-          <>
-            <div
-              className={`indexedStep ${accomplished ? "accomplished" : null}`}
-              style={{ position: "absolute" }}
-            >
-              {index + 1}
-            </div>
-            <div
-              style={{
-                position: "relative",
-                top: "40px",
-                left: "0px",
-                color: "green",
-              }}
-            >
-              Completed
+              {progress >= 100 ? (
+                <span className="badge rounded-pill bg-success p-2">
+                  Completed
+                </span>
+              ) : (
+                <span className="badge rounded-pill bg-secondary p-2">
+                  Completed
+                </span>
+              )}
             </div>
           </>
         )}
