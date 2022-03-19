@@ -129,26 +129,6 @@ function Campaign() {
         />
       </div>
 
-      {/* <div className="container">
-        <h4 className="text-center">Campaign List</h4>
-        <div className="border border-info p-3 my-2">
-          <div className="row">
-            <div className="col-2">
-              <p style={{ fontWeight: "bold" }}>Campaign Title</p>
-            </div>
-            <div className="col-4">
-              <p style={{ fontWeight: "bold" }}>Request Details</p>
-            </div>
-            <div className="col-3">
-              <p style={{ fontWeight: "bold" }}>Designer Details</p>
-            </div>
-            <div className="col-3">
-              <p style={{ fontWeight: "bold" }}>Manager Details</p>
-            </div>
-          </div>
-        </div> */}
-      {/* {console.log(campaigns)} */}
-
       <div className="container-fluid my-5">
         <div className="row justify-content-center">
           <div className="card col-11">

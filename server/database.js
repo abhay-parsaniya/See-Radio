@@ -6,6 +6,9 @@ const db = mysql.createConnection({
   user: user,
   password: password,
   database: "see radio 1",
+  multipleStatements: true
 });
+
+// db.config.databaseOptions.multipleStatements = true;
 
 module.exports = db;

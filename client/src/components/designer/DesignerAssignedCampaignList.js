@@ -163,8 +163,8 @@ const DesignerAssignedCampaignList = () => {
                         Document
                       </a>
 
-                      {designer_secure_url ? (
-                        <a href={designer_secure_url} target={"_blank"}>
+                      {item.campaign_video_url ? (
+                        <a href={item.campaign_video_url} target={"_blank"}>
                           Your Video
                         </a>
                       ) : (

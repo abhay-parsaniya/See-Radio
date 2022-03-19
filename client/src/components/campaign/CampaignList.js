@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function CampaignList(campaign) {
+
   return (
     <>
       <div className="card-body">
@@ -16,12 +17,13 @@ function CampaignList(campaign) {
                 Request Details
               </div>
               <div className="d-flex flex-wrap my-3">
-                <div className="col-md-6 col-sm-12">
+                <div className="col-12">
                   <p>
-                    {campaign.campaign.firstName} {campaign.campaign.LastName}
+                    Client Name : {campaign.campaign.firstName} {campaign.campaign.LastName}
                   </p>
                   <p>Company Name : {campaign.campaign.companyName}</p>
                   <p>Product Name : {campaign.campaign.productName}</p>
+                  <p>Budget : {campaign.campaign.budget}</p>
                 </div>
               </div>
             </div>
@@ -31,14 +33,14 @@ function CampaignList(campaign) {
                 Designer Details
               </div>
               <div className="d-flex flex-wrap my-3">
-                <div className="col-md-6 col-sm-12">
+                <div className="col-12">
                   <p>
-                    Designer name : {campaign.campaign.firstname}{" "}
+                    Designer Name : {campaign.campaign.firstname}{" "}
                     {campaign.campaign.lastname}
                   </p>
-                  <p>designer email : {campaign.campaign.designeremail}</p>
-                  <p>designer experience : {campaign.campaign.experience}</p>
-                  <p>designer city : {campaign.campaign.designercity}</p>
+                  <p>Designer Email : {campaign.campaign.designeremail}</p>
+                  <p>Designer Experience : {campaign.campaign.experience}</p>
+                  <p>Designer City : {campaign.campaign.designercity}</p>
                 </div>
               </div>
             </div>
@@ -57,6 +59,13 @@ function CampaignList(campaign) {
             <Link to={`/CampaignDetails/${campaign.campaign.idcampaign}`}>
               view details
             </Link>
+            {
+              campaign.campaign.campaign_video_url ? (
+                <a href={campaign.campaign.campaign_video_url} target="_blank" className="mx-3">Designer Video Link</a>
+              ) : (
+                <a href="No Video Link Available" target="_blank" className="mx-3">No Video Available</a>
+              )
+            }
           </div>
         </div>
       </div>
