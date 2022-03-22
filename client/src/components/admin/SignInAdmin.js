@@ -41,7 +41,7 @@ const SignInAdmin = () => {
         dispatch({type: "USER", payload: data.user})
         alert("signed in success !!");
         // toast.error("Wow so easy!");
-        navigate("/admin");
+        navigate("/pendingrequests");
       }
     }).catch((err) => {
       console.log(err);

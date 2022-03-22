@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 
-function DesignerDetails() {
+function DesignerDetails(props) {
   const [designerdetail, setDesignerdeatil] = useState({
     firstname: "",
     lastname: "",
@@ -11,7 +10,7 @@ function DesignerDetails() {
     qualification: "",
     experience: "",
   });
-  let { id } = useParams();
+  let { id } = props;
 
   useEffect(() => {
     fetch(`/designerdetail/${id}`, {
@@ -26,7 +25,7 @@ function DesignerDetails() {
   }, [id]);
 
   return (
-    <div className="container w-50 mt-5">
+    <div className="container mt-3">
       <table className="table table-striped">
         <tbody>
           <tr>

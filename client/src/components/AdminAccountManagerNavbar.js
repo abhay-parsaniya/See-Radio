@@ -36,13 +36,6 @@ const AdminAccountManagerNavbar = (props) => {
                   id="navbarNavAltMarkup"
                 >
                   <div className="navbar-nav w-75 justify-content-evenly text-center">
-                    <NavLink
-                      className="nav-link active"
-                      aria-current="page"
-                      to="/"
-                    >
-                      Home
-                    </NavLink>
                     <li className="nav-item dropdown">
                       <NavLink
                         className="nav-link dropdown-toggle"

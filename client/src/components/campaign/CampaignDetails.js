@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-function CampaignDetails() {
-  let { id } = useParams();
+function CampaignDetails(props) {
+  let { id } = props;
   const [campaignDetail, setCampaignDetail] = useState({});
 
   useEffect(() => {
@@ -16,9 +16,9 @@ function CampaignDetails() {
 
   return (
     <>
-      <div className="container w-50 mt-5">
+      <div className="container mt-3">
         <h4>Campaign details</h4>
-        <table className="table table-striped">
+        <table className="table table-secondary table-striped">
           <tbody>
             <tr>
               <td>Campaign Title</td>
@@ -27,7 +27,7 @@ function CampaignDetails() {
           </tbody>
         </table>
         <h4>Request details</h4>
-        <table className="table table-striped">
+        <table className="table table-light table-striped">
           <tbody>
             <tr>
               <td>Name</td>
@@ -126,7 +126,7 @@ function CampaignDetails() {
           </tbody>
         </table>
         <h4>Designer details</h4>
-        <table className="table table-striped">
+        <table className="table table-light table-striped">
           <tbody>
             <tr>
               <td>Name</td>
