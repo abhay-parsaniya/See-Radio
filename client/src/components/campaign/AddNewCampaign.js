@@ -163,7 +163,7 @@ function AddNewCampaign({
                       />
                     </div>
                     <hr></hr>
-                    <button className="btn btn-primary">Submit</button>
+                    <button className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
                   </form>
                 </div>
               </div>

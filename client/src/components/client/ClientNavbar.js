@@ -36,13 +36,7 @@ const ClientNavbar = () => {
                   id="navbarNavAltMarkup"
                 >
                   <div className="navbar-nav w-50 justify-content-evenly">
-                    <NavLink
-                      className="nav-link active"
-                      aria-current="page"
-                      to="/"
-                    >
-                      Home
-                    </NavLink>
+                   
                     <NavLink className="nav-link" to="/newrequest">
                       New Request
                     </NavLink>

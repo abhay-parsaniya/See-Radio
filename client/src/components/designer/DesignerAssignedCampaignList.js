@@ -96,7 +96,7 @@ const DesignerAssignedCampaignList = () => {
     uploadfile.append("upload_preset", "see-radio");
     uploadfile.append("cloud_name", "abhay-parsaniya");
 
-    fetch("https://api.cloudinary.com/v1_1/abhay-parsaniya/auto/upload", {
+    fetch("https://api.cloudinary.com/v1_1/abhay-parsaniya/video/upload", {
       method: "POST",
       body: uploadfile,
     })
@@ -125,11 +125,11 @@ const DesignerAssignedCampaignList = () => {
               return (
                 <div className="card-body" key={index}>
                   <div className="card-component">
-                    <div className="card-header text-center">
+                    <div className="card-header text-center h4">
                       {item.campaigntitle}
                     </div>
                     <div className="d-flex flex-wrap row justify-content-center">
-                      <div className="request-details col-md-8 col-sm-12 my-2 mx-1 ">
+                      <div className="request-details col-md-8 col-sm-12 my-2 mx-1 three-component">
                         <div className="card-header col-12 text-center">
                           Request Details
                         </div>
@@ -148,7 +148,7 @@ const DesignerAssignedCampaignList = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="manager-details col-md-3 col-sm-12 my-2 mx-1">
+                      <div className="manager-details col-md-3 col-sm-12 my-2 mx-1 three-component">
                         <div className="card-header col-12 text-center">
                           Manager Details
                         </div>

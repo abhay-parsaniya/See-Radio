@@ -30,7 +30,6 @@ router.post("/clientrequestprogress", clientLoginRequire, (req, res) => {
 });
 
 router.post("/clientvideourl", clientLoginRequire, (req, res) => {
-
   console.log(req.body);
   const { client_video_id } = req.body;
   const { authorization } = req.headers;
@@ -41,7 +40,8 @@ router.post("/clientvideourl", clientLoginRequire, (req, res) => {
     if (err) console.log(err);
     else {
       db.query(
-        "SELECT campaign_video_url FROM campaign WHERE request = ?", [client_video_id],
+        "SELECT idcampaign, campaign_video_url,client_approval_status FROM campaign WHERE request = ?",
+        [client_video_id],
         (err, result) => {
           if (err) {
             console.log(err);
@@ -59,8 +59,8 @@ router.post("/clientapprovalvideo", clientLoginRequire, (req, res) => {
   const { status, approvedid } = req.body;
 
   db.query(
-    "UPDATE campaign SET client_approval_status = ? WHERE request = ?; UPDATE newrequest SET progress = 40 WHERE idnewrequest = 5;",
-    [status, approvedid],
+    "UPDATE campaign SET client_approval_status = ? WHERE request = ?; UPDATE newrequest SET progress = 40 WHERE idnewrequest = ?;",
+    [status, approvedid, approvedid],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -87,7 +87,9 @@ router.post("/clientapprovalvideo", clientLoginRequire, (req, res) => {
                   console.log("here is the res: ", res);
                 }
               });
-              return res.status(200).json({ msg: "Video Approved Successfully !!" });
+              return res
+                .status(200)
+                .json({ msg: "Video Approved Successfully !!" });
             }
           }
         );
@@ -97,11 +99,12 @@ router.post("/clientapprovalvideo", clientLoginRequire, (req, res) => {
 });
 
 router.post("/clientrejectedvideo", clientLoginRequire, (req, res) => {
-  const { status, rejectedid } = req.body;
+  let status = "Rejected";
+  const { status_old, rejectedid } = req.body;
 
   db.query(
-    "UPDATE campaign SET client_approval_status = ?, progress = 40 WHERE request = ?",
-    [status, rejectedid],
+    "UPDATE campaign SET client_approval_status = ? WHERE request = ?; UPDATE newrequest SET progress = 20 WHERE idnewrequest = ?;",
+    [status, rejectedid, rejectedid],
     (err, result) => {
       if (err) {
         console.log(err);

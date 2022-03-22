@@ -1,117 +1,154 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 const SignUpClient = () => {
-
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const PostData = (event) => {
-
     event.preventDefault();
 
-    if(!/^[a-zA-Z ]{3,30}$/.test(name))
-    {
+    if (!/^[a-zA-Z ]{3,30}$/.test(name)) {
       return alert("Please Enter Name between 3 to 20 character");
-    }
-    else if(!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(password))
-    {
-      return alert("Password must be 8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character");
+    } else if (
+      !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(
+        password
+      )
+    ) {
+      return alert(
+        "Password must be 8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character"
+      );
     }
 
-    fetch("/signupclient",{
+    fetch("/signupclient", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name: name,
         email: email,
-        password: password
-      })
+        password: password,
+      }),
     })
-    .then(res => res.json())
-    .then(data => {
-      if(data.error)
-      {
-        alert(data.error);
-      }
-      else{
-        alert(data.msg);
-        navigate("/signinclient");
-      }
-    }).catch((err) => {
-      console.log(err);
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          alert(data.msg);
+          navigate("/signinclient");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  return(
-      <>
-        <div className="container-fluid">
-          <div className="row justify-content-center">
-            <div className="col-lg-8 col-md-10 col-sm-12 text-center">
-              <div className="card p-2">
-                <h2 className="py-3"> Sign Up </h2>
+  return (
+    <>
+      <section
+        className="vh-100 bg-image"
+        style={{
+          backgroundImage: "linear-gradient(#c4e0e5, #4ca1af)",
+        }}
+      >
+        <div className="mask d-flex align-items-center h-100 gradient-custom-3">
+          <div className="container h-100">
+            <div className="row d-flex justify-content-center align-items-center h-100">
+              <div className="col-12 col-md-12 col-lg-10 col-xl-8">
+                <div className="card" style={{ borderRadius: "15px" }}>
+                  <div className="card-body p-5">
+                    <h2 className="text-uppercase text-center mb-5">Sign Up</h2>
+                    <form onSubmit={PostData}>
+                      <div className="form-outline mb-4">
+                        <input
+                          type="text"
+                          id="user_name"
+                          name="firstname"
+                          value={name}
+                          onChange={(object) => {
+                            setName(object.target.value);
+                          }}
+                          className="form-control form-control-lg"
+                          required
+                        />
+                        <label className="form-label" htmlFor="form3Example1cg">
+                          Name
+                        </label>
+                      </div>
 
-                <form onSubmit={PostData}>
-                  <div className="row mb-4 align-items-center">
-                    <label className="col-sm-3 col-form-label">
-                      Name
-                    </label>
-                    <div className="col-sm-9">
-                      <input
-                        type="text"
-                        className="form-control w-75 mx-auto"
-                        id="user_name"
-                        value={name}
-                        onChange = { (object) => { setName(object.target.value) } }
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="row mb-4 align-items-center">
-                    <label className="col-sm-3 col-form-label">
-                      Email
-                    </label>
-                    <div className="col-sm-9">
-                      <input
-                        type="email"
-                        className="form-control w-75 mx-auto"
-                        id="user_email"
-                        value={email}
-                        onChange = { (object) => { setEmail(object.target.value) } }
-                        placeholder="name@example.com"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="row mb-4 align-items-center">
-                    <label className="col-sm-3 col-form-label">
-                      Password
-                    </label>
-                    <div className="col-sm-9">
-                      <input
-                        type="password"
-                        className="form-control w-75 mx-auto"
-                        id="user_password"
-                        value={password}
-                        onChange = { (object) => { setPassword(object.target.value) } }
-                        required
-                      />
-                    </div>
-                  </div>
-                  <button type="submit" className="btn btn-primary">
-                    Sign up
-                  </button>
-                </form>
+                      <div className="form-outline mb-4">
+                        <input
+                          type="email"
+                          id="user_email"
+                          name="email"
+                          value={email}
+                          onChange={(object) => {
+                            setEmail(object.target.value);
+                          }}
+                          className="form-control form-control-lg"
+                          required
+                        />
+                        <label className="form-label" htmlFor="form3Example3cg">
+                          Email
+                        </label>
+                      </div>
+                      <div className="form-outline mb-4">
+                        <input
+                          type="password"
+                          id="user_password"
+                          name="password"
+                          value={password}
+                          onChange={(object) => {
+                            setPassword(object.target.value);
+                          }}
+                          className="form-control form-control-lg"
+                          required
+                        />
+                        <label className="form-label" htmlFor="form3Example4cg">
+                          Password
+                        </label>
+                      </div>
+                      <div className="form-outline mb-4">
+                        <input
+                          type="password"
+                          id="form3Example4cdg"
+                          className="form-control form-control-lg"
+                        />
+                        <label
+                          className="form-label"
+                          htmlFor="form3Example4cdg"
+                        >
+                          Repeat your password
+                        </label>
+                      </div>
 
+                      <div className="d-flex justify-content-center">
+                        <button
+                          type="submit"
+                          className="btn btn-success btn-block btn-lg gradient-custom-4 text-light"
+                        >
+                          Register
+                        </button>
+                      </div>
+                      <p className="text-center text-muted mt-5 mb-0">
+                        Have already an account?{" "}
+                        <Link to="/signinclient" className="fw-bold text-body">
+                          <u>Login here</u>
+                        </Link>
+                      </p>
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </>
+      </section>
+    </>
   );
 };
 
