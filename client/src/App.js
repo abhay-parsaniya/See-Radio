@@ -29,6 +29,7 @@ import CampaignDetails from "./components/campaign/CampaignDetails";
 import RequestProgress from "./components/client/progress/RequestProgress";
 import History from "./components/history/ClientHistory";
 import DistributionPartner from "./components/distributionpartner/DistributionPartner";
+import TrackView from "./components/CampainView/TrackView";
 
 const UserContext = createContext();
 
@@ -55,7 +56,10 @@ const Routing = () => {
         <Route path="/" element={<Home />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contactus" element={<ContactUs />} />
-        <Route path="/adminaccountmanagerhistory" element={<AdminAccountManagerHistory />} />
+        <Route
+          path="/adminaccountmanagerhistory"
+          element={<AdminAccountManagerHistory />}
+        />
         <Route path="/signindesigner" element={<SignInDesigner />} />
         <Route path="/designer" element={<Designer />} />
         <Route path="/designercampain" element={<DesignerCampain />} />
@@ -79,6 +83,7 @@ const Routing = () => {
         <Route path="/requestprogress" element={<RequestProgress />} />
         <Route path="/history" element={<History />} />
         <Route path="/distribution" element={<DistributionPartner />} />
+        <Route path="/trackview/" element={<TrackView />} />
       </Routes>
     </>
   );

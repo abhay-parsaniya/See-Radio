@@ -12,13 +12,13 @@ function AddDistributionPartner({ formData, submitform, handleChange }) {
         + Add Distribution Partner
       </button>
       <div
-        className="modal fade"
+        className="modal fade bd-example-modal-md"
         id="DistributionPartner"
         tabIndex="-1"
         aria-labelledby="DistributionPartnerLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-md">
           <div className="modal-content">
             <div className="modal-header">
               <h2 className="modal-title px-1" id="DistributionPartnerLabel">

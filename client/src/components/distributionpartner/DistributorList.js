@@ -3,7 +3,6 @@ import React from "react";
 function DistributorList({ distributor, deletedistributor }) {
   return (
     <>
-      {/* Delete Model */}
       <div
         className="modal"
         id={`deleteModal${distributor.iddistribution_partner}`}
@@ -11,6 +10,7 @@ function DistributorList({ distributor, deletedistributor }) {
         aria-labelledby={`deleteModalLabel${distributor.iddistribution_partner}`} //"deleteModalLabel"
         aria-hidden="true"
       >
+        {/* {console.log("delete modal")} */}
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
@@ -49,26 +49,26 @@ function DistributorList({ distributor, deletedistributor }) {
         </div>
       </div>
 
-      <div className="col-2">
-        <p>{distributor.distribution_partner_name}</p>
-      </div>
-      <div className="col-2">{distributor.distribution_partner_contact}</div>
-      <div className="col-2">{distributor.distribution_partner_email}</div>
-      <div className="col-1">{distributor.distribution_partner_experience}</div>
-      <div className="col-1">{distributor.distribution_partner_city}</div>
-      <div className="col-2">
-        {distributor.distribution_partner_influencers}
-      </div>
-      <div className="col-2">
-        <button
-          type="button"
-          className="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target={`#deleteModal${distributor.iddistribution_partner}`}
-        >
-          Delete
-        </button>
-      </div>
+      <tr>
+        <th scope="row">1</th>
+        <td>{distributor.distribution_partner_name}</td>
+        <td>{distributor.distribution_partner_contact}</td>
+        <td>{distributor.distribution_partner_email}</td>
+        <td>{distributor.distribution_partner_experience}</td>
+        <td>{distributor.distribution_partner_city}</td>
+        <td>{distributor.distribution_partner_influencers}</td>
+        <td>
+          <button
+            type="button"
+            className="btn btn-danger"
+            data-bs-target={`#deleteModal${distributor.iddistribution_partner}`}
+            data-bs-toggle="modal"
+            // data-bs-dismiss="modal"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
     </>
   );
 }

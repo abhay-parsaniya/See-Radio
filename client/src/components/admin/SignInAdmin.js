@@ -6,46 +6,43 @@ import "../SignIn.css";
 // import 'react-toastify/dist/ReactToastify.css';
 
 const SignInAdmin = () => {
-
   // 'state' is assigned a value but never used
-  const {dispatch} = useContext(UserContext);
+  const { dispatch } = useContext(UserContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const PostData = (event) => {
-
     event.preventDefault();
 
-    fetch("/signinadmin",{
+    fetch("/signinadmin", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email: email,
-        password: password
-      })
+        password: password,
+      }),
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      if(data.error)
-      {
-        alert(data.error);
-        // toast(data.error);
-      }
-      else{
-        localStorage.setItem("jwt", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        dispatch({type: "USER", payload: data.user})
-        alert("signed in success !!");
-        // toast.error("Wow so easy!");
-        navigate("/admin");
-      }
-    }).catch((err) => {
-      console.log(err);
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.error) {
+          alert(data.error);
+          // toast(data.error);
+        } else {
+          localStorage.setItem("jwt", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
+          dispatch({ type: "USER", payload: data.user });
+          alert("signed in success !!");
+          // toast.error("Wow so easy!");
+          navigate("/pendingrequests");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -58,37 +55,41 @@ const SignInAdmin = () => {
 
               <form>
                 <div className="row mb-4 align-items-center">
-                  <label className="col-sm-3 col-form-label">
-                    Email
-                  </label>
+                  <label className="col-sm-3 col-form-label">Email</label>
                   <div className="col-sm-9">
                     <input
                       type="email"
                       className="form-control w-75 mx-auto"
                       id="user_email"
                       value={email}
-                      onChange = { (object) => { setEmail(object.target.value) } }
+                      onChange={(object) => {
+                        setEmail(object.target.value);
+                      }}
                       placeholder="name@example.com"
                       required
                     />
                   </div>
                 </div>
                 <div className="row mb-4 align-items-center">
-                  <label className="col-sm-3 col-form-label">
-                    Password
-                  </label>
+                  <label className="col-sm-3 col-form-label">Password</label>
                   <div className="col-sm-9">
                     <input
                       type="password"
                       className="form-control w-75 mx-auto"
                       id="user_password"
                       value={password}
-                      onChange = { (object) => { setPassword(object.target.value) } }
+                      onChange={(object) => {
+                        setPassword(object.target.value);
+                      }}
                       required
                     />
                   </div>
                 </div>
-                <button type="submit" onClick={PostData} className="btn btn-primary">
+                <button
+                  type="submit"
+                  onClick={PostData}
+                  className="btn btn-primary"
+                >
                   Sign in
                 </button>
               </form>

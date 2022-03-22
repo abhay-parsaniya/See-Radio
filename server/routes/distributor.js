@@ -33,6 +33,14 @@ router.get("/deletedistributor/:id", adminLoginRequire, (req, res) => {
   });
 });
 
+router.get("/approvedcampaignvideo", adminLoginRequire, (req, res) => {
+  const sqls = `SELECT idcampaign, request, campaigntitle FROM campaign WHERE client_approval_status = "Approved";`;
+  db.query(sqls, (err, result) => {
+    if (err) console.log(err);
+    else res.send(result);
+  });
+});
+
 router.get("/distributors", adminLoginRequire, (req, res) => {
   const sqls =
     "SELECT iddistribution_partner, distribution_partner_name, distribution_partner_contact, distribution_partner_email, distribution_partner_experience, distribution_partner_city, distribution_partner_influencers FROM distribution_partner;";
@@ -102,5 +110,56 @@ router.post("/adddistributor", adminLoginRequire, (req, res) => {
   );
 });
 
+router.post("/assigndistributor", adminLoginRequire, (req, res) => {
+  const distributorvideodata = req.body;
+  console.log(distributorvideodata.requestId);
+
+  for (let key in distributorvideodata) {
+    if (distributorvideodata[key] === "") {
+      // console.log(key);
+      return res.status(422).json({ error: "Please fill all the fields !!" });
+    }
+  }
+
+  db.query(
+    "UPDATE distribution_partner SET campaign_id = ? WHERE iddistribution_partner = ?",
+    [distributorvideodata.approvedVideo, distributorvideodata.distributor],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        db.query(
+          "UPDATE newrequest SET progress = 60 WHERE idnewrequest = ?",
+          [distributorvideodata.requestId],
+          (err, result) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log(result);
+            }
+          }
+        );
+        console.log(result);
+        return res.status(200).json({ msg: "Request Sent Successfully !!" });
+      }
+    }
+  );
+});
+
+router.get("/assigneddistributionlist", (req, res) => {
+  const sqls = `SELECT u.*, c.*, n.productName, n.budget, n.targetViews, n.advertisementScope FROM distribution_partner u 
+                    INNER JOIN campaign c ON u.campaign_id = c.idcampaign
+                    INNER JOIN newrequest n ON c.request = n.idnewrequest;`;
+
+  // get campaign details later
+
+  db.query(sqls, [], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send({ result });
+    }
+  });
+});
 
 module.exports = router;

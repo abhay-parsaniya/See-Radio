@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RequestProgressBar from "./RequestProgressBar";
 
 function InProgressRequest({ reqdata }) {
   // console.log(reqdata);
 
   const [client_video_url, setClient_video_url] = useState("");
+  const [videoApprovalStatus, setVideoApprovalStatus] = useState();
 
   // console.log(reqdata.idnewrequest)
+
   fetch("/clientvideourl", {
     method: "POST",
     headers: {
@@ -20,6 +22,7 @@ function InProgressRequest({ reqdata }) {
     .then((res) => res.json())
     .then((data) => {
       setClient_video_url(data.result[0].campaign_video_url);
+      setVideoApprovalStatus(data.result[0].client_approval_status);
       // console.log(data); //data.result);
     })
     .catch((err) => {
@@ -110,27 +113,34 @@ function InProgressRequest({ reqdata }) {
                     Video Link
                   </a>
                 </p>
-                <div className="d-flex flex-wrap justify-content-evenly col-md-6 col-sm-12">
-                  <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => ClientRejectVideo(reqdata.idnewrequest)}
-                  >
-                    Reject
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-success"
-                    onClick={() => ClientApproveVideo(reqdata.idnewrequest)}
-                  >
-                    Approve
-                  </button>
-                </div>
               </>
             ) : (
               <p className="col-md-6 col-sm-12">
                 Advertisement Video Url : No Video Available
               </p>
+            )}
+
+            {videoApprovalStatus === "Pending" ? (
+              <div className="d-flex flex-wrap justify-content-evenly col-md-6 col-sm-12">
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => ClientRejectVideo(reqdata.idnewrequest)}
+                >
+                  Reject
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-success"
+                  onClick={() => ClientApproveVideo(reqdata.idnewrequest)}
+                >
+                  Approve
+                </button>
+              </div>
+            ) : videoApprovalStatus === "Approved" ? (
+              <p>Video is approved by you.</p>
+            ) : (
+              <p>Video is Rejected by you.</p>
             )}
           </div>
         </div>
