@@ -248,22 +248,35 @@ router.post("/uploaddesignervideo", designerLoginRequire, (req, res) => {
         [designer_secure_url, idcampaign],
         (err, result) => {
           if (err) {
-            console.log(err);
+            return console.log(err);
           } else {
-            console.log(result);
-            const mailOptions = {
-              from: transporter.options.auth.user,
-              to: manager_email,
-              subject: "Video Uploaded !!",
-              text: `Designer Uploaded Video Successfully to CampaignId ${idcampaign}. Link is Here ${designer_secure_url}`,
-            };
-            transporter.sendMail(mailOptions, function (err, res) {
+            // console.log(result);
+
+            const sqls = `SELECT c.*, r.email FROM campaign c 
+                    INNER JOIN newrequest r ON c.request = r.idnewrequest
+                    WHERE c.idcampaign = ?;`;
+
+            db.query(sqls, [idcampaign], (err, resultEmail) => {
               if (err) {
-                console.error("there was an error: ", err);
+                return console.log(err);
               } else {
-                console.log("here is the res: ", res);
+                // console.log('263', result[0].email);
+                const mailOptions = {
+                  from: transporter.options.auth.user,
+                  to: [manager_email, resultEmail[0].email],
+                  subject: "Video Uploaded !!",
+                  text: `Designer Uploaded Video Successfully to CampaignId ${idcampaign}. Link is Here ${designer_secure_url}`,
+                };
+                transporter.sendMail(mailOptions, function (err, res) {
+                  if (err) {
+                     return console.error("there was an error: ", err);
+                  } else {
+                    console.log("here is the res: ", res);
+                  }
+                });
               }
             });
+            
             return res
               .status(200)
               .json({ msg: "Video Uploaded Successfully !!" });
