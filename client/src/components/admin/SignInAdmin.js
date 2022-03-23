@@ -2,8 +2,9 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
 import "../SignIn.css";
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const SignInAdmin = () => {
   // 'state' is assigned a value but never used
@@ -25,24 +26,31 @@ const SignInAdmin = () => {
         password: password,
       }),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.error) {
-          alert(data.error);
-          // toast(data.error);
-        } else {
-          localStorage.setItem("jwt", data.token);
-          localStorage.setItem("user", JSON.stringify(data.user));
-          dispatch({ type: "USER", payload: data.user });
-          alert("signed in success !!");
-          // toast.error("Wow so easy!");
-          navigate("/pendingrequests");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      if(data.error)
+      {
+        // alert(data.error);
+        toast.error(data.error, {
+          theme: 'colored',
+          type: 'error'
+        });
+      }
+      else{
+        localStorage.setItem("jwt", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        dispatch({type: "USER", payload: data.user})
+        // alert("signed in success !!");
+        toast.success("signed in success !!", {
+          theme: 'colored',
+          type: 'success'
+        });
+        navigate("/pendingrequests");
+      }
+    }).catch((err) => {
+      console.log(err);
+    });
   };
 
   return (
@@ -93,6 +101,20 @@ const SignInAdmin = () => {
                   Sign in
                 </button>
               </form>
+
+              {/* <ToastContainer
+                  position="top-right"
+                  type="success"
+                  theme="colored"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  /> */}
             </div>
           </div>
         </div>

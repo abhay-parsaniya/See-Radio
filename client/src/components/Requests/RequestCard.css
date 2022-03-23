@@ -1,0 +1,8 @@
+.main-container{
+    background-color: rgb(174, 220, 238);
+    padding: 5px 0px;
+    margin: 10px 0px;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    /*  1st rgb(117, 185, 212) */
+}

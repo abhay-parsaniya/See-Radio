@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./DesignerAssignedCampaignList.css";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const DesignerAssignedCampaignList = () => {
   const [designerallcampaigns, setDesignerAllCampaigns] = useState([]);
@@ -46,9 +49,17 @@ const DesignerAssignedCampaignList = () => {
         .then((data) => {
           // console.log(data);
           if (data.error) {
-            alert(data.error);
+            // alert(data.error);
+            toast.error(data.error, {
+              theme: 'colored',
+              type: 'error'
+            });
           } else {
-            alert(data.msg);
+            // alert(data.msg);
+            toast.success(data.msg, {
+              theme: 'colored',
+              type: 'success'
+            });
           }
         })
         .catch((err) => {
@@ -74,9 +85,17 @@ const DesignerAssignedCampaignList = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          alert(data.error);
+          // alert(data.error);
+          toast.error(data.error, {
+            theme: 'colored',
+            type: 'error'
+          });
         } else {
-          alert(data.msg);
+          // alert(data.msg);
+          toast.success(data.msg, {
+            theme: 'colored',
+            type: 'success'
+          });
         }
       })
       .catch((err) => {
@@ -88,6 +107,16 @@ const DesignerAssignedCampaignList = () => {
     console.log(idcampaign);
     // event.preventDefault();
 
+    if(designerVideoFile === "")
+    {
+      // alert('Please add all fields');
+      toast.error('Please add all fields', {
+        theme: 'colored',
+        type: 'error'
+      });
+      return;
+    }
+    
     setCampaignid(() => idcampaign);
     setEmailToManager(() => manageremail);
 
@@ -96,7 +125,7 @@ const DesignerAssignedCampaignList = () => {
     uploadfile.append("upload_preset", "see-radio");
     uploadfile.append("cloud_name", "abhay-parsaniya");
 
-    fetch("https://api.cloudinary.com/v1_1/abhay-parsaniya/auto/upload", {
+    fetch("https://api.cloudinary.com/v1_1/abhay-parsaniya/video/upload", {
       method: "POST",
       body: uploadfile,
     })
@@ -125,11 +154,11 @@ const DesignerAssignedCampaignList = () => {
               return (
                 <div className="card-body" key={index}>
                   <div className="card-component">
-                    <div className="card-header text-center">
+                    <div className="card-header text-center h4">
                       {item.campaigntitle}
                     </div>
                     <div className="d-flex flex-wrap row justify-content-center">
-                      <div className="request-details col-md-8 col-sm-12 my-2 mx-1 ">
+                      <div className="request-details col-md-8 col-sm-12 my-2 mx-1 three-component">
                         <div className="card-header col-12 text-center">
                           Request Details
                         </div>
@@ -148,7 +177,7 @@ const DesignerAssignedCampaignList = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="manager-details col-md-3 col-sm-12 my-2 mx-1">
+                      <div className="manager-details col-md-3 col-sm-12 my-2 mx-1 three-component">
                         <div className="card-header col-12 text-center">
                           Manager Details
                         </div>
@@ -159,16 +188,16 @@ const DesignerAssignedCampaignList = () => {
                       </div>
                     </div>
                     <div className="card-footer d-flex flex-wrap justify-content-around">
-                      <a href={item.file_url} target={"_blank"}>
+                      <a href={item.file_url} target={"_blank"} className="h5 text-dark">
                         Document
                       </a>
 
                       {item.campaign_video_url ? (
-                        <a href={item.campaign_video_url} target={"_blank"}>
+                        <a href={item.campaign_video_url} target={"_blank"} className="h5 text-success">
                           Your Video
                         </a>
                       ) : (
-                        <a href="No Video Available" target={"_blank"}>
+                        <a href="No Video Available" target={"_blank"} className="h5 text-danger">
                           No Video Uploaded
                         </a>
                       )}

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../database");
 const { route } = require("./auth");
+const transporter = require("../SendEmail");
 const adminLoginRequire = require("../middleware/adminLoginRequire");
 
 router.get("/campaigns", adminLoginRequire, (req, res) => {
@@ -59,11 +60,40 @@ router.post("/addcampaign", adminLoginRequire, (req, res) => {
               console.log(err);
             } else {
               console.log(result);
+
+              const sqls = `select email from newrequest where idnewrequest = ?; 
+              select designeremail from designer where iddesigner = ?; 
+              select manager_email from accountmanager where idaccountmanager = ?;`;
+
+              db.query(sqls, [formData.request, formData.designer, formData.manager], (err, resultEmail) => {
+                if (err) {
+                  console.log(err);
+                } else {
+                  // console.log(resultEmail);
+                  // console.log(resultEmail[0][0].email);
+                  // console.log(resultEmail[1][0].designeremail);
+                  // console.log(resultEmail[2][0].manager_email);
+                  
+                  const mailOptions = {
+                    from: transporter.options.auth.user,
+                    to: [resultEmail[0][0].email, resultEmail[1][0].designeremail, resultEmail[2][0].manager_email],
+                    subject: "Campaign Created Successfully !!",
+                    html: `Campaign Created Successfully with Title <b>${formData.title}<b>.<br>Designer can start Work on Making Video.`,
+                  };
+                  transporter.sendMail(mailOptions, function (err, res) {
+                    if (err) {
+                      return console.error("there was an error: ", err);
+                    } else {
+                      console.log("here is the res: ", res);
+                    }
+                  });
+                }
+              });
             }
           }
         );
         console.log(result);
-        return res.status(200).json({ msg: "Request Sent Successfully !!" });
+        return res.status(200).json({ msg: "Campaign Created Successfully !!" });
       }
     }
   );

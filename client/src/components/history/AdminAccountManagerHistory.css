@@ -1,0 +1,8 @@
+.history-admin{
+    background-color: rgb(245, 192, 192);
+    padding: 5px 0px;
+    margin: 20px 50px;
+    border-radius: 10px;
+    border: 3px solid green;
+    font-weight: 500;
+}

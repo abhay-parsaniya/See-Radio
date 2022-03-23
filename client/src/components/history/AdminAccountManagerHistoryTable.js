@@ -25,9 +25,9 @@ const HistoryTable = () => {
     return(
         <div className="container-fluid">
             <div className="row justify-content-center">
-                <div className="col-10 text-center">
+                <div className="col-12 text-center">
                     <div className='table-responsive'>
-                        <table className="table">
+                        <table className="table table-info table-hover table-striped">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>

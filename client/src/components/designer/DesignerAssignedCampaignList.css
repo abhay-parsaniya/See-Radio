@@ -5,3 +5,15 @@
 .manager-details{
     border: 1px solid rgb(0, 195, 255);
 }
+
+.main-designer{
+    background-color: rgb(214, 159, 235);
+    border-radius: 10px;
+    border: 3px solid rgb(130, 130, 226);
+    padding: 50px;
+    font-weight: 500;
+}
+
+.card-header{
+    font-weight: 500;
+}

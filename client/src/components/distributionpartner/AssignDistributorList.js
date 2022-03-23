@@ -6,7 +6,6 @@ function AssignDistributorList({ distributor }) {
   const video_url = distributor.campaign_video_url;
   return (
     <>
-      {" "}
       <div className="card-body">
         <div className="card-component">
           <div className="card-header text-center">
@@ -14,7 +13,7 @@ function AssignDistributorList({ distributor }) {
           </div>
 
           <div className="d-flex flex-wrap row justify-content-center">
-            <div className="request-details col-md-5 col-sm-12 my-2 mx-1">
+            <div className="request-details col-md-5 col-sm-12 my-2 mx-3 three-component">
               <div className="card-header col-12 text-center">
                 Distributor Details
               </div>
@@ -40,7 +39,7 @@ function AssignDistributorList({ distributor }) {
                 </div>
               </div>
             </div>
-            <div className="request-details col-md-5 col-sm-12 my-2 mx-1">
+            <div className="request-details col-md-5 col-sm-12 my-2 mx-3 three-component">
               <div className="card-header col-12 text-center">
                 campaign Details
               </div>

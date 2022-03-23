@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CampaignList from "./CampaignList";
 import AddNewCampaign from "./AddNewCampaign";
 import AdminAccountManagerNavbar from "../AdminAccountManagerNavbar";
+import './Campaign.css';
 
 function Campaign() {
   const [approvedReq, setApprovedReq] = useState([]);

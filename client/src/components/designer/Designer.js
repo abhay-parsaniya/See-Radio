@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import AdminAccountManagerNavbar from "../AdminAccountManagerNavbar";
 import AddDesigner from "./AddDesigner";
 import DesignerList from "./DesignerList";
-// import { useNavigate } from "react-router-dom";
+import "./DesignerAssignedCampaignList.css";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 function Designer() {
   //   const navigate = useNavigate();
@@ -63,9 +66,17 @@ function Designer() {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          alert(data.error);
+          // alert(data.error);
+          toast.error(data.error, {
+            theme: 'colored',
+            type: 'error'
+          });
         } else {
-          console.log(data.msg);
+          // console.log(data.msg);
+          toast.success(data.msg, {
+            theme: 'colored',
+            type: 'success'
+          });
           //   navigate("/designer");
           setFormData({
             firstname: "",
@@ -107,19 +118,14 @@ function Designer() {
         />
       </div>
 
-      <div className="container my-4">
+      <div className="container my-4 main-designer">
         <div className="row text-center">
-          <div className="col-3 my-3 text-uppercase">Name</div>
-          <div className="col-2 my-3 text-uppercase">Contact No</div>
-          <div className="col-3 my-3 text-uppercase">Email</div>
-          <div className="col-2 my-3 text-uppercase">Details</div>
-          <div className="col-2 my-3 text-uppercase">Delete Designer</div>
-          <hr></hr>
-          {designers.map((designer) => (
+          {designers.map((designer, index) => (
             <DesignerList
               designers={designer}
               key={designer.id}
               deletedesigner={deletedesigner}
+              idindex={index}
             />
           ))}
         </div>

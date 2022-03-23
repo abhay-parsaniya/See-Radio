@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import RequestProgressBar from "./RequestProgressBar";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 function InProgressRequest({ reqdata }) {
   // console.log(reqdata);
@@ -49,9 +52,17 @@ function InProgressRequest({ reqdata }) {
       .then((data) => {
         // console.log(data);
         if (data.error) {
-          alert(data.error);
+          // alert(data.error);
+          toast.error(data.error, {
+            theme: 'colored',
+            type: 'error'
+          });
         } else {
-          alert(data.msg);
+          // alert(data.msg);
+          toast.success(data.msg, {
+            theme: 'colored',
+            type: 'success'
+          });
         }
       })
       .catch((err) => {
@@ -77,9 +88,17 @@ function InProgressRequest({ reqdata }) {
       .then((data) => {
         // console.log(data);
         if (data.error) {
-          alert(data.error);
+          // alert(data.error);
+          toast.error(data.error, {
+            theme: 'colored',
+            type: 'error'
+          });
         } else {
-          alert(data.msg);
+          // alert(data.msg);
+          toast.success(data.msg, {
+            theme: 'colored',
+            type: 'success'
+          });
         }
       })
       .catch((err) => {
@@ -113,6 +132,28 @@ function InProgressRequest({ reqdata }) {
                     Video Link
                   </a>
                 </p>
+                {videoApprovalStatus === "Pending" ? (
+                  <div className="d-flex flex-wrap justify-content-evenly col-md-6 col-sm-12">
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => ClientRejectVideo(reqdata.idnewrequest)}
+                    >
+                      Reject
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-success"
+                      onClick={() => ClientApproveVideo(reqdata.idnewrequest)}
+                    >
+                      Approve
+                    </button>
+                  </div>
+                ) : videoApprovalStatus === "Approved" ? (
+                  <p>Video is approved by you.</p>
+                ) : (
+                  <p>Video is Rejected by you.</p>
+              )}
               </>
             ) : (
               <p className="col-md-6 col-sm-12">
@@ -120,28 +161,6 @@ function InProgressRequest({ reqdata }) {
               </p>
             )}
 
-            {videoApprovalStatus === "Pending" ? (
-              <div className="d-flex flex-wrap justify-content-evenly col-md-6 col-sm-12">
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => ClientRejectVideo(reqdata.idnewrequest)}
-                >
-                  Reject
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-success"
-                  onClick={() => ClientApproveVideo(reqdata.idnewrequest)}
-                >
-                  Approve
-                </button>
-              </div>
-            ) : videoApprovalStatus === "Approved" ? (
-              <p>Video is approved by you.</p>
-            ) : (
-              <p>Video is Rejected by you.</p>
-            )}
           </div>
         </div>
       </div>

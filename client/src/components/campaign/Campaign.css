@@ -1,0 +1,16 @@
+.three-component{
+    background-color: powderblue;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.card-component{
+    background-color: rgb(247, 201, 215);
+    border-radius: 10px;
+}
+
+.card{
+    background-color: bisque;
+    border-radius: 5px;
+}

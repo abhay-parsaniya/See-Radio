@@ -4,6 +4,9 @@ import CompanyInfo from "../client/forms/CompanyInfo";
 import ProductInfo from "../client/forms/ProductInfo";
 import ClientNavbar from "../client/ClientNavbar";
 import "./NewRequest.css";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const NewRequest = () => {
   const [page, setPage] = useState(0);
@@ -55,10 +58,17 @@ const NewRequest = () => {
         .then((data) => {
           // console.log(data);
           if (data.error) {
-            alert(data.error);
+            // alert(data.error);
+            toast.error(data.error, {
+              theme: 'colored',
+              type: 'error'
+            });
           } else {
-            alert(data.msg);
-            //   navigate("/signinclient");
+            // alert(data.msg);
+            toast.success(data.msg, {
+              theme: 'colored',
+              type: 'success'
+            });
           }
         })
         .catch((err) => {
@@ -112,6 +122,15 @@ const NewRequest = () => {
   function submitData(event) {
     event.preventDefault();
 
+    if(formData.infofile === "")
+    {
+      // alert('Please Fill all the Fields');
+      toast.error('Please Fill all the Fields', {
+        theme: 'colored',
+        type: 'error'
+      });
+      return;
+    }
     const uploadfile = new FormData();
     uploadfile.append("file", formData.infofile);
     uploadfile.append("upload_preset", "see-radio");

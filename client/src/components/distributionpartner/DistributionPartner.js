@@ -6,6 +6,9 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import AssignDistributor from "./AssignDistributor";
 import AssignDistributorList from "./AssignDistributorList";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 function DistributionPartner() {
   const [formData, setFormData] = useState({
@@ -67,9 +70,17 @@ function DistributionPartner() {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          alert(data.error);
+          // alert(data.error);
+          toast.error(data.error, {
+            theme: 'colored',
+            type: 'error'
+          });
         } else {
-          console.log(data.msg);
+          // console.log(data.msg);
+          toast.success(data.msg, {
+            theme: 'colored',
+            type: 'success'
+          });
           //   navigate("/designer");
           setFormData({
             distribution_name: "",
