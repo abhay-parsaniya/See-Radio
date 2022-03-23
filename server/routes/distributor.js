@@ -90,7 +90,7 @@ router.post("/adddistributor", adminLoginRequire, (req, res) => {
                 from: transporter.options.auth.user,
                 to: formData.distribution_email,
                 subject: "See Radio Distribution Partner",
-                html: `<p>Congratulations, You Selected as Distribution Partner at See Radio. Welcome to the See Radio !!</p> <br> <h3>Your Credentials are Mentioned Below.<h3>`,
+                html: `<p>Congratulations, You Selected as Distribution Partner at See Radio. Welcome to the See Radio !!</p>`,
               };
               transporter.sendMail(mailOptions, function (err, res) {
                 if (err) {
@@ -101,7 +101,7 @@ router.post("/adddistributor", adminLoginRequire, (req, res) => {
               });
               return res
                 .status(200)
-                .json({ msg: "Designer Added Successfully !!" });
+                .json({ msg: "Distribution Partner Added Successfully !!" });
             }
           }
         );
@@ -140,7 +140,7 @@ router.post("/assigndistributor", adminLoginRequire, (req, res) => {
           }
         );
         console.log(result);
-        return res.status(200).json({ msg: "Request Sent Successfully !!" });
+        return res.status(200).json({ msg: "Distribution Partner Assigned Successfully !!" });
       }
     }
   );

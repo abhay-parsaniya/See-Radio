@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 import "./Navbar.css";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const AdminAccountManagerNavbar = (props) => {
   const { state, dispatch } = useContext(UserContext);
@@ -98,7 +101,11 @@ const AdminAccountManagerNavbar = (props) => {
                         localStorage.clear();
                         dispatch({ type: "CLEAR" });
                         navigate("/");
-                        alert("Log Out Successfully !!");
+                        // alert("Log Out Successfully !!");
+                        toast.success("Log Out Successfully !! !!", {
+                          theme: 'colored',
+                          type: 'success'
+                        });
                       }}
                       className="btn btn-primary"
                     >

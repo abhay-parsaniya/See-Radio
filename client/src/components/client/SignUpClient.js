@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const SignUpClient = () => {
   const navigate = useNavigate();
@@ -36,9 +39,17 @@ const SignUpClient = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          alert(data.error);
+          // alert(data.error);
+          toast.error(data.error, {
+            theme: 'colored',
+            type: 'error'
+          });
         } else {
-          alert(data.msg);
+          // alert(data.msg);
+          toast.success(data.msg, {
+            theme: 'colored',
+            type: 'success'
+          });
           navigate("/signinclient");
         }
       })

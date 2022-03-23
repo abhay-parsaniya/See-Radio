@@ -4,6 +4,9 @@ import CompanyInfo from "./forms/CompanyInfo";
 import ProductInfo from "./forms/ProductInfo";
 import ClientNavbar from './ClientNavbar';
 import "./NewRequest.css";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const NewRequest = () => {
 
@@ -58,11 +61,18 @@ const NewRequest = () => {
         // console.log(data);
         if(data.error)
         {
-          alert(data.error);
+          // alert(data.error);
+          toast.error(data.error, {
+            theme: 'colored',
+            type: 'error'
+          });
         }
         else{
-          alert(data.msg);
-        //   navigate("/signinclient");
+          // alert(data.msg);
+          toast.success(data.msg, {
+            theme: 'colored',
+            type: 'success'
+          });
         }
       }).catch((err) => {
         console.log(err);

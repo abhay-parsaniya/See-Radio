@@ -1,5 +1,8 @@
 import React from 'react';
 import RequestCard from './RequestCard';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const RequestsData = (props) => {
 
@@ -27,10 +30,18 @@ const RequestsData = (props) => {
             // console.log(data);
             if(data.error)
             {
-              alert(data.error);
+              // alert(data.error);
+              toast.error(data.error, {
+                theme: 'colored',
+                type: 'error'
+              });
             }
             else{
-              alert(data.msg);
+              // alert(data.msg);
+              toast.success(data.msg, {
+                theme: 'colored',
+                type: 'success'
+              });
             }
           }).catch((err) => {
             console.log(err);
@@ -57,10 +68,18 @@ const RequestsData = (props) => {
             // console.log(data);
             if(data.error)
             {
-              alert(data.error);
+              // alert(data.error);
+              toast.error(data.error, {
+                theme: 'colored',
+                type: 'error'
+              });
             }
             else{
-              alert(data.msg);
+              // alert(data.msg);
+              toast.success(data.msg, {
+                theme: 'colored',
+                type: 'success'
+              });
             }
           }).catch((err) => {
             console.log(err);

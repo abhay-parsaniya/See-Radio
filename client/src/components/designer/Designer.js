@@ -3,6 +3,9 @@ import AdminAccountManagerNavbar from "../AdminAccountManagerNavbar";
 import AddDesigner from "./AddDesigner";
 import DesignerList from "./DesignerList";
 import "./DesignerAssignedCampaignList.css";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 function Designer() {
   //   const navigate = useNavigate();
@@ -63,9 +66,17 @@ function Designer() {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          alert(data.error);
+          // alert(data.error);
+          toast.error(data.error, {
+            theme: 'colored',
+            type: 'error'
+          });
         } else {
-          console.log(data.msg);
+          // console.log(data.msg);
+          toast.success(data.msg, {
+            theme: 'colored',
+            type: 'success'
+          });
           //   navigate("/designer");
           setFormData({
             firstname: "",

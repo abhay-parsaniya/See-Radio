@@ -2,6 +2,9 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
 import "../SignIn.css";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const SignInAccountManager = () => {
   // 'state' is assigned a value but never used
@@ -27,12 +30,20 @@ const SignInAccountManager = () => {
       .then((data) => {
         console.log(data);
         if (data.error) {
-          alert(data.error);
+          // alert(data.error);
+          toast.error(data.error, {
+            theme: 'colored',
+            type: 'error'
+          });
         } else {
           localStorage.setItem("jwt", data.token);
           localStorage.setItem("user", JSON.stringify(data.user));
           dispatch({ type: "USER", payload: data.user });
-          alert("signed in success !!");
+          // alert("signed in success !!");
+          toast.success("signed in success !!", {
+            theme: 'colored',
+            type: 'success'
+          });
           navigate("/pendingrequests");
         }
       })
