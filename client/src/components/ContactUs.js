@@ -3,7 +3,6 @@ import React from "react";
 function ContactUs() {
   return (
     <>
-      {" "}
       <section id="sec-contact" className="sec-contact pt-5 pb-5">
         <div className="container">
           <div className="row justify-content-center">
@@ -12,7 +11,7 @@ function ContactUs() {
                 Have a question? Get in touch with us!
               </h1>
 
-              <form action="" method="">
+              <form id="contact_us_form" action="" method="">
                 <fieldset className="form-group">
                   <label className="py-1" htmlFor="formName">
                     Your Name:

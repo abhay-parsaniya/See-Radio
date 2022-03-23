@@ -1,10 +1,11 @@
 import React from "react";
+import Navbar from "./Navbar";
 
 const AboutUs = () => {
   return (
     <>
       <>
-        {" "}
+        {/* <Navbar /> */}
         <section id="sec-about" className="sec-about pt-5 pb-5">
           <div className="container">
             <div className="row justify-content-center text-center">

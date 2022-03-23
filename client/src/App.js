@@ -46,7 +46,7 @@ const Routing = () => {
   //     navigate("/");
   //   }
   //   else{
-  //     navigate("/signin");
+  //     navigate("/");
   //   }
   // },[]);
 

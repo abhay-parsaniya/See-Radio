@@ -162,4 +162,36 @@ router.get("/assigneddistributionlist", (req, res) => {
   });
 });
 
+// router.get("/getcurrentviews", adminLoginRequire, (req, res) => {
+
+//   const idviews = req.headers.id;
+  
+//   const sqls = `SELECT campaign_current_views FROM distribution_partner WHERE iddistribution_partner = ?`;
+
+//   db.query(sqls, [idviews], (err, result) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       // console.log(result);
+//       res.send({ result });
+//     }
+//   });
+// });
+
+router.post("/postcurrentviews", adminLoginRequire, (req, res) => {
+
+  const {id, currViews} = req.body;
+  
+  const sqls = `UPDATE distribution_partner SET campaign_current_views = ? WHERE iddistribution_partner = ?`;
+
+  db.query(sqls, [currViews, id], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result);
+      // res.send({ result });
+    }
+  });
+});
+
 module.exports = router;

@@ -30,6 +30,7 @@ function DistributionPartner() {
     const name = event.target.name;
     const value = event.target.value;
     setFormData((values) => ({ ...values, [name]: value }));
+    
     fetch("/distributors", {
       method: "GET",
       headers: {

@@ -1,9 +1,51 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import TrackView from "../CampainView/TrackView";
+import React, { useEffect, useState } from "react";
 
 function AssignDistributorList({ distributor }) {
+  // console.log(distributor);
+  const [countViews, setCountViews] = useState(distributor.campaign_current_views);
+
   const video_url = distributor.campaign_video_url;
+
+  const CountViews = () => {
+
+    let updatedViews = Math.round((Math.random() * 200));
+    setCountViews(countViews + updatedViews);
+    console.log(countViews);
+  };
+
+  // useEffect(() => {
+  //   fetch("/getcurrentviews", {
+  //     method: "GET",
+  //     headers: {
+  //       Authorization: "Bearer " + localStorage.getItem("jwt"),
+  //       id: distributor.iddistribution_partner
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => setCountViews[data.result[0].campaign_current_views])
+  //     .catch((err) => console.log(err));
+  // }, []);
+
+  useEffect(() => {
+    fetch("/postcurrentviews", {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: distributor.iddistribution_partner,
+        currViews: countViews
+      })
+    })
+      .then((res) => res.json())
+      .then((data) => 
+        // console.log(data)
+      setCountViews[data.result[0].campaign_current_views]
+      )
+      .catch((err) => console.log(err));
+  }, [countViews]);
+
   return (
     <>
       <div className="card-body">
@@ -62,42 +104,24 @@ function AssignDistributorList({ distributor }) {
                 </div>
               </div>
             </div>
-
-            {/* <div className="manager-details col-md-3 col-sm-12 my-2 mx-1">
-              <div className="card-header col-12 text-center">
-                Manager Details
-              </div>
-              <div className="my-3">
-                <p>Name : {distributor.campaign.manager_name}</p>
-                <p>Email : {distributor.campaign.manager_email}</p>
-              </div>
-            </div> */}
           </div>
+
           <div className="card-footer d-flex flex-wrap justify-content-around">
             <a
               href={`http://localhost:3000/trackview/${distributor.campaign_video_url}`}
               target="_blank"
-              className="mx-3"
+              className="mx-3 h4 text-primary"
             >
               Designer Video Link
             </a>
-            <Link
-              // to={`/trackview`}
+            <button
               to={"#"}
-              className="mx-3"
+              className="mx-3 h4 text-black"
+              onClick={CountViews}
               // videourl={distributor.campaign_video_url}
             >
-              Track Video Link
-            </Link>
-            {/* <a
-              href={`http://localhost:3000/trackview/?link=${encodeURI(
-                distributor.campaign_video_url
-              )}`}
-              target="_blank"
-              className="mx-3"
-            >
-              Track Video Link
-            </a> */}
+              Track Video
+            </button>
           </div>
         </div>
       </div>
