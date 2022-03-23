@@ -12,7 +12,7 @@ const AdminAccountManagerNavbar = (props) => {
 
   return (
     <>
-      <div className="container-fluid bg-dark">
+      <div className="container-fluid bg-dark my-3 rounded-3">
         <div className="row justify-content-center">
           <div className="col-11">
             <nav className="navbar navbar-expand-lg navbar-dark ">
