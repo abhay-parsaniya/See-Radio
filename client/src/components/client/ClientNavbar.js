@@ -9,14 +9,14 @@ const ClientNavbar = () => {
 
   return (
     <>
-      <div className="container-fluid">
+      <div className="container-fluid bg-dark">
         <div className="row justify-content-center">
           <div className="col-11">
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-dark ">
               <div className="container-fluid">
                 <NavLink
                   className="navbar-brand"
-                  to={state ? "/" : "/signinclient"}
+                  to={state ? "/" : "/newrequest"}
                 >
                   Client
                 </NavLink>
@@ -36,7 +36,6 @@ const ClientNavbar = () => {
                   id="navbarNavAltMarkup"
                 >
                   <div className="navbar-nav w-50 justify-content-evenly">
-                   
                     <NavLink className="nav-link" to="/newrequest">
                       New Request
                     </NavLink>
@@ -54,7 +53,7 @@ const ClientNavbar = () => {
                         navigate("/");
                         alert("Log Out Successfully !!");
                       }}
-                      className="btn btn-primary"
+                      className="btn btn-danger"
                     >
                       Log Out
                     </button>

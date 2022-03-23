@@ -4,20 +4,19 @@ import { UserContext } from "../../App";
 import "../Navbar.css";
 
 const DesignerNavbar = (props) => {
-
   const { state, dispatch } = useContext(UserContext);
   const navigate = useNavigate();
 
   return (
     <>
-      <div className="container-fluid">
+      <div className="container-fluid bg-dark">
         <div className="row justify-content-center">
           <div className="col-11">
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-dark">
               <div className="container-fluid">
                 <NavLink
                   className="navbar-brand"
-                  to={state ? "/" : `/${props.go}`}
+                  to={state ? "/" : `/designercampain`}
                 >
                   {props.title}
                 </NavLink>
@@ -51,7 +50,7 @@ const DesignerNavbar = (props) => {
                         navigate("/");
                         alert("Log Out Successfully !!");
                       }}
-                      className="btn btn-primary"
+                      className="btn btn-danger"
                     >
                       Log Out
                     </button>
