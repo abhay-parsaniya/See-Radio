@@ -6,25 +6,27 @@ function AssignDistributorList({ distributor }) {
 
   const video_url = distributor.campaign_video_url;
 
+  useEffect(() => {
+    fetch("/getcurrentviews", {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+        id: distributor.iddistribution_partner
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setCountViews[data.result[0].campaign_current_views])
+      .catch((err) => console.log(err));
+  }, []);
+
   const CountViews = () => {
 
-    let updatedViews = Math.round((Math.random() * 200));
+    let updatedViews = Math.round((Math.random() * 20000));
     setCountViews(countViews + updatedViews);
-    console.log(countViews);
-  };
 
-  // useEffect(() => {
-  //   fetch("/getcurrentviews", {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: "Bearer " + localStorage.getItem("jwt"),
-  //       id: distributor.iddistribution_partner
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => setCountViews[data.result[0].campaign_current_views])
-  //     .catch((err) => console.log(err));
-  // }, []);
+    console.log(countViews);
+
+  };
 
   useEffect(() => {
     fetch("/postcurrentviews", {
@@ -35,7 +37,8 @@ function AssignDistributorList({ distributor }) {
       },
       body: JSON.stringify({
         id: distributor.iddistribution_partner,
-        currViews: countViews
+        currViews: countViews,
+        newrequestid: distributor.request
       })
     })
       .then((res) => res.json())
@@ -62,20 +65,20 @@ function AssignDistributorList({ distributor }) {
               <div className="d-flex flex-wrap my-3">
                 <div className="col-12">
                   <p>
-                    distributor Name : {distributor.distribution_partner_name}
+                    Distributor Name : {distributor.distribution_partner_name}
                   </p>
                   <p>
-                    distributor Email{distributor.distribution_partner_email}
+                    Distributor Email : {distributor.distribution_partner_email}
                   </p>
                   <p>
-                    distributor contact:{" "}
+                    Distributor contact :{" "}
                     {distributor.distribution_partner_contact}
                   </p>
                   <p>
-                    distributor city: {distributor.distribution_partner_city}
+                    Distributor city : {distributor.distribution_partner_city}
                   </p>
                   <p>
-                    distributor influencers:{" "}
+                    Distributor influencers :{" "}
                     {distributor.distribution_partner_influencers}
                   </p>
                 </div>
@@ -83,23 +86,20 @@ function AssignDistributorList({ distributor }) {
             </div>
             <div className="request-details col-md-5 col-sm-12 my-2 mx-3 three-component">
               <div className="card-header col-12 text-center">
-                campaign Details
+                Campaign Details
               </div>
               <div className="d-flex flex-wrap my-3">
                 <div className="col-12">
                   <p>Product Name : {distributor.productName}</p>
                   <p>
-                    Advertisement Scope:
-                    {distributor.advertisementScope}
+                    Advertisement Scope : {distributor.advertisementScope}
                   </p>
-                  <p>Budget: {distributor.budget}</p>
+                  <p>Budget : {distributor.budget}</p>
                   <p>
-                    Target Views:
-                    {distributor.targetViews}
+                    Target Views : {distributor.targetViews}
                   </p>
                   <p>
-                    Current Views:
-                    {distributor.campaign_current_views}
+                    Current Views : {countViews}                   
                   </p>
                 </div>
               </div>

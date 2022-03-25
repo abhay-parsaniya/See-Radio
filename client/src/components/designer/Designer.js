@@ -3,8 +3,8 @@ import AdminAccountManagerNavbar from "../AdminAccountManagerNavbar";
 import AddDesigner from "./AddDesigner";
 import DesignerList from "./DesignerList";
 import "./DesignerAssignedCampaignList.css";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 toast.configure();
 
 function Designer() {
@@ -29,8 +29,8 @@ function Designer() {
     fetch("/designers", {
       method: "GET",
       headers: {
-        "Authorization": "Bearer "+localStorage.getItem("jwt")
-      }
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
     })
       .then((res) => res.json())
       .then((res) => setDesigners([...res]))
@@ -41,11 +41,11 @@ function Designer() {
     fetch("/designers", {
       method: "GET",
       headers: {
-        "Authorization": "Bearer "+localStorage.getItem("jwt")
-      }
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
     })
       .then((res) => res.json())
-        // .then((res) => console.log(res))
+      // .then((res) => console.log(res))
       .then((res) => setDesigners([...res]))
       .catch((err) => console.log(err));
   }, [designers]);
@@ -59,7 +59,7 @@ function Designer() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer "+localStorage.getItem("jwt")
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
       body: JSON.stringify({ ...formData }),
     })
@@ -68,14 +68,14 @@ function Designer() {
         if (data.error) {
           // alert(data.error);
           toast.error(data.error, {
-            theme: 'colored',
-            type: 'error'
+            theme: "colored",
+            type: "error",
           });
         } else {
           // console.log(data.msg);
           toast.success(data.msg, {
-            theme: 'colored',
-            type: 'success'
+            theme: "colored",
+            type: "success",
           });
           //   navigate("/designer");
           setFormData({
@@ -101,8 +101,8 @@ function Designer() {
     fetch(`/deletedesigner/${designer_id}`, {
       method: "GET",
       headers: {
-        "Authorization": "Bearer "+localStorage.getItem("jwt")
-      }
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
     }).catch((err) => console.log(err));
   };
 
@@ -120,14 +120,28 @@ function Designer() {
 
       <div className="container my-4 main-designer">
         <div className="row text-center">
-          {designers.map((designer, index) => (
-            <DesignerList
-              designers={designer}
-              key={designer.id}
-              deletedesigner={deletedesigner}
-              idindex={index}
-            />
-          ))}
+          <table className="table table-warning mb-0">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact No.</th>
+                <th scope="col">Details</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {designers.map((designer, index) => (
+                <DesignerList
+                  designers={designer}
+                  key={designer.id}
+                  deletedesigner={deletedesigner}
+                  idindex={index}
+                />
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </>

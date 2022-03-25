@@ -43,16 +43,16 @@ const DataMap = (props) => {
         }
     };
 
-    const ViewButtonRendering = (btnStatus) => {
+    const ViewButtonRendering = (btnStatus, idnewrequest) => {
         if(btnStatus === "Pending")
         {
             return (
-                <button type="button" className="btn btn-secondary my-2"  data-bs-toggle="modal" data-bs-target="#exampleModal">View Details</button>
+                <button type="button" className="btn btn-secondary my-2"  data-bs-toggle="modal" data-bs-target={`#newrequest${idnewrequest}`}>View Details</button>
             );
         }
         else{
             return (
-                <button type="button" className="btn btn-warning my-2"  data-bs-toggle="modal" data-bs-target="#exampleModal">View Details</button>
+                <button type="button" className="btn btn-warning my-2"  data-bs-toggle="modal" data-bs-target={`#newrequest${idnewrequest}`}>View Details</button>
             );
         }
     };
@@ -77,13 +77,13 @@ const DataMap = (props) => {
                         </div>
                         <div className="card-footer bg-transparent">
                             <div className="d-flex flex-wrap justify-content-around">
-                                {ViewButtonRendering(item.Status)}
-                                <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                {ViewButtonRendering(item.Status, item.idnewrequest)}
+                                <div className="modal fade" id={`newrequest${item.idnewrequest}`} tabIndex="-1" aria-labelledby={`newrequest${item.idnewrequest}Label`} aria-hidden="true">
                                     <div className="modal-dialog">
                                         <div className="modal-content text-black">
                                             <div className="modal-header">
-                                                <h2 className="modal-title px-1" id="exampleModalLabel"> {item.firstName} </h2>
-                                                <h2 className="modal-title px-1" id="exampleModalLabel"> {item.lastName} </h2>
+                                                <h2 className="modal-title px-1" id={`newrequest${item.idnewrequest}Label`}> {item.firstName} </h2>
+                                                <h2 className="modal-title px-1" id={`newrequest${item.idnewrequest}Label`}> {item.lastName} </h2>
                                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div className="modal-body">

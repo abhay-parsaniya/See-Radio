@@ -1,15 +1,23 @@
 import React from "react";
+import "./Progressbar.css";
 
 function PendingRequest({ reqdata }) {
   return (
-    <div className="border border-secondary rounded m-2 p-2">
+    <div className="main-background m-2 p-2">
       <div className="container pt-3">
         <p>
-          {reqdata.firstName} {reqdata.lastName}
+          Name : {reqdata.firstName} {reqdata.lastName}
         </p>
-        <p>{reqdata.productName}</p>
-        <p>{reqdata.budget}</p>
-        <p>{reqdata.file_url}</p>
+        <p>Company Name : {reqdata.companyName}</p>
+        <p>Product Name : {reqdata.productName}</p>
+        <p>Budget : {reqdata.budget}</p>
+        <p>Target Views : {reqdata.targetViews}</p>
+        <p>
+          Document Url :{" "}
+          <a href={reqdata.file_url} target="_blank">
+            Document
+          </a>
+        </p>
       </div>
     </div>
   );

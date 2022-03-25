@@ -162,25 +162,25 @@ router.get("/assigneddistributionlist", (req, res) => {
   });
 });
 
-// router.get("/getcurrentviews", adminLoginRequire, (req, res) => {
+router.get("/getcurrentviews", adminLoginRequire, (req, res) => {
 
-//   const idviews = req.headers.id;
+  const idviews = req.headers.id;
   
-//   const sqls = `SELECT campaign_current_views FROM distribution_partner WHERE iddistribution_partner = ?`;
+  const sqls = `SELECT campaign_current_views FROM distribution_partner WHERE iddistribution_partner = ?`;
 
-//   db.query(sqls, [idviews], (err, result) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       // console.log(result);
-//       res.send({ result });
-//     }
-//   });
-// });
+  db.query(sqls, [idviews], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(result);
+      res.send({ result });
+    }
+  });
+});
 
 router.post("/postcurrentviews", adminLoginRequire, (req, res) => {
 
-  const {id, currViews} = req.body;
+  const {id, currViews, newrequestid} = req.body;
   
   const sqls = `UPDATE distribution_partner SET campaign_current_views = ? WHERE iddistribution_partner = ?`;
 
@@ -188,7 +188,47 @@ router.post("/postcurrentviews", adminLoginRequire, (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      console.log(result);
+      // console.log(result);
+      
+      db.query('SELECT * FROM newrequest WHERE idnewrequest = ?', [newrequestid], (err, result) => {
+        if(err)
+        {
+          console.log(err);
+        }
+        else{
+          // console.log(result[0])
+          const {email, targetViews} = result[0];
+          console.log(email, targetViews)
+          
+          if(currViews >= targetViews)
+          {
+            db.query(
+              "UPDATE newrequest SET progress = 80 WHERE idnewrequest = ?",
+              [newrequestid],
+              (err, result) => {
+                if (err) {
+                  console.log(err);
+                } else {
+                  // console.log(result);
+                  const mailOptions = {
+                    from: transporter.options.auth.user,
+                    to: [email, "abhayparsaniya08@gmail.com"],
+                    subject: "Target Views Achived !!",
+                    html: `<h1>Congratulations, Your Target Views Achived !!.</h1> <br> <h1> Your Target Views are ${targetViews} and Current Views are ${currViews}.</h1>`,
+                  };
+                  transporter.sendMail(mailOptions, function (err, res) {
+                    if (err) {
+                      console.error("there was an error: ", err);
+                    } else {
+                      console.log("here is the res: ", res);
+                    }
+                  });
+                }
+              }
+            );
+          }
+        }
+      })
       // res.send({ result });
     }
   });

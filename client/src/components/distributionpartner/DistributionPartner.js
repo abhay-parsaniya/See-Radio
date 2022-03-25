@@ -6,6 +6,7 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import AssignDistributor from "./AssignDistributor";
 import AssignDistributorList from "./AssignDistributorList";
+import './DistributionPartner.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
@@ -173,10 +174,10 @@ function DistributionPartner() {
             />
           </div>
 
-          <div className="container my-4">
+          <div className="container my-4 distributor">
             <div className="row text-center">
               <div className="table-responsive">
-                <table className="table">
+                <table className="table table-warning">
                   <thead>
                     <tr>
                       <th scope="col">No.</th>
@@ -190,9 +191,10 @@ function DistributionPartner() {
                     </tr>
                   </thead>
                   <tbody>
-                    {distributor.map((dist) => (
+                    {distributor.map((dist, index) => (
                       <DistributorList
                         distributor={dist}
+                        id={index}
                         key={dist.iddistribution_partner}
                         deletedistributor={deletedistributor}
                       />

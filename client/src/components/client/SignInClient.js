@@ -78,6 +78,12 @@ const SignInClient = () => {
                           Login
                         </h5>
                         <div className="form-outline mb-4">
+                          <label
+                            className="form-label"
+                            htmlFor="form2Example17"
+                          >
+                            Email
+                          </label>
                           <input
                             type="email"
                             id="user_email"
@@ -88,14 +94,14 @@ const SignInClient = () => {
                             }}
                             className="form-control form-control-lg"
                           />
-                          <label
-                            className="form-label"
-                            htmlFor="form2Example17"
-                          >
-                            Email
-                          </label>
                         </div>
                         <div className="form-outline mb-4">
+                          <label
+                            className="form-label"
+                            htmlFor="form2Example27"
+                          >
+                            Password
+                          </label>
                           <input
                             type="password"
                             id="user_password"
@@ -106,12 +112,6 @@ const SignInClient = () => {
                             }}
                             className="form-control form-control-lg"
                           />
-                          <label
-                            className="form-label"
-                            htmlFor="form2Example27"
-                          >
-                            Password
-                          </label>
                         </div>
                         <div className="pt-1 mb-4">
                           <button

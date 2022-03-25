@@ -1,6 +1,6 @@
 import React from "react";
 
-function DistributorList({ distributor, deletedistributor }) {
+function DistributorList({ distributor, deletedistributor, id }) {
   return (
     <>
       <div
@@ -50,7 +50,7 @@ function DistributorList({ distributor, deletedistributor }) {
       </div>
 
       <tr>
-        <th scope="row">1</th>
+        <th scope="row">{id+1}</th>
         <td>{distributor.distribution_partner_name}</td>
         <td>{distributor.distribution_partner_contact}</td>
         <td>{distributor.distribution_partner_email}</td>

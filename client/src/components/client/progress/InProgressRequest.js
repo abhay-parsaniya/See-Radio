@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import RequestProgressBar from "./RequestProgressBar";
+import './Progressbar.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
@@ -107,11 +108,11 @@ function InProgressRequest({ reqdata }) {
   };
 
   return (
-    <div className="border border-secondary rounded m-2 p-2">
+    <div className="m-2 p-5 main-background">
       <div className="container px-5 pt-4">
         <RequestProgressBar progress={reqdata.progress} />
 
-        <div className="pt-5 mt-4">
+        <div className="pt-5 mt-5">
           <p>
             Name : {reqdata.firstName} {reqdata.lastName}
           </p>

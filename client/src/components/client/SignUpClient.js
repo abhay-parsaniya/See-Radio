@@ -75,6 +75,9 @@ const SignUpClient = () => {
                     <h2 className="text-uppercase text-center mb-5">Sign Up</h2>
                     <form onSubmit={PostData}>
                       <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="form3Example1cg">
+                          Name
+                        </label>
                         <input
                           type="text"
                           id="user_name"
@@ -86,12 +89,12 @@ const SignUpClient = () => {
                           className="form-control form-control-lg"
                           required
                         />
-                        <label className="form-label" htmlFor="form3Example1cg">
-                          Name
-                        </label>
                       </div>
 
                       <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="form3Example3cg">
+                          Email
+                        </label>
                         <input
                           type="email"
                           id="user_email"
@@ -103,11 +106,11 @@ const SignUpClient = () => {
                           className="form-control form-control-lg"
                           required
                         />
-                        <label className="form-label" htmlFor="form3Example3cg">
-                          Email
-                        </label>
                       </div>
                       <div className="form-outline mb-4">
+                        <label className="form-label" htmlFor="form3Example4cg">
+                          Password
+                        </label>
                         <input
                           type="password"
                           id="user_password"
@@ -119,9 +122,6 @@ const SignUpClient = () => {
                           className="form-control form-control-lg"
                           required
                         />
-                        <label className="form-label" htmlFor="form3Example4cg">
-                          Password
-                        </label>
                       </div>
 
                       <div className="d-flex justify-content-center">

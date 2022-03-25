@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ClientNavbar from "../client/ClientNavbar";
 import HistoryList from "./ClientHistoryList";
+import "./AdminAccountManagerHistory.css";
 
 function History() {
   const [history, setHistory] = useState([]);
@@ -26,31 +27,41 @@ function History() {
     <>
       <ClientNavbar />
 
-      <div className="container mt-4">
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Company name</th>
-              <th scope="col">Product name</th>
-              <th scope="col">budget</th>
-              <th scope="col">Status</th>
-              <th scope="col">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {history?.result?.length > 0 ? (
-              history.result.map((item, index) => (
-                <HistoryList request={item} key={index} />
-              ))
-            ) : (
-              <tr>
-                <td>Nothing in history</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-        {/* {console.log(history)} */}
+      <div className="history-admin">
+        <h1 className="text-center my-4 ">History</h1>
+        <div className="container-fluid">
+          <div className="row justify-content-center">
+            <div className="col-12 text-center">
+              <div className="table-responsive">
+                <table className="table table-info table-hover table-striped text-center">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Company name</th>
+                      <th scope="col">Product name</th>
+                      <th scope="col">Budget</th>
+                      <th scope="col">Target Views</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {history?.result?.length > 0 ? (
+                      history.result.map((item, index) => (
+                        <HistoryList request={item} key={index} />
+                      ))
+                    ) : (
+                      <tr>
+                        <td>Nothing in history</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+                {/* {console.log(history)} */}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

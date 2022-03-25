@@ -74,7 +74,7 @@ hr {
 .footer {
   padding-top: 24px;
   padding-bottom: 24px;
-  background: #212121;
+  /* background: #212121; */
 }
 .footer li:nth-of-type(n + 2) {
   margin-left: 8px;

@@ -49,7 +49,7 @@ function DesignerList({ designers, deletedesigner, idindex }) {
         </div>
       </div>
 
-      <table className="table table-warning mb-0">
+      {/* <table className="table table-warning mb-0">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -60,7 +60,7 @@ function DesignerList({ designers, deletedesigner, idindex }) {
             <th scope="col">Delete</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody> */}
           <tr>
             <th scope="row">{idindex+1}</th>
             <td>{designers.firstname} {designers.lastname}</td>
@@ -96,8 +96,8 @@ function DesignerList({ designers, deletedesigner, idindex }) {
               </button>
             </td>
           </tr>
-        </tbody>
-      </table>
+        {/* </tbody>
+      </table> */}
     </>
   );
 }
