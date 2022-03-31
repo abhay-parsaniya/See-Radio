@@ -2,6 +2,8 @@ import React from "react";
 import moment from "moment";
 
 function HistoryList({ request }) {
+
+  // console.log(views[id])
   return (
     <>
       <tr>
@@ -12,7 +14,7 @@ function HistoryList({ request }) {
         <td>{request.productName}</td>
         <td>{request.budget}</td>
         <td>{request.targetViews}</td>
-        {/* <td>{request.curr}</td> */}
+        {/* <td>{views[id].campaign_current_views}</td> */}
         <td>
           {request.Status === "Approved" ? (
             <span className="badge rounded-pill bg-success">Approved</span>

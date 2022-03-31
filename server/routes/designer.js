@@ -87,7 +87,7 @@ router.post("/adddesigner", adminLoginRequire, (req, res) => {
                 from: transporter.options.auth.user,
                 to: formData.designeremail,
                 subject: "See Radio Designer",
-                html: `<p>Congratulations, You Selected as Graphics Designer at See Radio. Welcome to the See Radio !!</p> <br> <h3>Your Credentials are Mentioned Below.<h3> <br> <h4>Username: ${formData.designeremail}</h4> <br> <h4>Password: ${formData.designerpassword}</h4>`,
+                html: `<h2>Congratulations, You Selected as Graphics Designer at See Radio. Welcome to the See Radio !!</h2> <br> <h3>Your Credentials are Mentioned Below.<h3> <br> <h4>Username: ${formData.designeremail}</h4> <br> <h4>Password: ${formData.designerpassword}</h4>`,
               };
               transporter.sendMail(mailOptions, function (err, res) {
                 if (err) {
@@ -213,7 +213,7 @@ router.post("/sendemailtomanager", designerLoginRequire, (req, res) => {
       from: transporter.options.auth.user,
       to: manager_email,
       subject: "Designer Raise Issue",
-      text: `Respected Manager, Please Provide me More Information About ${campaigntitle} Campaign with Campaign Id No. ${idcampaign}. My issue is ${emailText}`,
+      html: `<h2>Respected Manager, Please Provide me More Information About ${campaigntitle} Campaign with Campaign Id No. ${idcampaign}. My issue is ${emailText}</h2>`,
     };
     transporter.sendMail(mailOptions, function (err, res) {
       if (err) {
@@ -265,7 +265,7 @@ router.post("/uploaddesignervideo", designerLoginRequire, (req, res) => {
                   from: transporter.options.auth.user,
                   to: [manager_email, resultEmail[0].email],
                   subject: "Video Uploaded !!",
-                  text: `Designer Uploaded Video Successfully to CampaignId ${idcampaign}. Link is Here ${designer_secure_url}`,
+                  html: `<h2>Designer Uploaded Video Successfully to CampaignId ${idcampaign}. Link is Here ${designer_secure_url}</h2>`,
                 };
                 transporter.sendMail(mailOptions, function (err, res) {
                   if (err) {

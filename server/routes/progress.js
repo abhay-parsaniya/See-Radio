@@ -15,12 +15,13 @@ router.post("/clientrequestprogress", clientLoginRequire, (req, res) => {
     else {
       const id = payload.idclient;
       db.query(
-        "SELECT * FROM newrequest WHERE user_client_id = ? ORDER BY request_date_time DESC",
-        id,
+        "SELECT * FROM newrequest WHERE user_client_id = ? ORDER BY request_date_time DESC;select campaign_current_views from distribution_partner where campaign_id = ( select idcampaign from campaign where request = (select idnewrequest from newrequest where user_client_id = ? limit 1) limit 1) limit 1;",
+        [id, id],
         (err, result) => {
           if (err) {
             console.log(err);
           } else {
+            console.log(result);
             res.status(200).json({ result });
           }
         }
@@ -59,7 +60,7 @@ router.post("/clientapprovalvideo", clientLoginRequire, (req, res) => {
   const { status, approvedid } = req.body;
 
   db.query(
-    "UPDATE campaign SET client_approval_status = ? WHERE request = ?; UPDATE newrequest SET progress = 40 WHERE idnewrequest = ?;",
+    "UPDATE campaign SET client_approval_status = ? WHERE request = ?; UPDATE newrequest SET progress = 50 WHERE idnewrequest = ?;",
     [status, approvedid, approvedid],
     (err, result) => {
       if (err) {
@@ -78,7 +79,7 @@ router.post("/clientapprovalvideo", clientLoginRequire, (req, res) => {
                 from: transporter.options.auth.user,
                 to: "abhayparsaniya08@gmail.com",
                 subject: "Video Approved !!",
-                text: `Client Approved Video with Campaign Id ${result[0].idcampaign} and Campaign Title is ${result[0].campaigntitle}`,
+                html: `<h2>Client Approved Video with Campaign Id ${result[0].idcampaign} and Campaign Title is ${result[0].campaigntitle}</h2>`,
               };
               transporter.sendMail(mailOptions, function (err, res) {
                 if (err) {
@@ -99,12 +100,12 @@ router.post("/clientapprovalvideo", clientLoginRequire, (req, res) => {
 });
 
 router.post("/clientrejectedvideo", clientLoginRequire, (req, res) => {
-  let status = "Rejected";
+  let status = "Pending";
   const { status_old, rejectedid } = req.body;
 
   db.query(
-    "UPDATE campaign SET client_approval_status = ? WHERE request = ?; UPDATE newrequest SET progress = 20 WHERE idnewrequest = ?;",
-    [status, rejectedid, rejectedid],
+    "UPDATE campaign SET client_approval_status = ? WHERE request = ?; UPDATE newrequest SET progress = 25 WHERE idnewrequest = ?; UPDATE campaign SET campaign_video_url = ? WHERE request = ?;",
+    [status, rejectedid, rejectedid, '', rejectedid],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -122,7 +123,7 @@ router.post("/clientrejectedvideo", clientLoginRequire, (req, res) => {
                 from: transporter.options.auth.user,
                 to: "abhayparsaniya08@gmail.com",
                 subject: "Video Rejected !!",
-                text: `Client Rejected Video with Campaign Id ${result[0].idcampaign} and Campaign Title is ${result[0].campaigntitle}`,
+                html: `<h2>Client Rejected Video with Campaign Id ${result[0].idcampaign} and Campaign Title is ${result[0].campaigntitle}</h2>`,
               };
               transporter.sendMail(mailOptions, function (err, res) {
                 if (err) {

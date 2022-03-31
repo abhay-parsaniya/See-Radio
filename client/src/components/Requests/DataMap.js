@@ -62,7 +62,7 @@ const DataMap = (props) => {
         {
             props.data.map(item => {
                 return (
-                    <div className={`card col-md-5 col-sm-12 border-${props.bgcolor} bg-${props.bgcolor} mb-3 text-${props.txtcolor}`} key={item.idnewrequest}>
+                    <div className={`card col-md-5 col-sm-12 border-${props.bgcolor} bg-${props.bgcolor} my-4 text-${props.txtcolor}`} key={item.idnewrequest}>
                         <div className="card-header d-flex flex-wrap bg-transparent">
                             <span className="px-1"><p className="h3"> {item.firstName} </p></span>
                             <span className="px-1"><p className="h3"> {item.lastName} </p></span>

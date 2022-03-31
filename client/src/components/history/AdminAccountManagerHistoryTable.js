@@ -36,7 +36,6 @@ const HistoryTable = () => {
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Budget</th>
                                 <th scope="col">Target Views</th>
-                                <th scope="col">Current Views</th>
                                 <th scope="col">Status</th>
                             </tr>
                             </thead>
@@ -51,7 +50,6 @@ const HistoryTable = () => {
                                             <td>{historyItem.productName}</td>
                                             <td>{historyItem.budget}</td>
                                             <td>{historyItem.targetViews}</td>
-                                            <td>@mdo</td>
                                             <td>
                                                 {historyItem.Status === "Approved" ? (
                                                     <span className="badge rounded-pill bg-success">Approved</span>

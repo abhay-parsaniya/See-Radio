@@ -1,4 +1,5 @@
 import React from 'react';
+import '../NewRequest.css'
 
 const ProductInfo = ({formData, setFormData}) => {
   return (

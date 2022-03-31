@@ -21,7 +21,7 @@ function AssignDistributorList({ distributor }) {
 
   const CountViews = () => {
 
-    let updatedViews = Math.round((Math.random() * 20000));
+    let updatedViews = Math.round((Math.random() * 200000));
     setCountViews(countViews + updatedViews);
 
     console.log(countViews);

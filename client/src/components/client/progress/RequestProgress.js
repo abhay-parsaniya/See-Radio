@@ -10,6 +10,7 @@ function RequestProgress() {
   const [approved, setApproved] = useState([]);
   const [rejected, setRejected] = useState([]);
   const [pending, setPending] = useState([]);
+  const [clientViews, setClientViews] = useState();
 
   useEffect(() => {
     fetch("/clientrequestprogress", {
@@ -22,15 +23,15 @@ function RequestProgress() {
       .then((res) => res.json())
       .then((data) => {
         data &&
-          data.result.map((req) =>
+          data.result[0].map((req) =>
             req.Status === "Approved"
               ? setApproved((prev) => [...prev, req])
               : req.Status === "Rejected"
               ? setRejected((prev) => [...prev, req])
               : setPending((prev) => [...prev, req])
           );
-
-        // setRequests(data);
+        // console.log(data.result[1][0].campaign_current_views);
+        setClientViews(data.result[1][0].campaign_current_views);
         // console.log(data); //data.result);
       })
       .catch((err) => {
@@ -53,7 +54,7 @@ function RequestProgress() {
             <hr></hr>
             {approved.length > 0 ? (
               approved.map((item, index) => (
-                <InProgressRequest reqdata={item} key={index} />
+                <InProgressRequest reqdata={item} key={index} views={clientViews} />
               ))
             ) : (
               <h6>No approved request available</h6>

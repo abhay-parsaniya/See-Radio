@@ -16,7 +16,8 @@ function History() {
     })
       .then((res) => res.json())
       .then((data) => {
-        data && setHistory(data);
+        console.log(data.result[1])
+        data && setHistory(data.result[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -41,13 +42,14 @@ function History() {
                       <th scope="col">Product name</th>
                       <th scope="col">Budget</th>
                       <th scope="col">Target Views</th>
+                      {/* <th scope="col">Achived Views</th> */}
                       <th scope="col">Status</th>
                       <th scope="col">Date</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {history?.result?.length > 0 ? (
-                      history.result.map((item, index) => (
+                    {history?.length > 0 ? (
+                      history.map((item, index) => (
                         <HistoryList request={item} key={index} />
                       ))
                     ) : (
@@ -57,7 +59,6 @@ function History() {
                     )}
                   </tbody>
                 </table>
-                {/* {console.log(history)} */}
               </div>
             </div>
           </div>

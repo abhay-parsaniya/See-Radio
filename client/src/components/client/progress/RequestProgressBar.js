@@ -53,7 +53,7 @@ function RequestProgressBar({ progress }) {
                 color: "green",
               }}
             >
-              {progress >= 20 ? (
+              {progress >= 25 ? (
                 <span className="badge rounded-pill bg-success p-2">
                   Graphic designer assigned
                 </span>
@@ -83,7 +83,7 @@ function RequestProgressBar({ progress }) {
                 color: "green",
               }}
             >
-              {progress >= 40 ? (
+              {progress >= 50 ? (
                 <span className="badge rounded-pill bg-success p-2">
                   Video verified by you
                 </span>
@@ -113,43 +113,13 @@ function RequestProgressBar({ progress }) {
                 color: "green",
               }}
             >
-              {progress >= 60 ? (
+              {progress >= 75 ? (
                 <span className="badge rounded-pill bg-success p-2">
                   Distribution partner assigned
                 </span>
               ) : (
                 <span className="badge rounded-pill bg-secondary p-2">
                   Distribution partner assigned
-                </span>
-              )}
-            </div>
-          </>
-        )}
-      </Step>
-      <Step>
-        {({ accomplished, index }) => (
-          <>
-            <div
-              className={`indexedStep ${accomplished ? "accomplished" : null}`}
-              style={{ position: "absolute" }}
-            >
-              {index + 1}
-            </div>
-            <div
-              style={{
-                position: "relative",
-                top: "50px",
-                left: "0px",
-                color: "green",
-              }}
-            >
-              {progress >= 80 ? (
-                <span className="badge rounded-pill bg-success p-2">
-                  View target achived
-                </span>
-              ) : (
-                <span className="badge rounded-pill bg-secondary p-2">
-                  View target achived
                 </span>
               )}
             </div>
@@ -175,11 +145,11 @@ function RequestProgressBar({ progress }) {
             >
               {progress >= 100 ? (
                 <span className="badge rounded-pill bg-success p-2">
-                  Completed
+                  View target achived
                 </span>
               ) : (
                 <span className="badge rounded-pill bg-secondary p-2">
-                  Completed
+                  View target achived
                 </span>
               )}
             </div>

@@ -90,7 +90,7 @@ router.post("/adddistributor", adminLoginRequire, (req, res) => {
                 from: transporter.options.auth.user,
                 to: formData.distribution_email,
                 subject: "See Radio Distribution Partner",
-                html: `<p>Congratulations, You Selected as Distribution Partner at See Radio. Welcome to the See Radio !!</p>`,
+                html: `<h2>Congratulations, You Selected as Distribution Partner at See Radio. Welcome to the See Radio !!</h2>`,
               };
               transporter.sendMail(mailOptions, function (err, res) {
                 if (err) {
@@ -129,7 +129,7 @@ router.post("/assigndistributor", adminLoginRequire, (req, res) => {
         console.log(err);
       } else {
         db.query(
-          "UPDATE newrequest SET progress = 60 WHERE idnewrequest = ?",
+          "UPDATE newrequest SET progress = 75 WHERE idnewrequest = ?",
           [distributorvideodata.requestId],
           (err, result) => {
             if (err) {
@@ -197,35 +197,37 @@ router.post("/postcurrentviews", adminLoginRequire, (req, res) => {
         }
         else{
           // console.log(result[0])
-          const {email, targetViews} = result[0];
-          console.log(email, targetViews)
-          
-          if(currViews >= targetViews)
+          const {email, targetViews, progress} = result[0];
+          // console.log(email, targetViews)
+          if(progress < 80)
           {
-            db.query(
-              "UPDATE newrequest SET progress = 80 WHERE idnewrequest = ?",
-              [newrequestid],
-              (err, result) => {
-                if (err) {
-                  console.log(err);
-                } else {
-                  // console.log(result);
-                  const mailOptions = {
-                    from: transporter.options.auth.user,
-                    to: [email, "abhayparsaniya08@gmail.com"],
-                    subject: "Target Views Achived !!",
-                    html: `<h1>Congratulations, Your Target Views Achived !!.</h1> <br> <h1> Your Target Views are ${targetViews} and Current Views are ${currViews}.</h1>`,
-                  };
-                  transporter.sendMail(mailOptions, function (err, res) {
-                    if (err) {
-                      console.error("there was an error: ", err);
-                    } else {
-                      console.log("here is the res: ", res);
-                    }
-                  });
+            if(currViews >= targetViews)
+            {
+              db.query(
+                "UPDATE newrequest SET progress = 100 WHERE idnewrequest = ?",
+                [newrequestid],
+                (err, result) => {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    // console.log(result);
+                    const mailOptions = {
+                      from: transporter.options.auth.user,
+                      to: [email, "abhayparsaniya08@gmail.com"],
+                      subject: "Target Views Achived !!",
+                      html: `<h1>Congratulations, Your Target Views Achived !!.</h1> <br> <h1> Your Target Views are ${targetViews} and Current Views are ${currViews}.</h1>`,
+                    };
+                    transporter.sendMail(mailOptions, function (err, res) {
+                      if (err) {
+                        console.error("there was an error: ", err);
+                      } else {
+                        console.log("here is the res: ", res);
+                      }
+                    });
+                  }
                 }
-              }
-            );
+              );
+            }
           }
         }
       })

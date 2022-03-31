@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
-function InProgressRequest({ reqdata }) {
+function InProgressRequest({ reqdata, views }) {
   // console.log(reqdata);
 
   const [client_video_url, setClient_video_url] = useState("");
@@ -161,8 +161,8 @@ function InProgressRequest({ reqdata }) {
                 Advertisement Video Url : No Video Available
               </p>
             )}
-
           </div>
+          <p>Views: {views}</p>
         </div>
       </div>
     </div>

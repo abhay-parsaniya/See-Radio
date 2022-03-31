@@ -38,7 +38,7 @@ router.post("/signupclient", (req, res) => {
                   from: transporter.options.auth.user,
                   to: email,
                   subject: "SignUp Success",
-                  text: "Welcome to the See Radio Portal !!",
+                  html: "<h2>Welcome to the See Radio Portal !!</h2>",
                 };
                 transporter.sendMail(mailOptions, function (err, res) {
                   if (err) {

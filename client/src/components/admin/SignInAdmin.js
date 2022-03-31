@@ -64,8 +64,8 @@ const SignInAdmin = () => {
                     <img
                       src="https://i.pinimg.com/originals/b3/97/24/b3972451f91a658c10c2b34682bd7292.gif"
                       alt="login form"
-                      className="img-fluid"
-                      style={{ borderRadius: "1rem 0 0 1rem" }}
+                      className="img-fluid mx-3"
+                      style={{ borderRadius: "1rem" }}
                     />
                   </div>
                   <div className="col-md-6 d-flex align-items-center">

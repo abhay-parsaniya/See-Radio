@@ -102,7 +102,7 @@ const AdminAccountManagerNavbar = (props) => {
                         dispatch({ type: "CLEAR" });
                         navigate("/");
                         // alert("Log Out Successfully !!");
-                        toast.success("Log Out Successfully !! !!", {
+                        toast.success("Log Out Successfully !!", {
                           theme: 'colored',
                           type: 'success'
                         });

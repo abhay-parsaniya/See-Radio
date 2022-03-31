@@ -70,7 +70,7 @@ router.post("/newrequest", clientLoginRequire, (req, res) => {
               from: transporter.options.auth.user,
               to: formData.email,
               subject: "Request Sent Successfully !!",
-              text: "Your Request is Successfully Submitted to the System. Your Request Status is Pending. Kindly Sync With us and Wait for Response.",
+              html: "<h2>Your Request is Successfully Submitted to the System. Your Request Status is Pending. Kindly Sync With us and Wait for Response.</h2>",
             };
             transporter.sendMail(mailOptions, function (err, res) {
               if (err) {
@@ -128,7 +128,7 @@ router.post("/approvedrequest", adminLoginRequire, (req, res) => {
                 from: transporter.options.auth.user,
                 to: result[0].email,
                 subject: "Request Approved",
-                text: "Congratulations, Your Request is Approved !!",
+                html: "<h2>Congratulations, Your Request is Approved !!</h2>",
               };
               transporter.sendMail(mailOptions, function (err, res) {
                 if (err) {
@@ -185,7 +185,7 @@ router.post("/rejectedrequest", adminLoginRequire, (req, res) => {
                 from: transporter.options.auth.user,
                 to: result[0].email,
                 subject: "Request Rejected",
-                text: "Sorry, Your Request is Rejected.",
+                html: "<h2>Sorry, Your Request is Rejected.</h2>",
               };
               transporter.sendMail(mailOptions, function (err, res) {
                 if (err) {

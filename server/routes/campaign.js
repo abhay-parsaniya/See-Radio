@@ -53,7 +53,7 @@ router.post("/addcampaign", adminLoginRequire, (req, res) => {
         console.log(err);
       } else {
         db.query(
-          "UPDATE newrequest SET progress = 20 WHERE idnewrequest = ?",
+          "UPDATE newrequest SET progress = 25 WHERE idnewrequest = ?",
           [formData.request],
           (err, result) => {
             if (err) {
@@ -78,7 +78,7 @@ router.post("/addcampaign", adminLoginRequire, (req, res) => {
                     from: transporter.options.auth.user,
                     to: [resultEmail[0][0].email, resultEmail[1][0].designeremail, resultEmail[2][0].manager_email],
                     subject: "Campaign Created Successfully !!",
-                    html: `Campaign Created Successfully with Title <b>${formData.title}<b>.<br>Designer can start Work on Making Video.`,
+                    html: `<h2>Campaign Created Successfully with Title <b>${formData.title}<b>.<br>Designer can start Work on Making Video.</h2>`,
                   };
                   transporter.sendMail(mailOptions, function (err, res) {
                     if (err) {
