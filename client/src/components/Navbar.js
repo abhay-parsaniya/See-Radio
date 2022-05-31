@@ -36,12 +36,8 @@ const Navbar = () => {
                     >
                       Home
                     </NavLink>
-                    <NavLink className="nav-link" to="/aboutus">
-                      AboutUs
-                    </NavLink>
-                    <NavLink className="nav-link" to="/contactus">
-                      ContactUs
-                    </NavLink>
+                    <a className='nav-link' href="#sec-about">About Us</a>
+                    <a className='nav-link' href="#sec-contact">Contact Us</a>
                     <li className="nav-item dropdown">
                       <NavLink
                         className="nav-link dropdown-toggle"

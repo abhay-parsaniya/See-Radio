@@ -1,15 +1,16 @@
 import React from "react";
+import './home.css';
 
 function ContactUs() {
   return (
     <>
       <section id="sec-contact" className="sec-contact pt-5 pb-5">
-        <div className="container">
+        <div className="container contactus-container">
           <div className="row justify-content-center">
             <div className="col-md-10 col-lg-7">
-              <h1 className="h4 py-3">
+              <h3 className="py-3">
                 Have a question? Get in touch with us!
-              </h1>
+              </h3>
 
               <form id="contact_us_form" action="" method="">
                 <fieldset className="form-group">

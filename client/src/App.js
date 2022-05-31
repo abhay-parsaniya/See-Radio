@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import AboutUs from "./components/AboutUs";
-import ContactUs from "./ContactUs";
+import ContactUs from "./components/ContactUs";
 import AdminAccountManagerHistory from "./components/history/AdminAccountManagerHistory";
 import SignInAdmin from "./components/admin/SignInAdmin";
 import Admin from "./components/admin/Admin";
@@ -43,7 +43,7 @@ const Routing = () => {
   //   if(user)
   //   {
   //     dispatch({type: "USER", payload: user})
-  //     navigate("/");
+  //     navigate("/admin");
   //   }
   //   else{
   //     navigate("/");
